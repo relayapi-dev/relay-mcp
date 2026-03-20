@@ -1,5 +1,5 @@
 {
-  "name": "relay",
+  "name": "@relayapi/api",
   "version": "0.0.1",
   "description": "The official TypeScript library for the Relay API",
   "author": "Relay <>",
