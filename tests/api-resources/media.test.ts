@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Relay, { toFile } from 'relay';
+import Relay, { toFile } from '@relayapi/api';
 
 const client = new Relay({
   apiKey: 'My API Key',
