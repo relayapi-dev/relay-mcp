@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^relay$': '<rootDir>/src/index.ts',
-    '^relay/(.*)$': '<rootDir>/src/$1',
+    '^@relayapi/api$': '<rootDir>/src/index.ts',
+    '^@relayapi/api/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',
