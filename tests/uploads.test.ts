@@ -1,6 +1,6 @@
 import fs from 'fs';
-import type { ResponseLike } from '@relayapi/api/internal/to-file';
-import { toFile } from '@relayapi/api/core/uploads';
+import type { ResponseLike } from '@relayapi/sdk/internal/to-file';
+import { toFile } from '@relayapi/sdk/core/uploads';
 import { File } from 'node:buffer';
 
 class MyClass {
@@ -97,7 +97,7 @@ describe('missing File error message', () => {
   });
 
   test('is thrown', async () => {
-    const uploads = await import('@relayapi/api/core/uploads');
+    const uploads = await import('@relayapi/sdk/core/uploads');
     await expect(
       uploads.toFile(mockResponse({ url: 'https://example.com/my/audio.mp3' })),
     ).rejects.toMatchInlineSnapshot(
