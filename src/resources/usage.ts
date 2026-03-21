@@ -6,7 +6,7 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Usage extends APIResource {
   /**
-   * Returns current subscription details and usage statistics for the organization.
+   * Returns current plan details and API call usage statistics for the organization.
    */
   retrieve(options?: RequestOptions): APIPromise<UsageRetrieveResponse> {
     return this._client.get('/v1/usage', options);
@@ -14,53 +14,93 @@ export class Usage extends APIResource {
 }
 
 export interface UsageRetrieveResponse {
-  api_calls: UsageRetrieveResponse.APICalls;
-
   plan: UsageRetrieveResponse.Plan;
+
+  rate_limit: UsageRetrieveResponse.RateLimit;
+
+  subscription: UsageRetrieveResponse.Subscription;
 
   usage: UsageRetrieveResponse.Usage;
 }
 
 export namespace UsageRetrieveResponse {
-  export interface APICalls {
-    /**
-     * API calls in the current minute
-     */
-    current_minute: number;
-
-    /**
-     * Max API calls per minute
-     */
-    limit_per_minute: number;
-  }
-
   export interface Plan {
+    /**
+     * API calls included per billing cycle
+     */
+    api_calls_limit: number;
+
     /**
      * API calls allowed per minute
      */
     api_calls_per_min: number;
 
-    /**
-     * Plan name
-     */
-    name: string;
+    features: Plan.Features;
 
     /**
-     * Max posts per billing cycle
+     * Current plan
      */
-    posts_limit: number;
+    name: 'free' | 'pro';
+  }
+
+  export namespace Plan {
+    export interface Features {
+      /**
+       * Access to /v1/analytics
+       */
+      analytics: boolean;
+
+      /**
+       * Access to /v1/inbox
+       */
+      inbox: boolean;
+    }
+  }
+
+  export interface RateLimit {
+    /**
+     * API calls in the current rate-limit window
+     */
+    current_minute: number;
+
+    /**
+     * Max API calls per rate-limit window
+     */
+    limit_per_minute: number;
+  }
+
+  export interface Subscription {
+    /**
+     * Base monthly price in cents
+     */
+    monthly_price_cents: number;
+
+    /**
+     * Overage price per 1K API calls in cents
+     */
+    price_per_thousand_calls_cents: number;
+
+    /**
+     * Subscription status
+     */
+    status: string;
   }
 
   export interface Usage {
     /**
+     * API calls remaining this cycle (Infinity for pro overage)
+     */
+    api_calls_remaining: number;
+
+    /**
+     * API calls used this cycle
+     */
+    api_calls_used: number;
+
+    /**
      * Current billing cycle end
      */
     cycle_end: string;
-
-    /**
-     * When the cycle resets
-     */
-    cycle_resets_at: string;
 
     /**
      * Current billing cycle start
@@ -68,14 +108,14 @@ export namespace UsageRetrieveResponse {
     cycle_start: string;
 
     /**
-     * Max posts per billing cycle
+     * API calls exceeding included amount
      */
-    posts_limit: number;
+    overage_calls: number;
 
     /**
-     * Posts used this cycle
+     * Overage cost in cents
      */
-    posts_used: number;
+    overage_cost_cents: number;
   }
 }
 

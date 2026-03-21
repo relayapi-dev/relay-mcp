@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0 (2026-03-21)
+
+Full Changelog: [v0.0.2...v0.1.0](https://github.com/relayapi-dev/relay-node/compare/v0.0.2...v0.1.0)
+
+### Features
+
+* **api:** api update ([ff75e2a](https://github.com/relayapi-dev/relay-node/commit/ff75e2a7340df075d8b3b9e6df1037f0b49be99e))
+
 ## 0.0.2 (2026-03-20)
 
 Full Changelog: [v0.0.1...v0.0.2](https://github.com/relayapi-dev/relay-node/compare/v0.0.1...v0.0.2)
