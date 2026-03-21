@@ -55,12 +55,12 @@ $ cd relay-node
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link @relayapi/api
+$ yarn link @relayapi/sdk
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link --global @relayapi/api
+$ pnpm link --global @relayapi/sdk
 ```
 
 ## Running tests

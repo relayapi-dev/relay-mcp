@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from '@relayapi/api/internal/uploads';
-import { toFile } from '@relayapi/api/core/uploads';
+import { multipartFormRequestOptions, createForm } from '@relayapi/sdk/internal/uploads';
+import { toFile } from '@relayapi/sdk/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
