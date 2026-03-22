@@ -59,11 +59,6 @@ export namespace UsageRetrieveResponse {
 
   export interface RateLimit {
     /**
-     * API calls in the current rate-limit window
-     */
-    current_minute: number;
-
-    /**
      * Max API calls per rate-limit window
      */
     limit_per_minute: number;
