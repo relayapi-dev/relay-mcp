@@ -275,9 +275,19 @@ export interface WebhookListParams {
   cursor?: string;
 
   /**
+   * Filter: start date (ISO 8601)
+   */
+  from?: string;
+
+  /**
    * Number of items per page
    */
   limit?: number;
+
+  /**
+   * Filter: end date (ISO 8601)
+   */
+  to?: string;
 }
 
 export interface WebhookListLogsParams {
@@ -287,9 +297,19 @@ export interface WebhookListLogsParams {
   cursor?: string;
 
   /**
+   * Filter: start date (ISO 8601)
+   */
+  from?: string;
+
+  /**
    * Number of items per page
    */
   limit?: number;
+
+  /**
+   * Filter: end date (ISO 8601)
+   */
+  to?: string;
 }
 
 export interface WebhookSendTestParams {

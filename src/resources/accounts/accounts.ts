@@ -245,9 +245,19 @@ export interface AccountListParams {
   cursor?: string;
 
   /**
+   * Filter: start date (ISO 8601)
+   */
+  from?: string;
+
+  /**
    * Number of items per page
    */
   limit?: number;
+
+  /**
+   * Filter: end date (ISO 8601)
+   */
+  to?: string;
 }
 
 Accounts.Health = Health;
