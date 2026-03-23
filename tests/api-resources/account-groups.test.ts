@@ -10,7 +10,7 @@ const client = new Relay({
 describe('resource accountGroups', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
-    const responsePromise = client.accountGroups.create({ account_ids: ['string'], name: 'x' });
+    const responsePromise = client.accountGroups.create({ name: 'x' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +22,7 @@ describe('resource accountGroups', () => {
 
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
-    const response = await client.accountGroups.create({ account_ids: ['string'], name: 'x' });
+    const response = await client.accountGroups.create({ name: 'x', account_ids: ['string'] });
   });
 
   // Mock server tests are disabled
