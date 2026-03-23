@@ -41,7 +41,15 @@ describe('resource apiKeys', () => {
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.apiKeys.list({ cursor: 'cursor', limit: 1 }, { path: '/_stainless_unknown_path' }),
+      client.apiKeys.list(
+        {
+          cursor: 'cursor',
+          from: '2019-12-27T18:11:19.117Z',
+          limit: 1,
+          to: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Relay.NotFoundError);
   });
 

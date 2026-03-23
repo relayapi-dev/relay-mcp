@@ -181,6 +181,11 @@ export interface RedditGetFeedParams {
   cursor?: string;
 
   /**
+   * Filter: start date (ISO 8601)
+   */
+  from?: string;
+
+  /**
    * Number of items per page
    */
   limit?: number;
@@ -194,6 +199,11 @@ export interface RedditGetFeedParams {
    * Time filter (for top sort)
    */
   time?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'all';
+
+  /**
+   * Filter: end date (ISO 8601)
+   */
+  to?: string;
 }
 
 export interface RedditSearchParams {
@@ -211,6 +221,11 @@ export interface RedditSearchParams {
    * Pagination cursor
    */
   cursor?: string;
+
+  /**
+   * Filter: start date (ISO 8601)
+   */
+  from?: string;
 
   /**
    * Number of items per page
@@ -231,6 +246,11 @@ export interface RedditSearchParams {
    * Time filter
    */
   time?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'all';
+
+  /**
+   * Filter: end date (ISO 8601)
+   */
+  to?: string;
 }
 
 export declare namespace Reddit {

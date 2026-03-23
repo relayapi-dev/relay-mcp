@@ -26,9 +26,11 @@ describe('resource reddit', () => {
       account_id: 'account_id',
       subreddit: 'subreddit',
       cursor: 'cursor',
+      from: '2019-12-27T18:11:19.117Z',
       limit: 1,
       sort: 'hot',
       time: 'hour',
+      to: '2019-12-27T18:11:19.117Z',
     });
   });
 
@@ -50,10 +52,12 @@ describe('resource reddit', () => {
       account_id: 'account_id',
       query: 'query',
       cursor: 'cursor',
+      from: '2019-12-27T18:11:19.117Z',
       limit: 1,
       sort: 'relevance',
       subreddit: 'subreddit',
       time: 'hour',
+      to: '2019-12-27T18:11:19.117Z',
     });
   });
 });
