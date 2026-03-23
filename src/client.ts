@@ -20,6 +20,7 @@ import { APIPromise } from './core/api-promise';
 import {
   AccountGroupCreateParams,
   AccountGroupCreateResponse,
+  AccountGroupListParams,
   AccountGroupListResponse,
   AccountGroupUpdateParams,
   AccountGroupUpdateResponse,
@@ -928,6 +929,7 @@ export declare namespace Relay {
     type AccountGroupListResponse as AccountGroupListResponse,
     type AccountGroupCreateParams as AccountGroupCreateParams,
     type AccountGroupUpdateParams as AccountGroupUpdateParams,
+    type AccountGroupListParams as AccountGroupListParams,
   };
 
   export {

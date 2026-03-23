@@ -93,8 +93,10 @@ describe('resource posts', () => {
     await expect(
       client.posts.list(
         {
+          account_id: 'account_id',
           cursor: 'cursor',
           from: '2019-12-27T18:11:19.117Z',
+          group_id: 'group_id',
           limit: 1,
           to: '2019-12-27T18:11:19.117Z',
         },

@@ -836,6 +836,11 @@ export namespace PostUpdateParams {
 
 export interface PostListParams {
   /**
+   * Filter by specific account ID
+   */
+  account_id?: string;
+
+  /**
    * Pagination cursor
    */
   cursor?: string;
@@ -844,6 +849,11 @@ export interface PostListParams {
    * Filter: start date (ISO 8601)
    */
   from?: string;
+
+  /**
+   * Filter by account group ID
+   */
+  group_id?: string;
 
   /**
    * Number of items per page

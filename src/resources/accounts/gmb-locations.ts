@@ -51,6 +51,11 @@ export interface GmbLocationSetDefaultResponse {
 
   display_name: string | null;
 
+  /**
+   * Account group
+   */
+  group: GmbLocationSetDefaultResponse.Group | null;
+
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -77,6 +82,17 @@ export interface GmbLocationSetDefaultResponse {
   updated_at: string;
 
   username: string | null;
+}
+
+export namespace GmbLocationSetDefaultResponse {
+  /**
+   * Account group
+   */
+  export interface Group {
+    id: string;
+
+    name: string;
+  }
 }
 
 export interface GmbLocationSetDefaultParams {

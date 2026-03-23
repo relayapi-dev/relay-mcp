@@ -50,6 +50,11 @@ export namespace WhatsappCompleteEmbeddedSignupResponse {
 
     display_name: string | null;
 
+    /**
+     * Account group
+     */
+    group: Account.Group | null;
+
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -77,6 +82,17 @@ export namespace WhatsappCompleteEmbeddedSignupResponse {
 
     username: string | null;
   }
+
+  export namespace Account {
+    /**
+     * Account group
+     */
+    export interface Group {
+      id: string;
+
+      name: string;
+    }
+  }
 }
 
 export interface WhatsappConnectViaCredentialsResponse {
@@ -95,6 +111,11 @@ export namespace WhatsappConnectViaCredentialsResponse {
     connected_at: string;
 
     display_name: string | null;
+
+    /**
+     * Account group
+     */
+    group: Account.Group | null;
 
     metadata: { [key: string]: unknown } | null;
 
@@ -122,6 +143,17 @@ export namespace WhatsappConnectViaCredentialsResponse {
     updated_at: string;
 
     username: string | null;
+  }
+
+  export namespace Account {
+    /**
+     * Account group
+     */
+    export interface Group {
+      id: string;
+
+      name: string;
+    }
   }
 }
 

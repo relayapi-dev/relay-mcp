@@ -14,6 +14,7 @@ export {
   type AccountGroupListResponse,
   type AccountGroupCreateParams,
   type AccountGroupUpdateParams,
+  type AccountGroupListParams,
 } from './account-groups';
 export {
   Accounts,

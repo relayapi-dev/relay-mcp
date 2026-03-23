@@ -22,7 +22,7 @@ describe('resource accountGroups', () => {
 
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
-    const response = await client.accountGroups.create({ name: 'x', account_ids: ['string'] });
+    const response = await client.accountGroups.create({ name: 'x', description: 'description' });
   });
 
   // Mock server tests are disabled
@@ -43,7 +43,7 @@ describe('resource accountGroups', () => {
     await expect(
       client.accountGroups.update(
         'id',
-        { account_ids: ['string'], name: 'x' },
+        { description: 'description', name: 'x' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Relay.NotFoundError);
@@ -59,6 +59,21 @@ describe('resource accountGroups', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.accountGroups.list(
+        {
+          cursor: 'cursor',
+          limit: 1,
+          search: 'search',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
   });
 
   // Mock server tests are disabled
