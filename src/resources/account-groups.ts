@@ -28,8 +28,11 @@ export class AccountGroups extends APIResource {
   /**
    * List account groups
    */
-  list(options?: RequestOptions): APIPromise<AccountGroupListResponse> {
-    return this._client.get('/v1/account-groups', options);
+  list(
+    query: AccountGroupListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AccountGroupListResponse> {
+    return this._client.get('/v1/account-groups', { query, ...options });
   }
 
   /**
@@ -50,14 +53,19 @@ export interface AccountGroupCreateResponse {
   id: string;
 
   /**
-   * Account IDs in the group
+   * Number of accounts in this group
    */
-  account_ids: Array<string>;
+  account_count: number;
 
   /**
    * Creation timestamp
    */
   created_at: string;
+
+  /**
+   * Group description
+   */
+  description: string | null;
 
   /**
    * Group name
@@ -77,14 +85,19 @@ export interface AccountGroupUpdateResponse {
   id: string;
 
   /**
-   * Account IDs in the group
+   * Number of accounts in this group
    */
-  account_ids: Array<string>;
+  account_count: number;
 
   /**
    * Creation timestamp
    */
   created_at: string;
+
+  /**
+   * Group description
+   */
+  description: string | null;
 
   /**
    * Group name
@@ -99,6 +112,10 @@ export interface AccountGroupUpdateResponse {
 
 export interface AccountGroupListResponse {
   data: Array<AccountGroupListResponse.Data>;
+
+  has_more: boolean;
+
+  next_cursor: string | null;
 }
 
 export namespace AccountGroupListResponse {
@@ -109,14 +126,19 @@ export namespace AccountGroupListResponse {
     id: string;
 
     /**
-     * Account IDs in the group
+     * Number of accounts in this group
      */
-    account_ids: Array<string>;
+    account_count: number;
 
     /**
      * Creation timestamp
      */
     created_at: string;
+
+    /**
+     * Group description
+     */
+    description: string | null;
 
     /**
      * Group name
@@ -137,21 +159,38 @@ export interface AccountGroupCreateParams {
   name: string;
 
   /**
-   * Account IDs to include in the group
+   * Group description
    */
-  account_ids?: Array<string>;
+  description?: string;
 }
 
 export interface AccountGroupUpdateParams {
   /**
-   * Account IDs to include in the group
+   * Group description
    */
-  account_ids?: Array<string>;
+  description?: string | null;
 
   /**
    * Group name
    */
   name?: string;
+}
+
+export interface AccountGroupListParams {
+  /**
+   * Pagination cursor
+   */
+  cursor?: string;
+
+  /**
+   * Page size
+   */
+  limit?: number;
+
+  /**
+   * Search groups by name
+   */
+  search?: string;
 }
 
 export declare namespace AccountGroups {
@@ -161,5 +200,6 @@ export declare namespace AccountGroups {
     type AccountGroupListResponse as AccountGroupListResponse,
     type AccountGroupCreateParams as AccountGroupCreateParams,
     type AccountGroupUpdateParams as AccountGroupUpdateParams,
+    type AccountGroupListParams as AccountGroupListParams,
   };
 }

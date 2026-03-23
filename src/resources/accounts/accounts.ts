@@ -108,6 +108,11 @@ export interface AccountRetrieveResponse {
 
   display_name: string | null;
 
+  /**
+   * Account group
+   */
+  group: AccountRetrieveResponse.Group | null;
+
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -136,6 +141,17 @@ export interface AccountRetrieveResponse {
   username: string | null;
 }
 
+export namespace AccountRetrieveResponse {
+  /**
+   * Account group
+   */
+  export interface Group {
+    id: string;
+
+    name: string;
+  }
+}
+
 export interface AccountUpdateResponse {
   /**
    * Account ID
@@ -147,6 +163,11 @@ export interface AccountUpdateResponse {
   connected_at: string;
 
   display_name: string | null;
+
+  /**
+   * Account group
+   */
+  group: AccountUpdateResponse.Group | null;
 
   metadata: { [key: string]: unknown } | null;
 
@@ -174,6 +195,17 @@ export interface AccountUpdateResponse {
   updated_at: string;
 
   username: string | null;
+}
+
+export namespace AccountUpdateResponse {
+  /**
+   * Account group
+   */
+  export interface Group {
+    id: string;
+
+    name: string;
+  }
 }
 
 export interface AccountListResponse {
@@ -203,6 +235,11 @@ export namespace AccountListResponse {
 
     display_name: string | null;
 
+    /**
+     * Account group
+     */
+    group: Data.Group | null;
+
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -230,10 +267,26 @@ export namespace AccountListResponse {
 
     username: string | null;
   }
+
+  export namespace Data {
+    /**
+     * Account group
+     */
+    export interface Group {
+      id: string;
+
+      name: string;
+    }
+  }
 }
 
 export interface AccountUpdateParams {
   display_name?: string;
+
+  /**
+   * Group ID (null to ungroup)
+   */
+  group_id?: string | null;
 
   metadata?: { [key: string]: unknown };
 }
@@ -250,14 +303,29 @@ export interface AccountListParams {
   from?: string;
 
   /**
+   * Filter by group ID
+   */
+  group_id?: string;
+
+  /**
    * Number of items per page
    */
   limit?: number;
 
   /**
+   * Search by name or username
+   */
+  search?: string;
+
+  /**
    * Filter: end date (ISO 8601)
    */
   to?: string;
+
+  /**
+   * Only show ungrouped accounts
+   */
+  ungrouped?: boolean | null;
 }
 
 Accounts.Health = Health;

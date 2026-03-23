@@ -199,7 +199,7 @@ Methods:
 
 - <code title="post /v1/account-groups">client.accountGroups.<a href="./src/resources/account-groups.ts">create</a>({ ...params }) -> AccountGroupCreateResponse</code>
 - <code title="put /v1/account-groups/{id}">client.accountGroups.<a href="./src/resources/account-groups.ts">update</a>(id, { ...params }) -> AccountGroupUpdateResponse</code>
-- <code title="get /v1/account-groups">client.accountGroups.<a href="./src/resources/account-groups.ts">list</a>() -> AccountGroupListResponse</code>
+- <code title="get /v1/account-groups">client.accountGroups.<a href="./src/resources/account-groups.ts">list</a>({ ...params }) -> AccountGroupListResponse</code>
 - <code title="delete /v1/account-groups/{id}">client.accountGroups.<a href="./src/resources/account-groups.ts">delete</a>(id) -> void</code>
 
 # Connect

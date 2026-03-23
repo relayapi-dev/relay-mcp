@@ -50,6 +50,11 @@ export namespace TelegramConnectDirectlyResponse {
 
     display_name: string | null;
 
+    /**
+     * Account group
+     */
+    group: Account.Group | null;
+
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -76,6 +81,17 @@ export namespace TelegramConnectDirectlyResponse {
     updated_at: string;
 
     username: string | null;
+  }
+
+  export namespace Account {
+    /**
+     * Account group
+     */
+    export interface Group {
+      id: string;
+
+      name: string;
+    }
   }
 }
 
@@ -154,6 +170,11 @@ export namespace TelegramPollConnectionStatusResponse {
 
     display_name: string | null;
 
+    /**
+     * Account group
+     */
+    group: Account.Group | null;
+
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -180,6 +201,17 @@ export namespace TelegramPollConnectionStatusResponse {
     updated_at: string;
 
     username: string | null;
+  }
+
+  export namespace Account {
+    /**
+     * Account group
+     */
+    export interface Group {
+      id: string;
+
+      name: string;
+    }
   }
 }
 

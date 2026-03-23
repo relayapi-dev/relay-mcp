@@ -51,6 +51,11 @@ export interface RedditSubredditSetDefaultResponse {
 
   display_name: string | null;
 
+  /**
+   * Account group
+   */
+  group: RedditSubredditSetDefaultResponse.Group | null;
+
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -77,6 +82,17 @@ export interface RedditSubredditSetDefaultResponse {
   updated_at: string;
 
   username: string | null;
+}
+
+export namespace RedditSubredditSetDefaultResponse {
+  /**
+   * Account group
+   */
+  export interface Group {
+    id: string;
+
+    name: string;
+  }
 }
 
 export interface RedditSubredditSetDefaultParams {
