@@ -132,14 +132,14 @@ export namespace AccountGroupListResponse {
 
 export interface AccountGroupCreateParams {
   /**
-   * Account IDs to include in the group
-   */
-  account_ids: Array<string>;
-
-  /**
    * Group name
    */
   name: string;
+
+  /**
+   * Account IDs to include in the group
+   */
+  account_ids?: Array<string>;
 }
 
 export interface AccountGroupUpdateParams {
