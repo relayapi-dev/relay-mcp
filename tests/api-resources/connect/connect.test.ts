@@ -86,7 +86,11 @@ describe('resource connect', () => {
     await expect(
       client.connect.startOAuthFlow(
         'twitter',
-        { headless: 'headless', redirect_url: 'https://example.com' },
+        {
+          headless: 'headless',
+          method: 'method',
+          redirect_url: 'https://example.com',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Relay.NotFoundError);
