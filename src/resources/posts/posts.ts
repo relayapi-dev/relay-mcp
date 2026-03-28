@@ -71,7 +71,7 @@ export class Posts extends APIResource {
   }
 
   /**
-   * Delete a draft or scheduled post.
+   * Delete a post.
    *
    * @example
    * ```ts
