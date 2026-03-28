@@ -349,6 +349,12 @@ export interface ConnectStartOAuthFlowParams {
   headless?: string;
 
   /**
+   * Auth method variant (e.g. "direct" for Instagram Login instead of Facebook
+   * Login)
+   */
+  method?: string;
+
+  /**
    * URL to redirect after OAuth completes
    */
   redirect_url?: string;
