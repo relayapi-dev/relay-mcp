@@ -107,6 +107,7 @@ import {
   PostListResponse,
   PostRetrieveResponse,
   PostRetryResponse,
+  PostUnpublishParams,
   PostUnpublishResponse,
   PostUpdateParams,
   PostUpdateResponse,
@@ -878,6 +879,7 @@ export declare namespace Relay {
     type PostUpdateParams as PostUpdateParams,
     type PostListParams as PostListParams,
     type PostBulkCreateParams as PostBulkCreateParams,
+    type PostUnpublishParams as PostUnpublishParams,
   };
 
   export {

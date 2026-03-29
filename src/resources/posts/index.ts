@@ -14,4 +14,5 @@ export {
   type PostUpdateParams,
   type PostListParams,
   type PostBulkCreateParams,
+  type PostUnpublishParams,
 } from './posts';

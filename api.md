@@ -19,7 +19,7 @@ Methods:
 - <code title="delete /v1/posts/{id}">client.posts.<a href="./src/resources/posts/posts.ts">delete</a>(id) -> void</code>
 - <code title="post /v1/posts/bulk">client.posts.<a href="./src/resources/posts/posts.ts">bulkCreate</a>({ ...params }) -> PostBulkCreateResponse</code>
 - <code title="post /v1/posts/{id}/retry">client.posts.<a href="./src/resources/posts/posts.ts">retry</a>(id) -> PostRetryResponse</code>
-- <code title="post /v1/posts/{id}/unpublish">client.posts.<a href="./src/resources/posts/posts.ts">unpublish</a>(id) -> PostUnpublishResponse</code>
+- <code title="post /v1/posts/{id}/unpublish">client.posts.<a href="./src/resources/posts/posts.ts">unpublish</a>(id, { ...params }) -> PostUnpublishResponse</code>
 
 ## Logs
 
