@@ -121,8 +121,12 @@ export class Posts extends APIResource {
    * const response = await client.posts.unpublish('id');
    * ```
    */
-  unpublish(id: string, options?: RequestOptions): APIPromise<PostUnpublishResponse> {
-    return this._client.post(path`/v1/posts/${id}/unpublish`, options);
+  unpublish(
+    id: string,
+    body: PostUnpublishParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<PostUnpublishResponse> {
+    return this._client.post(path`/v1/posts/${id}/unpublish`, { body, ...options });
   }
 }
 
@@ -922,6 +926,13 @@ export namespace PostBulkCreateParams {
   }
 }
 
+export interface PostUnpublishParams {
+  /**
+   * Platforms to unpublish from. If omitted, unpublishes from all.
+   */
+  platforms?: Array<string>;
+}
+
 Posts.Logs = Logs;
 
 export declare namespace Posts {
@@ -937,6 +948,7 @@ export declare namespace Posts {
     type PostUpdateParams as PostUpdateParams,
     type PostListParams as PostListParams,
     type PostBulkCreateParams as PostBulkCreateParams,
+    type PostUnpublishParams as PostUnpublishParams,
   };
 
   export {
