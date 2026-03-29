@@ -98,6 +98,7 @@ describe('resource posts', () => {
           from: '2019-12-27T18:11:19.117Z',
           group_id: 'group_id',
           limit: 1,
+          status: 'draft',
           to: '2019-12-27T18:11:19.117Z',
         },
         { path: '/_stainless_unknown_path' },
