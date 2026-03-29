@@ -865,6 +865,11 @@ export interface PostListParams {
   limit?: number;
 
   /**
+   * Filter by post status
+   */
+  status?: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+
+  /**
    * Filter: end date (ISO 8601)
    */
   to?: string;
