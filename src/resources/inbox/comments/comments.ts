@@ -138,6 +138,11 @@ export namespace CommentRetrieveResponse {
     text: string;
 
     /**
+     * Social account ID
+     */
+    account_id?: string;
+
+    /**
      * Author avatar URL
      */
     author_avatar?: string | null;
@@ -151,6 +156,26 @@ export namespace CommentRetrieveResponse {
      * Like count
      */
     likes?: number;
+
+    /**
+     * Platform post/media/video ID
+     */
+    post_id?: string;
+
+    /**
+     * URL to the post on the platform
+     */
+    post_platform_url?: string | null;
+
+    /**
+     * Post caption snippet
+     */
+    post_text?: string | null;
+
+    /**
+     * Post thumbnail URL
+     */
+    post_thumbnail_url?: string | null;
 
     /**
      * Reply count
@@ -233,6 +258,11 @@ export namespace CommentListResponse {
     text: string;
 
     /**
+     * Social account ID
+     */
+    account_id?: string;
+
+    /**
      * Author avatar URL
      */
     author_avatar?: string | null;
@@ -246,6 +276,26 @@ export namespace CommentListResponse {
      * Like count
      */
     likes?: number;
+
+    /**
+     * Platform post/media/video ID
+     */
+    post_id?: string;
+
+    /**
+     * URL to the post on the platform
+     */
+    post_platform_url?: string | null;
+
+    /**
+     * Post caption snippet
+     */
+    post_text?: string | null;
+
+    /**
+     * Post thumbnail URL
+     */
+    post_thumbnail_url?: string | null;
 
     /**
      * Reply count
