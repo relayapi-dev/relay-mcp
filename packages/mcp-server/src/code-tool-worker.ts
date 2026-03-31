@@ -5,7 +5,7 @@ import util from 'node:util';
 import Fuse from 'fuse.js';
 import ts from 'typescript';
 import { WorkerOutput } from './code-tool-types';
-import { Relay, ClientOptions } from 'relay';
+import { Relay, ClientOptions } from '@relayapi/mcp';
 
 function getRunFunctionSource(code: string): {
   type: 'declaration' | 'expression';
@@ -53,7 +53,7 @@ function getRunFunctionSource(code: string): {
 function getTSDiagnostics(code: string): string[] {
   const functionSource = getRunFunctionSource(code)!;
   const codeWithImport = [
-    'import { Relay } from "relay";',
+    'import { Relay } from "@relayapi/mcp";',
     functionSource.type === 'declaration' ?
       `async function run(${functionSource.client}: Relay)`
     : `const run: (${functionSource.client}: Relay) => Promise<unknown> =`,

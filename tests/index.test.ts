@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from 'relay/core/api-promise';
+import { APIPromise } from '@relayapi/mcp/core/api-promise';
 
 import util from 'node:util';
-import Relay from 'relay';
-import { APIUserAbortError } from 'relay';
+import Relay from '@relayapi/mcp';
+import { APIUserAbortError } from '@relayapi/mcp';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {

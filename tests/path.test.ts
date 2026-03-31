@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'relay/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from '@relayapi/mcp/internal/utils/path';
 import { inspect } from 'node:util';
 import { runInNewContext } from 'node:vm';
 
