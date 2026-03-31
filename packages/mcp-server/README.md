@@ -9,8 +9,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 Because it's not published yet, clone the repo and build it:
 
 ```sh
-git clone git@github.com:stainless-sdks/relay-typescript.git
-cd relay-typescript
+git clone git@github.com:relayapi-dev/relay-mcp.git
+cd relay-mcp
 ./scripts/bootstrap
 ./scripts/build
 ```
@@ -40,7 +40,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "relay_api": {
       "command": "node",
-      "args": ["/path/to/local/relay-typescript/packages/mcp-server"],
+      "args": ["/path/to/local/relay-mcp/packages/mcp-server"],
       "env": {
         "RELAY_API_KEY": "My API Key"
       }
