@@ -758,7 +758,7 @@ export interface PostCreateParams {
   scheduled_at: string;
 
   /**
-   * Account IDs or platform names to publish to
+   * Account IDs, platform names, or group IDs to publish to
    */
   targets: Array<string>;
 
@@ -891,7 +891,7 @@ export namespace PostBulkCreateParams {
     scheduled_at: string;
 
     /**
-     * Account IDs or platform names to publish to
+     * Account IDs, platform names, or group IDs to publish to
      */
     targets: Array<string>;
 
