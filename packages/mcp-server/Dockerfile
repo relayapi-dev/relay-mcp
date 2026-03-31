@@ -59,8 +59,8 @@ WORKDIR /app
 # Copy the build results, preserving directory structure
 COPY --from=builder /build .
 
-# Copy the built relay into node_modules
-COPY --from=builder /build/dist ./node_modules/relay
+# Copy the built @relayapi/mcp into node_modules
+COPY --from=builder /build/dist ./node_modules/@relayapi/mcp
 
 # Change ownership to nodejs user
 RUN chown -R nodejs:nodejs /app
