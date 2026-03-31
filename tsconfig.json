@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "relay/*": ["./src/*"],
-      "relay": ["./src/index.ts"]
+      "@relayapi/mcp/*": ["./src/*"],
+      "@relayapi/mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 

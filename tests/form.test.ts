@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'relay/internal/uploads';
-import { toFile } from 'relay/core/uploads';
+import { multipartFormRequestOptions, createForm } from '@relayapi/mcp/internal/uploads';
+import { toFile } from '@relayapi/mcp/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
