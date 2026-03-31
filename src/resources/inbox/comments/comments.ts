@@ -158,6 +158,11 @@ export namespace CommentRetrieveResponse {
     likes?: number;
 
     /**
+     * Parent comment ID if this is a reply
+     */
+    parent_id?: string | null;
+
+    /**
      * Platform post/media/video ID
      */
     post_id?: string;
@@ -276,6 +281,11 @@ export namespace CommentListResponse {
      * Like count
      */
     likes?: number;
+
+    /**
+     * Parent comment ID if this is a reply
+     */
+    parent_id?: string | null;
 
     /**
      * Platform post/media/video ID
