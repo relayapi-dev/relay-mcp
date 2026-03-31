@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "@relayapi/sdk/*": ["./src/*"],
-      "@relayapi/sdk": ["./src/index.ts"]
+      "relay/*": ["./src/*"],
+      "relay": ["./src/index.ts"]
     },
     "noEmit": true,
 

@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "@relayapi/sdk/*": ["./dist/src/*"],
-      "@relayapi/sdk": ["./dist/src/index.ts"]
+      "relay/*": ["./dist/src/*"],
+      "relay": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
