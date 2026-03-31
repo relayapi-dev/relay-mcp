@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/relay-typescript.git"
+    "url": "git+https://github.com/relayapi-dev/relay-mcp.git"
   },
-  "homepage": "https://github.com/stainless-sdks/relay-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/relayapi-dev/relay-mcp/tree/main/packages/mcp-server#readme",
   "documentation": "https://docs.relayapi.dev",
   "server": {
     "type": "node",
