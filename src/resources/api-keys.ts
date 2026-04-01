@@ -63,9 +63,19 @@ export interface APIKeyCreateResponse {
   name: string | null;
 
   /**
+   * Permission level
+   */
+  permission: 'read_write' | 'read_only';
+
+  /**
    * Key prefix
    */
   prefix: string;
+
+  /**
+   * Workspace access: 'all' or array of workspace IDs
+   */
+  workspace_scope: 'all' | Array<string>;
 }
 
 export interface APIKeyListResponse {
@@ -110,6 +120,11 @@ export namespace APIKeyListResponse {
     name: string | null;
 
     /**
+     * Permission level
+     */
+    permission: 'read_write' | 'read_only';
+
+    /**
      * Key prefix (e.g. rlay*live*)
      */
     prefix: string | null;
@@ -118,6 +133,11 @@ export namespace APIKeyListResponse {
      * First 8 characters of the key (preview)
      */
     start: string;
+
+    /**
+     * Workspace access: 'all' or array of workspace IDs
+     */
+    workspace_scope: 'all' | Array<string>;
   }
 }
 
@@ -131,6 +151,16 @@ export interface APIKeyCreateParams {
    * Number of days until the key expires
    */
   expires_in_days?: number;
+
+  /**
+   * Permission level: read_write (default) or read_only
+   */
+  permission?: 'read_write' | 'read_only';
+
+  /**
+   * Workspace access: 'all' for unrestricted, or array of workspace IDs
+   */
+  workspace_scope?: 'all' | Array<string>;
 }
 
 export interface APIKeyListParams {
