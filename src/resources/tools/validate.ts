@@ -467,6 +467,11 @@ export namespace ValidateRetrieveSubredditResponse {
      * Allows text posts
      */
     self: boolean;
+
+    /**
+     * Allows video posts
+     */
+    video?: boolean;
   }
 }
 
@@ -543,6 +548,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Discord {
@@ -555,6 +565,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Facebook {
@@ -567,6 +582,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Googlebusiness {
@@ -579,6 +599,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Instagram {
@@ -591,6 +616,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Linkedin {
@@ -603,6 +633,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Mastodon {
@@ -615,6 +650,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Pinterest {
@@ -627,6 +667,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Reddit {
@@ -639,6 +684,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface SMS {
@@ -651,6 +701,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Snapchat {
@@ -663,6 +718,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Telegram {
@@ -675,6 +735,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Threads {
@@ -687,6 +752,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Tiktok {
@@ -699,6 +769,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Twitter {
@@ -711,6 +786,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Whatsapp {
@@ -723,6 +803,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Youtube {
@@ -735,6 +820,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
   }
 }
