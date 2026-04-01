@@ -240,6 +240,11 @@ export interface WebhookCreateParams {
    * Webhook endpoint URL
    */
   url: string;
+
+  /**
+   * Workspace ID to scope this webhook to
+   */
+  workspace_id?: string;
 }
 
 export interface WebhookUpdateParams {
@@ -288,6 +293,11 @@ export interface WebhookListParams {
    * Filter: end date (ISO 8601)
    */
   to?: string;
+
+  /**
+   * Filter by workspace ID
+   */
+  workspace_id?: string;
 }
 
 export interface WebhookListLogsParams {

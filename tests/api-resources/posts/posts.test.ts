@@ -29,6 +29,7 @@ describe('resource posts', () => {
       media: [{ url: 'https://example.com', type: 'image' }],
       target_options: { foo: { foo: 'bar' } },
       timezone: 'timezone',
+      workspace_id: 'workspace_id',
     });
   });
 
@@ -96,10 +97,10 @@ describe('resource posts', () => {
           account_id: 'account_id',
           cursor: 'cursor',
           from: '2019-12-27T18:11:19.117Z',
-          group_id: 'group_id',
           limit: 1,
           status: 'draft',
           to: '2019-12-27T18:11:19.117Z',
+          workspace_id: 'workspace_id',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -143,6 +144,7 @@ describe('resource posts', () => {
           media: [{ url: 'https://example.com', type: 'image' }],
           target_options: { foo: { foo: 'bar' } },
           timezone: 'timezone',
+          workspace_id: 'workspace_id',
         },
       ],
     });

@@ -247,6 +247,11 @@ export interface ContactCreateParams {
    * Tags
    */
   tags?: Array<string>;
+
+  /**
+   * Workspace ID to scope this contact to
+   */
+  workspace_id?: string;
 }
 
 export interface ContactListParams {
@@ -274,6 +279,11 @@ export interface ContactListParams {
    * Filter by tag
    */
   tag?: string;
+
+  /**
+   * Filter by workspace ID
+   */
+  workspace_id?: string;
 }
 
 export interface ContactBulkOperationsParams {

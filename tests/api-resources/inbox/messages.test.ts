@@ -42,6 +42,7 @@ describe('resource messages', () => {
           cursor: 'cursor',
           limit: 1,
           platform: 'twitter',
+          workspace_id: 'workspace_id',
         },
         { path: '/_stainless_unknown_path' },
       ),

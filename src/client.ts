@@ -17,15 +17,7 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import {
-  AccountGroupCreateParams,
-  AccountGroupCreateResponse,
-  AccountGroupListParams,
-  AccountGroupListResponse,
-  AccountGroupUpdateParams,
-  AccountGroupUpdateResponse,
-  AccountGroups,
-} from './resources/account-groups';
+import { AccountGroups } from './resources/account-groups';
 import {
   APIKeyCreateParams,
   APIKeyCreateResponse,
@@ -924,15 +916,7 @@ export declare namespace Relay {
 
   export { Usage as Usage, type UsageRetrieveResponse as UsageRetrieveResponse };
 
-  export {
-    AccountGroups as AccountGroups,
-    type AccountGroupCreateResponse as AccountGroupCreateResponse,
-    type AccountGroupUpdateResponse as AccountGroupUpdateResponse,
-    type AccountGroupListResponse as AccountGroupListResponse,
-    type AccountGroupCreateParams as AccountGroupCreateParams,
-    type AccountGroupUpdateParams as AccountGroupUpdateParams,
-    type AccountGroupListParams as AccountGroupListParams,
-  };
+  export { AccountGroups as AccountGroups };
 
   export {
     Connect as Connect,

@@ -911,7 +911,7 @@ export interface ValidateValidatePostParams {
   scheduled_at: string;
 
   /**
-   * Account IDs, platform names, or group IDs to publish to
+   * Account IDs, platform names, or workspace IDs to publish to
    */
   targets: Array<string>;
 
@@ -934,6 +934,11 @@ export interface ValidateValidatePostParams {
    * IANA timezone for scheduling
    */
   timezone?: string;
+
+  /**
+   * Workspace ID to scope this post to
+   */
+  workspace_id?: string;
 }
 
 export namespace ValidateValidatePostParams {

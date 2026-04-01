@@ -80,6 +80,7 @@ describe('resource validate', () => {
       media: [{ url: 'https://example.com', type: 'image' }],
       target_options: { foo: { foo: 'bar' } },
       timezone: 'timezone',
+      workspace_id: 'workspace_id',
     });
   });
 });

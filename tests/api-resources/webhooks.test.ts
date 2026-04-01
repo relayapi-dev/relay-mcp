@@ -25,7 +25,11 @@ describe('resource webhooks', () => {
 
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
-    const response = await client.webhooks.create({ events: ['post.published'], url: 'https://example.com' });
+    const response = await client.webhooks.create({
+      events: ['post.published'],
+      url: 'https://example.com',
+      workspace_id: 'workspace_id',
+    });
   });
 
   // Mock server tests are disabled
@@ -78,6 +82,7 @@ describe('resource webhooks', () => {
           from: '2019-12-27T18:11:19.117Z',
           limit: 1,
           to: '2019-12-27T18:11:19.117Z',
+          workspace_id: 'workspace_id',
         },
         { path: '/_stainless_unknown_path' },
       ),

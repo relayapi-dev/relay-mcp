@@ -24,9 +24,15 @@ export class Health extends APIResource {
 export interface HealthRetrieveResponse {
   id: string;
 
+  avatar_url: string | null;
+
+  display_name: string | null;
+
   healthy: boolean;
 
   platform: string;
+
+  scopes: Array<string>;
 
   token_expires_at: string | null;
 

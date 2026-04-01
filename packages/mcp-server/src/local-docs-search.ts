@@ -62,15 +62,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       'account_id?: string;',
       'cursor?: string;',
       'from?: string;',
-      'group_id?: string;',
       'limit?: number;',
       "status?: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';",
       'to?: string;',
+      'workspace_id?: string;',
     ],
     response:
       "{ data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]; has_more: boolean; next_cursor: string; }",
     markdown:
-      "## list\n\n`client.posts.list(account_id?: string, cursor?: string, from?: string, group_id?: string, limit?: number, status?: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed', to?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/posts`\n\nList posts\n\n### Parameters\n\n- `account_id?: string`\n  Filter by specific account ID\n\n- `cursor?: string`\n  Pagination cursor\n\n- `from?: string`\n  Filter: start date (ISO 8601)\n\n- `group_id?: string`\n  Filter by account group ID\n\n- `limit?: number`\n  Number of items per page\n\n- `status?: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed'`\n  Filter by post status\n\n- `to?: string`\n  Filter: end date (ISO 8601)\n\n### Returns\n\n- `{ data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst posts = await client.posts.list();\n\nconsole.log(posts);\n```",
+      "## list\n\n`client.posts.list(account_id?: string, cursor?: string, from?: string, limit?: number, status?: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed', to?: string, workspace_id?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/posts`\n\nList posts\n\n### Parameters\n\n- `account_id?: string`\n  Filter by specific account ID\n\n- `cursor?: string`\n  Pagination cursor\n\n- `from?: string`\n  Filter: start date (ISO 8601)\n\n- `limit?: number`\n  Number of items per page\n\n- `status?: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed'`\n  Filter by post status\n\n- `to?: string`\n  Filter: end date (ISO 8601)\n\n- `workspace_id?: string`\n  Filter by workspace ID\n\n### Returns\n\n- `{ data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst posts = await client.posts.list();\n\nconsole.log(posts);\n```",
     perLanguage: {
       go: {
         method: 'client.Posts.List',
@@ -113,11 +113,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       "media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[];",
       'target_options?: object;',
       'timezone?: string;',
+      'workspace_id?: string;',
     ],
     response:
       "{ id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }",
     markdown:
-      "## create\n\n`client.posts.create(scheduled_at: string, targets: string[], content?: string, media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[], target_options?: object, timezone?: string): { id: string; content: string; created_at: string; media: object[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }`\n\n**post** `/v1/posts`\n\nCreate a post. Use scheduled_at: \"now\" to publish immediately, \"draft\" to save as draft, or an ISO timestamp to schedule.\n\n### Parameters\n\n- `scheduled_at: string`\n  Publish intent. Use \"now\" to publish immediately, \"draft\" to save as draft, or an ISO 8601 timestamp to schedule.\n\n- `targets: string[]`\n  Account IDs, platform names, or group IDs to publish to\n\n- `content?: string`\n  Post text. Optional if target_options provide per-target content.\n\n- `media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]`\n  Media attachments\n\n- `target_options?: object`\n  Per-target customizations keyed by target value (account ID or platform name)\n\n- `timezone?: string`\n  IANA timezone for scheduling\n\n### Returns\n\n- `{ id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }`\n\n  - `id: string`\n  - `content: string`\n  - `created_at: string`\n  - `media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]`\n  - `scheduled_at: string`\n  - `status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'`\n  - `targets: object`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst post = await client.posts.create({ scheduled_at: 'now', targets: ['string'] });\n\nconsole.log(post);\n```",
+      "## create\n\n`client.posts.create(scheduled_at: string, targets: string[], content?: string, media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[], target_options?: object, timezone?: string, workspace_id?: string): { id: string; content: string; created_at: string; media: object[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }`\n\n**post** `/v1/posts`\n\nCreate a post. Use scheduled_at: \"now\" to publish immediately, \"draft\" to save as draft, or an ISO timestamp to schedule.\n\n### Parameters\n\n- `scheduled_at: string`\n  Publish intent. Use \"now\" to publish immediately, \"draft\" to save as draft, or an ISO 8601 timestamp to schedule.\n\n- `targets: string[]`\n  Account IDs, platform names, or workspace IDs to publish to\n\n- `content?: string`\n  Post text. Optional if target_options provide per-target content.\n\n- `media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]`\n  Media attachments\n\n- `target_options?: object`\n  Per-target customizations keyed by target value (account ID or platform name)\n\n- `timezone?: string`\n  IANA timezone for scheduling\n\n- `workspace_id?: string`\n  Workspace ID to scope this post to\n\n### Returns\n\n- `{ id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }`\n\n  - `id: string`\n  - `content: string`\n  - `created_at: string`\n  - `media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]`\n  - `scheduled_at: string`\n  - `status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'`\n  - `targets: object`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst post = await client.posts.create({ scheduled_at: 'now', targets: ['string'] });\n\nconsole.log(post);\n```",
     perLanguage: {
       go: {
         method: 'client.Posts.New',
@@ -321,12 +322,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     stainlessPath: '(resource) posts > (method) bulk_create',
     qualified: 'client.posts.bulkCreate',
     params: [
-      "posts: { scheduled_at: string; targets: string[]; content?: string; media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; target_options?: object; timezone?: string; }[];",
+      "posts: { scheduled_at: string; targets: string[]; content?: string; media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; target_options?: object; timezone?: string; workspace_id?: string; }[];",
     ],
     response:
       "{ data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]; summary: { failed: number; succeeded: number; total: number; }; }",
     markdown:
-      "## bulk_create\n\n`client.posts.bulkCreate(posts: { scheduled_at: string; targets: string[]; content?: string; media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; target_options?: object; timezone?: string; }[]): { data: object[]; summary: object; }`\n\n**post** `/v1/posts/bulk`\n\nCreate multiple posts in a single request. Each item follows the same schema as single post creation.\n\n### Parameters\n\n- `posts: { scheduled_at: string; targets: string[]; content?: string; media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; target_options?: object; timezone?: string; }[]`\n  Array of posts to create (max 50)\n\n### Returns\n\n- `{ data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]; summary: { failed: number; succeeded: number; total: number; }; }`\n\n  - `data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]`\n  - `summary: { failed: number; succeeded: number; total: number; }`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.posts.bulkCreate({ posts: [{ scheduled_at: 'now', targets: ['string'] }] });\n\nconsole.log(response);\n```",
+      "## bulk_create\n\n`client.posts.bulkCreate(posts: { scheduled_at: string; targets: string[]; content?: string; media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; target_options?: object; timezone?: string; workspace_id?: string; }[]): { data: object[]; summary: object; }`\n\n**post** `/v1/posts/bulk`\n\nCreate multiple posts in a single request. Each item follows the same schema as single post creation.\n\n### Parameters\n\n- `posts: { scheduled_at: string; targets: string[]; content?: string; media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; target_options?: object; timezone?: string; workspace_id?: string; }[]`\n  Array of posts to create (max 50)\n\n### Returns\n\n- `{ data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]; summary: { failed: number; succeeded: number; total: number; }; }`\n\n  - `data: { id: string; content: string; created_at: string; media: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]; scheduled_at: string; status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial'; targets: object; updated_at: string; }[]`\n  - `summary: { failed: number; succeeded: number; total: number; }`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.posts.bulkCreate({ posts: [{ scheduled_at: 'now', targets: ['string'] }] });\n\nconsole.log(response);\n```",
     perLanguage: {
       go: {
         method: 'client.Posts.BulkNew',
@@ -485,16 +486,17 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     params: [
       'cursor?: string;',
       'from?: string;',
-      'group_id?: string;',
       'limit?: number;',
+      'platforms?: string;',
       'search?: string;',
       'to?: string;',
       'ungrouped?: boolean;',
+      'workspace_id?: string;',
     ],
     response:
       '{ data: { id: string; avatar_url: string; connected_at: string; display_name: string; group: { id: string; name: string; }; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }[]; has_more: boolean; next_cursor: string; }',
     markdown:
-      "## list\n\n`client.accounts.list(cursor?: string, from?: string, group_id?: string, limit?: number, search?: string, to?: string, ungrouped?: boolean): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/accounts`\n\nList connected accounts\n\n### Parameters\n\n- `cursor?: string`\n  Pagination cursor\n\n- `from?: string`\n  Filter: start date (ISO 8601)\n\n- `group_id?: string`\n  Filter by group ID\n\n- `limit?: number`\n  Number of items per page\n\n- `search?: string`\n  Search by name or username\n\n- `to?: string`\n  Filter: end date (ISO 8601)\n\n- `ungrouped?: boolean`\n  Only show ungrouped accounts\n\n### Returns\n\n- `{ data: { id: string; avatar_url: string; connected_at: string; display_name: string; group: { id: string; name: string; }; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; avatar_url: string; connected_at: string; display_name: string; group: { id: string; name: string; }; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst accounts = await client.accounts.list();\n\nconsole.log(accounts);\n```",
+      "## list\n\n`client.accounts.list(cursor?: string, from?: string, limit?: number, platforms?: string, search?: string, to?: string, ungrouped?: boolean, workspace_id?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/accounts`\n\nList connected accounts\n\n### Parameters\n\n- `cursor?: string`\n  Pagination cursor\n\n- `from?: string`\n  Filter: start date (ISO 8601)\n\n- `limit?: number`\n  Number of items per page\n\n- `platforms?: string`\n  Comma-separated platform filter (e.g. instagram,facebook)\n\n- `search?: string`\n  Search by name or username\n\n- `to?: string`\n  Filter: end date (ISO 8601)\n\n- `ungrouped?: boolean`\n  Only show ungrouped accounts\n\n- `workspace_id?: string`\n  Filter by group ID\n\n### Returns\n\n- `{ data: { id: string; avatar_url: string; connected_at: string; display_name: string; group: { id: string; name: string; }; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; avatar_url: string; connected_at: string; display_name: string; group: { id: string; name: string; }; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst accounts = await client.accounts.list();\n\nconsole.log(accounts);\n```",
     perLanguage: {
       go: {
         method: 'client.Accounts.List',
@@ -608,11 +610,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Update account metadata',
     stainlessPath: '(resource) accounts > (method) update',
     qualified: 'client.accounts.update',
-    params: ['id: string;', 'display_name?: string;', 'group_id?: string;', 'metadata?: object;'],
+    params: ['id: string;', 'display_name?: string;', 'metadata?: object;', 'workspace_id?: string;'],
     response:
       '{ id: string; avatar_url: string; connected_at: string; display_name: string; group: { id: string; name: string; }; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }',
     markdown:
-      "## update\n\n`client.accounts.update(id: string, display_name?: string, group_id?: string, metadata?: object): { id: string; avatar_url: string; connected_at: string; display_name: string; group: object; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }`\n\n**patch** `/v1/accounts/{id}`\n\nUpdate account metadata\n\n### Parameters\n\n- `id: string`\n  Resource ID\n\n- `display_name?: string`\n\n- `group_id?: string`\n  Group ID (null to ungroup)\n\n- `metadata?: object`\n\n### Returns\n\n- `{ id: string; avatar_url: string; connected_at: string; display_name: string; group: { id: string; name: string; }; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }`\n\n  - `id: string`\n  - `avatar_url: string`\n  - `connected_at: string`\n  - `display_name: string`\n  - `group: { id: string; name: string; }`\n  - `metadata: object`\n  - `platform: string`\n  - `platform_account_id: string`\n  - `updated_at: string`\n  - `username: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst account = await client.accounts.update('id');\n\nconsole.log(account);\n```",
+      "## update\n\n`client.accounts.update(id: string, display_name?: string, metadata?: object, workspace_id?: string): { id: string; avatar_url: string; connected_at: string; display_name: string; group: object; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }`\n\n**patch** `/v1/accounts/{id}`\n\nUpdate account metadata\n\n### Parameters\n\n- `id: string`\n  Resource ID\n\n- `display_name?: string`\n\n- `metadata?: object`\n\n- `workspace_id?: string`\n  Workspace ID (null to unassign)\n\n### Returns\n\n- `{ id: string; avatar_url: string; connected_at: string; display_name: string; group: { id: string; name: string; }; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; }`\n\n  - `id: string`\n  - `avatar_url: string`\n  - `connected_at: string`\n  - `display_name: string`\n  - `group: { id: string; name: string; }`\n  - `metadata: object`\n  - `platform: string`\n  - `platform_account_id: string`\n  - `updated_at: string`\n  - `username: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst account = await client.accounts.update('id');\n\nconsole.log(account);\n```",
     perLanguage: {
       go: {
         method: 'client.Accounts.Update',
@@ -650,9 +652,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.accounts.health.retrieve',
     params: ['id: string;'],
     response:
-      '{ id: string; healthy: boolean; platform: string; token_expires_at: string; username: string; error?: { code: string; message: string; }; }',
+      '{ id: string; avatar_url: string; display_name: string; healthy: boolean; platform: string; scopes: string[]; token_expires_at: string; username: string; error?: { code: string; message: string; }; }',
     markdown:
-      "## retrieve\n\n`client.accounts.health.retrieve(id: string): { id: string; healthy: boolean; platform: string; token_expires_at: string; username: string; error?: object; }`\n\n**get** `/v1/accounts/{id}/health`\n\nCheck health of a single connected account\n\n### Parameters\n\n- `id: string`\n  Resource ID\n\n### Returns\n\n- `{ id: string; healthy: boolean; platform: string; token_expires_at: string; username: string; error?: { code: string; message: string; }; }`\n\n  - `id: string`\n  - `healthy: boolean`\n  - `platform: string`\n  - `token_expires_at: string`\n  - `username: string`\n  - `error?: { code: string; message: string; }`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst health = await client.accounts.health.retrieve('id');\n\nconsole.log(health);\n```",
+      "## retrieve\n\n`client.accounts.health.retrieve(id: string): { id: string; avatar_url: string; display_name: string; healthy: boolean; platform: string; scopes: string[]; token_expires_at: string; username: string; error?: object; }`\n\n**get** `/v1/accounts/{id}/health`\n\nCheck health of a single connected account\n\n### Parameters\n\n- `id: string`\n  Resource ID\n\n### Returns\n\n- `{ id: string; avatar_url: string; display_name: string; healthy: boolean; platform: string; scopes: string[]; token_expires_at: string; username: string; error?: { code: string; message: string; }; }`\n\n  - `id: string`\n  - `avatar_url: string`\n  - `display_name: string`\n  - `healthy: boolean`\n  - `platform: string`\n  - `scopes: string[]`\n  - `token_expires_at: string`\n  - `username: string`\n  - `error?: { code: string; message: string; }`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst health = await client.accounts.health.retrieve('id');\n\nconsole.log(health);\n```",
     perLanguage: {
       go: {
         method: 'client.Accounts.Health.Get',
@@ -1319,11 +1321,17 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'List webhook endpoints',
     stainlessPath: '(resource) webhooks > (method) list',
     qualified: 'client.webhooks.list',
-    params: ['cursor?: string;', 'from?: string;', 'limit?: number;', 'to?: string;'],
+    params: [
+      'cursor?: string;',
+      'from?: string;',
+      'limit?: number;',
+      'to?: string;',
+      'workspace_id?: string;',
+    ],
     response:
       '{ data: { id: string; created_at: string; enabled: boolean; events: string[]; updated_at: string; url: string; }[]; has_more: boolean; next_cursor: string; }',
     markdown:
-      "## list\n\n`client.webhooks.list(cursor?: string, from?: string, limit?: number, to?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/webhooks`\n\nList webhook endpoints\n\n### Parameters\n\n- `cursor?: string`\n  Pagination cursor\n\n- `from?: string`\n  Filter: start date (ISO 8601)\n\n- `limit?: number`\n  Number of items per page\n\n- `to?: string`\n  Filter: end date (ISO 8601)\n\n### Returns\n\n- `{ data: { id: string; created_at: string; enabled: boolean; events: string[]; updated_at: string; url: string; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; created_at: string; enabled: boolean; events: string[]; updated_at: string; url: string; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst webhooks = await client.webhooks.list();\n\nconsole.log(webhooks);\n```",
+      "## list\n\n`client.webhooks.list(cursor?: string, from?: string, limit?: number, to?: string, workspace_id?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/webhooks`\n\nList webhook endpoints\n\n### Parameters\n\n- `cursor?: string`\n  Pagination cursor\n\n- `from?: string`\n  Filter: start date (ISO 8601)\n\n- `limit?: number`\n  Number of items per page\n\n- `to?: string`\n  Filter: end date (ISO 8601)\n\n- `workspace_id?: string`\n  Filter by workspace ID\n\n### Returns\n\n- `{ data: { id: string; created_at: string; enabled: boolean; events: string[]; updated_at: string; url: string; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; created_at: string; enabled: boolean; events: string[]; updated_at: string; url: string; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst webhooks = await client.webhooks.list();\n\nconsole.log(webhooks);\n```",
     perLanguage: {
       go: {
         method: 'client.Webhooks.List',
@@ -1359,11 +1367,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Create a new webhook endpoint. The signing secret is returned only once in the response.',
     stainlessPath: '(resource) webhooks > (method) create',
     qualified: 'client.webhooks.create',
-    params: ['events: string[];', 'url: string;'],
+    params: ['events: string[];', 'url: string;', 'workspace_id?: string;'],
     response:
       '{ id: string; created_at: string; enabled: boolean; events: string[]; secret: string; url: string; }',
     markdown:
-      "## create\n\n`client.webhooks.create(events: string[], url: string): { id: string; created_at: string; enabled: boolean; events: string[]; secret: string; url: string; }`\n\n**post** `/v1/webhooks`\n\nCreate a new webhook endpoint. The signing secret is returned only once in the response.\n\n### Parameters\n\n- `events: string[]`\n  Events to subscribe to\n\n- `url: string`\n  Webhook endpoint URL\n\n### Returns\n\n- `{ id: string; created_at: string; enabled: boolean; events: string[]; secret: string; url: string; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `enabled: boolean`\n  - `events: string[]`\n  - `secret: string`\n  - `url: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst webhook = await client.webhooks.create({ events: ['post.published'], url: 'https://example.com' });\n\nconsole.log(webhook);\n```",
+      "## create\n\n`client.webhooks.create(events: string[], url: string, workspace_id?: string): { id: string; created_at: string; enabled: boolean; events: string[]; secret: string; url: string; }`\n\n**post** `/v1/webhooks`\n\nCreate a new webhook endpoint. The signing secret is returned only once in the response.\n\n### Parameters\n\n- `events: string[]`\n  Events to subscribe to\n\n- `url: string`\n  Webhook endpoint URL\n\n- `workspace_id?: string`\n  Workspace ID to scope this webhook to\n\n### Returns\n\n- `{ id: string; created_at: string; enabled: boolean; events: string[]; secret: string; url: string; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `enabled: boolean`\n  - `events: string[]`\n  - `secret: string`\n  - `url: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst webhook = await client.webhooks.create({ events: ['post.published'], url: 'https://example.com' });\n\nconsole.log(webhook);\n```",
     perLanguage: {
       go: {
         method: 'client.Webhooks.New',
@@ -1702,164 +1710,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.usage.retrieve',
         example:
           "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst usage = await client.usage.retrieve();\n\nconsole.log(usage.plan);",
-      },
-    },
-  },
-  {
-    name: 'list',
-    endpoint: '/v1/account-groups',
-    httpMethod: 'get',
-    summary: 'List account groups',
-    description: 'List account groups',
-    stainlessPath: '(resource) account_groups > (method) list',
-    qualified: 'client.accountGroups.list',
-    params: ['cursor?: string;', 'limit?: number;', 'search?: string;'],
-    response:
-      '{ data: { id: string; account_count: number; created_at: string; description: string; name: string; updated_at: string; }[]; has_more: boolean; next_cursor: string; }',
-    markdown:
-      "## list\n\n`client.accountGroups.list(cursor?: string, limit?: number, search?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/account-groups`\n\nList account groups\n\n### Parameters\n\n- `cursor?: string`\n  Pagination cursor\n\n- `limit?: number`\n  Page size\n\n- `search?: string`\n  Search groups by name\n\n### Returns\n\n- `{ data: { id: string; account_count: number; created_at: string; description: string; name: string; updated_at: string; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; account_count: number; created_at: string; description: string; name: string; updated_at: string; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst accountGroups = await client.accountGroups.list();\n\nconsole.log(accountGroups);\n```",
-    perLanguage: {
-      go: {
-        method: 'client.AccountGroups.List',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\taccountGroups, err := client.AccountGroups.List(context.TODO(), relaygo.AccountGroupListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountGroups.Data)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.relayapi.dev/v1/account-groups \\\n    -H "Authorization: Bearer $RELAY_API_KEY"',
-      },
-      java: {
-        method: 'accountGroups().list',
-        example:
-          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.accountgroups.AccountGroupListParams;\nimport dev.relayapi.models.accountgroups.AccountGroupListResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        AccountGroupListResponse accountGroups = client.accountGroups().list();\n    }\n}',
-      },
-      python: {
-        method: 'account_groups.list',
-        example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\naccount_groups = client.account_groups.list()\nprint(account_groups.data)',
-      },
-      typescript: {
-        method: 'client.accountGroups.list',
-        example:
-          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst accountGroups = await client.accountGroups.list();\n\nconsole.log(accountGroups.data);",
-      },
-    },
-  },
-  {
-    name: 'create',
-    endpoint: '/v1/account-groups',
-    httpMethod: 'post',
-    summary: 'Create an account group',
-    description: 'Create an account group',
-    stainlessPath: '(resource) account_groups > (method) create',
-    qualified: 'client.accountGroups.create',
-    params: ['name: string;', 'description?: string;'],
-    response:
-      '{ id: string; account_count: number; created_at: string; description: string; name: string; updated_at: string; }',
-    markdown:
-      "## create\n\n`client.accountGroups.create(name: string, description?: string): { id: string; account_count: number; created_at: string; description: string; name: string; updated_at: string; }`\n\n**post** `/v1/account-groups`\n\nCreate an account group\n\n### Parameters\n\n- `name: string`\n  Group name\n\n- `description?: string`\n  Group description\n\n### Returns\n\n- `{ id: string; account_count: number; created_at: string; description: string; name: string; updated_at: string; }`\n\n  - `id: string`\n  - `account_count: number`\n  - `created_at: string`\n  - `description: string`\n  - `name: string`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst accountGroup = await client.accountGroups.create({ name: 'x' });\n\nconsole.log(accountGroup);\n```",
-    perLanguage: {
-      go: {
-        method: 'client.AccountGroups.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\taccountGroup, err := client.AccountGroups.New(context.TODO(), relaygo.AccountGroupNewParams{\n\t\tName: relaygo.F("x"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountGroup.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.relayapi.dev/v1/account-groups \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $RELAY_API_KEY" \\\n    -d \'{\n          "name": "x"\n        }\'',
-      },
-      java: {
-        method: 'accountGroups().create',
-        example:
-          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.accountgroups.AccountGroupCreateParams;\nimport dev.relayapi.models.accountgroups.AccountGroupCreateResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        AccountGroupCreateParams params = AccountGroupCreateParams.builder()\n            .name("x")\n            .build();\n        AccountGroupCreateResponse accountGroup = client.accountGroups().create(params);\n    }\n}',
-      },
-      python: {
-        method: 'account_groups.create',
-        example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\naccount_group = client.account_groups.create(\n    name="x",\n)\nprint(account_group.id)',
-      },
-      typescript: {
-        method: 'client.accountGroups.create',
-        example:
-          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst accountGroup = await client.accountGroups.create({ name: 'x' });\n\nconsole.log(accountGroup.id);",
-      },
-    },
-  },
-  {
-    name: 'update',
-    endpoint: '/v1/account-groups/{id}',
-    httpMethod: 'put',
-    summary: 'Update an account group',
-    description: 'Update an account group',
-    stainlessPath: '(resource) account_groups > (method) update',
-    qualified: 'client.accountGroups.update',
-    params: ['id: string;', 'description?: string;', 'name?: string;'],
-    response:
-      '{ id: string; account_count: number; created_at: string; description: string; name: string; updated_at: string; }',
-    markdown:
-      "## update\n\n`client.accountGroups.update(id: string, description?: string, name?: string): { id: string; account_count: number; created_at: string; description: string; name: string; updated_at: string; }`\n\n**put** `/v1/account-groups/{id}`\n\nUpdate an account group\n\n### Parameters\n\n- `id: string`\n  Resource ID\n\n- `description?: string`\n  Group description\n\n- `name?: string`\n  Group name\n\n### Returns\n\n- `{ id: string; account_count: number; created_at: string; description: string; name: string; updated_at: string; }`\n\n  - `id: string`\n  - `account_count: number`\n  - `created_at: string`\n  - `description: string`\n  - `name: string`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst accountGroup = await client.accountGroups.update('id');\n\nconsole.log(accountGroup);\n```",
-    perLanguage: {
-      go: {
-        method: 'client.AccountGroups.Update',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\taccountGroup, err := client.AccountGroups.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\trelaygo.AccountGroupUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", accountGroup.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.relayapi.dev/v1/account-groups/$ID \\\n    -X PUT \\\n    -H "Authorization: Bearer $RELAY_API_KEY"',
-      },
-      java: {
-        method: 'accountGroups().update',
-        example:
-          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.accountgroups.AccountGroupUpdateParams;\nimport dev.relayapi.models.accountgroups.AccountGroupUpdateResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        AccountGroupUpdateResponse accountGroup = client.accountGroups().update("id");\n    }\n}',
-      },
-      python: {
-        method: 'account_groups.update',
-        example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\naccount_group = client.account_groups.update(\n    id="id",\n)\nprint(account_group.id)',
-      },
-      typescript: {
-        method: 'client.accountGroups.update',
-        example:
-          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst accountGroup = await client.accountGroups.update('id');\n\nconsole.log(accountGroup.id);",
-      },
-    },
-  },
-  {
-    name: 'delete',
-    endpoint: '/v1/account-groups/{id}',
-    httpMethod: 'delete',
-    summary: 'Delete an account group',
-    description: 'Delete an account group',
-    stainlessPath: '(resource) account_groups > (method) delete',
-    qualified: 'client.accountGroups.delete',
-    params: ['id: string;'],
-    markdown:
-      "## delete\n\n`client.accountGroups.delete(id: string): void`\n\n**delete** `/v1/account-groups/{id}`\n\nDelete an account group\n\n### Parameters\n\n- `id: string`\n  Resource ID\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nawait client.accountGroups.delete('id')\n```",
-    perLanguage: {
-      go: {
-        method: 'client.AccountGroups.Delete',
-        example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.AccountGroups.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.relayapi.dev/v1/account-groups/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $RELAY_API_KEY"',
-      },
-      java: {
-        method: 'accountGroups().delete',
-        example:
-          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.accountgroups.AccountGroupDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        client.accountGroups().delete("id");\n    }\n}',
-      },
-      python: {
-        method: 'account_groups.delete',
-        example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nclient.account_groups.delete(\n    "id",\n)',
-      },
-      typescript: {
-        method: 'client.accountGroups.delete',
-        example:
-          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.accountGroups.delete('id');",
       },
     },
   },
@@ -2998,11 +2848,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       "media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[];",
       'target_options?: object;',
       'timezone?: string;',
+      'workspace_id?: string;',
     ],
     response:
       '{ errors: { code: string; message: string; target: string; }[]; valid: boolean; warnings: { code: string; message: string; target: string; }[]; }',
     markdown:
-      "## validate_post\n\n`client.tools.validate.validatePost(scheduled_at: string, targets: string[], content?: string, media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[], target_options?: object, timezone?: string): { errors: object[]; valid: boolean; warnings: object[]; }`\n\n**post** `/v1/tools/validate/post`\n\nValidate a post (dry-run without publishing)\n\n### Parameters\n\n- `scheduled_at: string`\n  Publish intent. Use \"now\" to publish immediately, \"draft\" to save as draft, or an ISO 8601 timestamp to schedule.\n\n- `targets: string[]`\n  Account IDs, platform names, or group IDs to publish to\n\n- `content?: string`\n  Post text. Optional if target_options provide per-target content.\n\n- `media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]`\n  Media attachments\n\n- `target_options?: object`\n  Per-target customizations keyed by target value (account ID or platform name)\n\n- `timezone?: string`\n  IANA timezone for scheduling\n\n### Returns\n\n- `{ errors: { code: string; message: string; target: string; }[]; valid: boolean; warnings: { code: string; message: string; target: string; }[]; }`\n\n  - `errors: { code: string; message: string; target: string; }[]`\n  - `valid: boolean`\n  - `warnings: { code: string; message: string; target: string; }[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.tools.validate.validatePost({ scheduled_at: 'now', targets: ['string'] });\n\nconsole.log(response);\n```",
+      "## validate_post\n\n`client.tools.validate.validatePost(scheduled_at: string, targets: string[], content?: string, media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[], target_options?: object, timezone?: string, workspace_id?: string): { errors: object[]; valid: boolean; warnings: object[]; }`\n\n**post** `/v1/tools/validate/post`\n\nValidate a post (dry-run without publishing)\n\n### Parameters\n\n- `scheduled_at: string`\n  Publish intent. Use \"now\" to publish immediately, \"draft\" to save as draft, or an ISO 8601 timestamp to schedule.\n\n- `targets: string[]`\n  Account IDs, platform names, or workspace IDs to publish to\n\n- `content?: string`\n  Post text. Optional if target_options provide per-target content.\n\n- `media?: { url: string; type?: 'image' | 'video' | 'gif' | 'document'; }[]`\n  Media attachments\n\n- `target_options?: object`\n  Per-target customizations keyed by target value (account ID or platform name)\n\n- `timezone?: string`\n  IANA timezone for scheduling\n\n- `workspace_id?: string`\n  Workspace ID to scope this post to\n\n### Returns\n\n- `{ errors: { code: string; message: string; target: string; }[]; valid: boolean; warnings: { code: string; message: string; target: string; }[]; }`\n\n  - `errors: { code: string; message: string; target: string; }[]`\n  - `valid: boolean`\n  - `warnings: { code: string; message: string; target: string; }[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.tools.validate.validatePost({ scheduled_at: 'now', targets: ['string'] });\n\nconsole.log(response);\n```",
     perLanguage: {
       go: {
         method: 'client.Tools.Validate.ValidatePost',
@@ -4037,11 +3888,17 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'List message conversations',
     stainlessPath: '(resource) inbox.messages > (method) list',
     qualified: 'client.inbox.messages.list',
-    params: ['account_id?: string;', 'cursor?: string;', 'limit?: number;', 'platform?: string;'],
+    params: [
+      'account_id?: string;',
+      'cursor?: string;',
+      'limit?: number;',
+      'platform?: string;',
+      'workspace_id?: string;',
+    ],
     response:
       '{ data: { id: string; account_id: string; participant_name: string; platform: string; updated_at: string; last_message?: string; participant_avatar?: string; unread_count?: number; }[]; has_more: boolean; next_cursor: string; }',
     markdown:
-      "## list\n\n`client.inbox.messages.list(account_id?: string, cursor?: string, limit?: number, platform?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/inbox/messages`\n\nList message conversations\n\n### Parameters\n\n- `account_id?: string`\n  Filter by account ID\n\n- `cursor?: string`\n  Pagination cursor\n\n- `limit?: number`\n  Number of items\n\n- `platform?: string`\n  Filter by platform\n\n### Returns\n\n- `{ data: { id: string; account_id: string; participant_name: string; platform: string; updated_at: string; last_message?: string; participant_avatar?: string; unread_count?: number; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; account_id: string; participant_name: string; platform: string; updated_at: string; last_message?: string; participant_avatar?: string; unread_count?: number; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst messages = await client.inbox.messages.list();\n\nconsole.log(messages);\n```",
+      "## list\n\n`client.inbox.messages.list(account_id?: string, cursor?: string, limit?: number, platform?: string, workspace_id?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/inbox/messages`\n\nList message conversations\n\n### Parameters\n\n- `account_id?: string`\n  Filter by account ID\n\n- `cursor?: string`\n  Pagination cursor\n\n- `limit?: number`\n  Number of items\n\n- `platform?: string`\n  Filter by platform\n\n- `workspace_id?: string`\n  Filter by workspace ID\n\n### Returns\n\n- `{ data: { id: string; account_id: string; participant_name: string; platform: string; updated_at: string; last_message?: string; participant_avatar?: string; unread_count?: number; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; account_id: string; participant_name: string; platform: string; updated_at: string; last_message?: string; participant_avatar?: string; unread_count?: number; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst messages = await client.inbox.messages.list();\n\nconsole.log(messages);\n```",
     perLanguage: {
       go: {
         method: 'client.Inbox.Messages.List',
@@ -4963,11 +4820,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       'limit?: number;',
       'search?: string;',
       'tag?: string;',
+      'workspace_id?: string;',
     ],
     response:
       '{ data: { id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }[]; has_more: boolean; next_cursor: string; }',
     markdown:
-      "## list\n\n`client.whatsapp.contacts.list(account_id: string, cursor?: string, limit?: number, search?: string, tag?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/whatsapp/contacts`\n\nList contacts\n\n### Parameters\n\n- `account_id: string`\n  WhatsApp account ID\n\n- `cursor?: string`\n  Pagination cursor\n\n- `limit?: number`\n  Number of items\n\n- `search?: string`\n  Search by name or phone\n\n- `tag?: string`\n  Filter by tag\n\n### Returns\n\n- `{ data: { id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst contacts = await client.whatsapp.contacts.list({ account_id: 'account_id' });\n\nconsole.log(contacts);\n```",
+      "## list\n\n`client.whatsapp.contacts.list(account_id: string, cursor?: string, limit?: number, search?: string, tag?: string, workspace_id?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/whatsapp/contacts`\n\nList contacts\n\n### Parameters\n\n- `account_id: string`\n  WhatsApp account ID\n\n- `cursor?: string`\n  Pagination cursor\n\n- `limit?: number`\n  Number of items\n\n- `search?: string`\n  Search by name or phone\n\n- `tag?: string`\n  Filter by tag\n\n- `workspace_id?: string`\n  Filter by workspace ID\n\n### Returns\n\n- `{ data: { id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst contacts = await client.whatsapp.contacts.list({ account_id: 'account_id' });\n\nconsole.log(contacts);\n```",
     perLanguage: {
       go: {
         method: 'client.Whatsapp.Contacts.List',
@@ -5009,11 +4867,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       'email?: string;',
       'name?: string;',
       'tags?: string[];',
+      'workspace_id?: string;',
     ],
     response:
       '{ id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }',
     markdown:
-      "## create\n\n`client.whatsapp.contacts.create(account_id: string, phone: string, email?: string, name?: string, tags?: string[]): { id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }`\n\n**post** `/v1/whatsapp/contacts`\n\nCreate a contact\n\n### Parameters\n\n- `account_id: string`\n  WhatsApp account ID\n\n- `phone: string`\n  Phone number in E.164 format\n\n- `email?: string`\n  Email address\n\n- `name?: string`\n  Contact name\n\n- `tags?: string[]`\n  Tags\n\n### Returns\n\n- `{ id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `opted_in: boolean`\n  - `phone: string`\n  - `email?: string`\n  - `groups?: string[]`\n  - `name?: string`\n  - `tags?: string[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst contact = await client.whatsapp.contacts.create({ account_id: 'account_id', phone: 'phone' });\n\nconsole.log(contact);\n```",
+      "## create\n\n`client.whatsapp.contacts.create(account_id: string, phone: string, email?: string, name?: string, tags?: string[], workspace_id?: string): { id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }`\n\n**post** `/v1/whatsapp/contacts`\n\nCreate a contact\n\n### Parameters\n\n- `account_id: string`\n  WhatsApp account ID\n\n- `phone: string`\n  Phone number in E.164 format\n\n- `email?: string`\n  Email address\n\n- `name?: string`\n  Contact name\n\n- `tags?: string[]`\n  Tags\n\n- `workspace_id?: string`\n  Workspace ID to scope this contact to\n\n### Returns\n\n- `{ id: string; created_at: string; opted_in: boolean; phone: string; email?: string; groups?: string[]; name?: string; tags?: string[]; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `opted_in: boolean`\n  - `phone: string`\n  - `email?: string`\n  - `groups?: string[]`\n  - `name?: string`\n  - `tags?: string[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst contact = await client.whatsapp.contacts.create({ account_id: 'account_id', phone: 'phone' });\n\nconsole.log(contact);\n```",
     perLanguage: {
       go: {
         method: 'client.Whatsapp.Contacts.New',

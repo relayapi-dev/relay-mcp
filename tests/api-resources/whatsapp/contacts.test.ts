@@ -28,6 +28,7 @@ describe('resource contacts', () => {
       email: 'email',
       name: 'name',
       tags: ['string'],
+      workspace_id: 'workspace_id',
     });
   });
 
@@ -63,6 +64,7 @@ describe('resource contacts', () => {
       limit: 1,
       search: 'search',
       tag: 'tag',
+      workspace_id: 'workspace_id',
     });
   });
 
