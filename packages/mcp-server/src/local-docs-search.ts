@@ -1566,9 +1566,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.apiKeys.list',
     params: ['cursor?: string;', 'from?: string;', 'limit?: number;', 'to?: string;'],
     response:
-      '{ data: { id: string; created_at: string; enabled: boolean; expires_at: string; name: string; prefix: string; start: string; }[]; has_more: boolean; next_cursor: string; }',
+      "{ data: { id: string; created_at: string; enabled: boolean; expires_at: string; name: string; permission: 'read_write' | 'read_only'; prefix: string; start: string; workspace_scope: 'all' | string[]; }[]; has_more: boolean; next_cursor: string; }",
     markdown:
-      "## list\n\n`client.apiKeys.list(cursor?: string, from?: string, limit?: number, to?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/api-keys`\n\nList API keys\n\n### Parameters\n\n- `cursor?: string`\n  Pagination cursor\n\n- `from?: string`\n  Filter: start date (ISO 8601)\n\n- `limit?: number`\n  Number of items per page\n\n- `to?: string`\n  Filter: end date (ISO 8601)\n\n### Returns\n\n- `{ data: { id: string; created_at: string; enabled: boolean; expires_at: string; name: string; prefix: string; start: string; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; created_at: string; enabled: boolean; expires_at: string; name: string; prefix: string; start: string; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst apiKeys = await client.apiKeys.list();\n\nconsole.log(apiKeys);\n```",
+      "## list\n\n`client.apiKeys.list(cursor?: string, from?: string, limit?: number, to?: string): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/api-keys`\n\nList API keys\n\n### Parameters\n\n- `cursor?: string`\n  Pagination cursor\n\n- `from?: string`\n  Filter: start date (ISO 8601)\n\n- `limit?: number`\n  Number of items per page\n\n- `to?: string`\n  Filter: end date (ISO 8601)\n\n### Returns\n\n- `{ data: { id: string; created_at: string; enabled: boolean; expires_at: string; name: string; permission: 'read_write' | 'read_only'; prefix: string; start: string; workspace_scope: 'all' | string[]; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; created_at: string; enabled: boolean; expires_at: string; name: string; permission: 'read_write' | 'read_only'; prefix: string; start: string; workspace_scope: 'all' | string[]; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst apiKeys = await client.apiKeys.list();\n\nconsole.log(apiKeys);\n```",
     perLanguage: {
       go: {
         method: 'client.APIKeys.List',
@@ -1605,11 +1605,16 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       'Create a new API key. The full key is returned only once in the response — store it securely.',
     stainlessPath: '(resource) api_keys > (method) create',
     qualified: 'client.apiKeys.create',
-    params: ['name: string;', 'expires_in_days?: number;'],
+    params: [
+      'name: string;',
+      'expires_in_days?: number;',
+      "permission?: 'read_write' | 'read_only';",
+      "workspace_scope?: 'all' | string[];",
+    ],
     response:
-      '{ id: string; created_at: string; expires_at: string; key: string; name: string; prefix: string; }',
+      "{ id: string; created_at: string; expires_at: string; key: string; name: string; permission: 'read_write' | 'read_only'; prefix: string; workspace_scope: 'all' | string[]; }",
     markdown:
-      "## create\n\n`client.apiKeys.create(name: string, expires_in_days?: number): { id: string; created_at: string; expires_at: string; key: string; name: string; prefix: string; }`\n\n**post** `/v1/api-keys`\n\nCreate a new API key. The full key is returned only once in the response — store it securely.\n\n### Parameters\n\n- `name: string`\n  Name for the API key\n\n- `expires_in_days?: number`\n  Number of days until the key expires\n\n### Returns\n\n- `{ id: string; created_at: string; expires_at: string; key: string; name: string; prefix: string; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `expires_at: string`\n  - `key: string`\n  - `name: string`\n  - `prefix: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst apiKey = await client.apiKeys.create({ name: 'x' });\n\nconsole.log(apiKey);\n```",
+      "## create\n\n`client.apiKeys.create(name: string, expires_in_days?: number, permission?: 'read_write' | 'read_only', workspace_scope?: 'all' | string[]): { id: string; created_at: string; expires_at: string; key: string; name: string; permission: 'read_write' | 'read_only'; prefix: string; workspace_scope: 'all' | string[]; }`\n\n**post** `/v1/api-keys`\n\nCreate a new API key. The full key is returned only once in the response — store it securely.\n\n### Parameters\n\n- `name: string`\n  Name for the API key\n\n- `expires_in_days?: number`\n  Number of days until the key expires\n\n- `permission?: 'read_write' | 'read_only'`\n  Permission level: read_write (default) or read_only\n\n- `workspace_scope?: 'all' | string[]`\n  Workspace access: 'all' for unrestricted, or array of workspace IDs\n\n### Returns\n\n- `{ id: string; created_at: string; expires_at: string; key: string; name: string; permission: 'read_write' | 'read_only'; prefix: string; workspace_scope: 'all' | string[]; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `expires_at: string`\n  - `key: string`\n  - `name: string`\n  - `permission: 'read_write' | 'read_only'`\n  - `prefix: string`\n  - `workspace_scope: 'all' | string[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst apiKey = await client.apiKeys.create({ name: 'x' });\n\nconsole.log(apiKey);\n```",
     perLanguage: {
       go: {
         method: 'client.APIKeys.New',
