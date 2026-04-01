@@ -758,7 +758,7 @@ export interface PostCreateParams {
   scheduled_at: string;
 
   /**
-   * Account IDs, platform names, or group IDs to publish to
+   * Account IDs, platform names, or workspace IDs to publish to
    */
   targets: Array<string>;
 
@@ -781,6 +781,11 @@ export interface PostCreateParams {
    * IANA timezone for scheduling
    */
   timezone?: string;
+
+  /**
+   * Workspace ID to scope this post to
+   */
+  workspace_id?: string;
 }
 
 export namespace PostCreateParams {
@@ -855,11 +860,6 @@ export interface PostListParams {
   from?: string;
 
   /**
-   * Filter by account group ID
-   */
-  group_id?: string;
-
-  /**
    * Number of items per page
    */
   limit?: number;
@@ -873,6 +873,11 @@ export interface PostListParams {
    * Filter: end date (ISO 8601)
    */
   to?: string;
+
+  /**
+   * Filter by workspace ID
+   */
+  workspace_id?: string;
 }
 
 export interface PostBulkCreateParams {
@@ -891,7 +896,7 @@ export namespace PostBulkCreateParams {
     scheduled_at: string;
 
     /**
-     * Account IDs, platform names, or group IDs to publish to
+     * Account IDs, platform names, or workspace IDs to publish to
      */
     targets: Array<string>;
 
@@ -914,6 +919,11 @@ export namespace PostBulkCreateParams {
      * IANA timezone for scheduling
      */
     timezone?: string;
+
+    /**
+     * Workspace ID to scope this post to
+     */
+    workspace_id?: string;
   }
 
   export namespace Post {

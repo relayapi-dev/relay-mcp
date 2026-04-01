@@ -250,6 +250,11 @@ export interface MessageListParams {
     | 'mastodon'
     | 'discord'
     | 'sms';
+
+  /**
+   * Filter by workspace ID
+   */
+  workspace_id?: string;
 }
 
 export interface MessageEditParams {

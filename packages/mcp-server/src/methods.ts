@@ -257,30 +257,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/usage',
   },
   {
-    clientCallName: 'client.accountGroups.create',
-    fullyQualifiedName: 'accountGroups.create',
-    httpMethod: 'post',
-    httpPath: '/v1/account-groups',
-  },
-  {
-    clientCallName: 'client.accountGroups.update',
-    fullyQualifiedName: 'accountGroups.update',
-    httpMethod: 'put',
-    httpPath: '/v1/account-groups/{id}',
-  },
-  {
-    clientCallName: 'client.accountGroups.list',
-    fullyQualifiedName: 'accountGroups.list',
-    httpMethod: 'get',
-    httpPath: '/v1/account-groups',
-  },
-  {
-    clientCallName: 'client.accountGroups.delete',
-    fullyQualifiedName: 'accountGroups.delete',
-    httpMethod: 'delete',
-    httpPath: '/v1/account-groups/{id}',
-  },
-  {
     clientCallName: 'client.connect.completeOAuthCallback',
     fullyQualifiedName: 'connect.completeOAuthCallback',
     httpMethod: 'post',

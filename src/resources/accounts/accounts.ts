@@ -283,12 +283,12 @@ export namespace AccountListResponse {
 export interface AccountUpdateParams {
   display_name?: string;
 
-  /**
-   * Group ID (null to ungroup)
-   */
-  group_id?: string | null;
-
   metadata?: { [key: string]: unknown };
+
+  /**
+   * Workspace ID (null to unassign)
+   */
+  workspace_id?: string | null;
 }
 
 export interface AccountListParams {
@@ -303,14 +303,14 @@ export interface AccountListParams {
   from?: string;
 
   /**
-   * Filter by group ID
-   */
-  group_id?: string;
-
-  /**
    * Number of items per page
    */
   limit?: number;
+
+  /**
+   * Comma-separated platform filter (e.g. instagram,facebook)
+   */
+  platforms?: string;
 
   /**
    * Search by name or username
@@ -326,6 +326,11 @@ export interface AccountListParams {
    * Only show ungrouped accounts
    */
   ungrouped?: boolean | null;
+
+  /**
+   * Filter by group ID
+   */
+  workspace_id?: string;
 }
 
 Accounts.Health = Health;

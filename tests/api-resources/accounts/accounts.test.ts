@@ -40,8 +40,8 @@ describe('resource accounts', () => {
         'id',
         {
           display_name: 'display_name',
-          group_id: 'group_id',
           metadata: { foo: 'bar' },
+          workspace_id: 'workspace_id',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -68,11 +68,12 @@ describe('resource accounts', () => {
         {
           cursor: 'cursor',
           from: '2019-12-27T18:11:19.117Z',
-          group_id: 'group_id',
           limit: 1,
+          platforms: 'platforms',
           search: 'search',
           to: '2019-12-27T18:11:19.117Z',
           ungrouped: true,
+          workspace_id: 'workspace_id',
         },
         { path: '/_stainless_unknown_path' },
       ),
