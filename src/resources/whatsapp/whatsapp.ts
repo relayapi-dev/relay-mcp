@@ -64,10 +64,10 @@ export class Whatsapp extends APIResource {
   }
 
   /**
-   * List registered phone numbers
+   * List purchased phone numbers
    */
   listPhoneNumbers(
-    query: WhatsappListPhoneNumbersParams,
+    query: WhatsappListPhoneNumbersParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<WhatsappListPhoneNumbersResponse> {
     return this._client.get('/v1/whatsapp/phone-numbers', { query, ...options });
@@ -118,24 +118,49 @@ export interface WhatsappListPhoneNumbersResponse {
 export namespace WhatsappListPhoneNumbersResponse {
   export interface Data {
     /**
-     * Phone number ID
+     * Phone number resource ID
      */
     id: string;
 
     /**
-     * Phone number
+     * ISO country code
+     */
+    country: string;
+
+    /**
+     * Created timestamp
+     */
+    created_at: string;
+
+    /**
+     * Monthly cost in cents
+     */
+    monthly_cost_cents: number;
+
+    /**
+     * E.164 phone number
      */
     phone_number: string;
 
     /**
-     * Registration status
+     * Carrier provider
      */
-    status: 'active' | 'inactive' | 'pending';
+    provider: string;
 
     /**
-     * Display name
+     * Provisioning status
      */
-    display_name?: string | null;
+    status: 'purchasing' | 'pending_verification' | 'verified' | 'active' | 'releasing' | 'released';
+
+    /**
+     * Linked RelayAPI social account ID
+     */
+    social_account_id?: string | null;
+
+    /**
+     * Meta WhatsApp phone number ID
+     */
+    wa_phone_number_id?: string | null;
   }
 }
 
@@ -200,9 +225,9 @@ export namespace WhatsappBulkSendParams {
 
 export interface WhatsappListPhoneNumbersParams {
   /**
-   * WhatsApp account ID
+   * Filter by provisioning status
    */
-  account_id: string;
+  status?: 'purchasing' | 'pending_verification' | 'verified' | 'active' | 'releasing' | 'released';
 }
 
 Whatsapp.Broadcasts = Broadcasts;
