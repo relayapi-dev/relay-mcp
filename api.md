@@ -58,7 +58,7 @@ Types:
 Methods:
 
 - <code title="get /v1/accounts/{id}/health">client.accounts.health.<a href="./src/resources/accounts/health.ts">retrieve</a>(id) -> HealthRetrieveResponse</code>
-- <code title="get /v1/accounts/health">client.accounts.health.<a href="./src/resources/accounts/health.ts">list</a>() -> HealthListResponse</code>
+- <code title="get /v1/accounts/health">client.accounts.health.<a href="./src/resources/accounts/health.ts">list</a>({ ...params }) -> HealthListResponse</code>
 
 ## RedditFlairs
 

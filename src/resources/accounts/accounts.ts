@@ -16,7 +16,7 @@ import {
   GmbLocations,
 } from './gmb-locations';
 import * as HealthAPI from './health';
-import { Health, HealthListResponse, HealthRetrieveResponse } from './health';
+import { Health, HealthListParams, HealthListResponse, HealthRetrieveResponse } from './health';
 import * as LinkedinOrganizationsAPI from './linkedin-organizations';
 import {
   LinkedinOrganizationRetrieveResponse,
@@ -354,6 +354,7 @@ export declare namespace Accounts {
     Health as Health,
     type HealthRetrieveResponse as HealthRetrieveResponse,
     type HealthListResponse as HealthListResponse,
+    type HealthListParams as HealthListParams,
   };
 
   export {

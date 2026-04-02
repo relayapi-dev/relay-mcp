@@ -692,15 +692,16 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Check health of all connected accounts',
     stainlessPath: '(resource) accounts.health > (method) list',
     qualified: 'client.accounts.health.list',
+    params: ['cursor?: string;', 'limit?: number;'],
     response:
-      '{ data: { id: string; healthy: boolean; platform: string; token_expires_at: string; username: string; error?: { code: string; message: string; }; }[]; }',
+      '{ data: { id: string; healthy: boolean; platform: string; token_expires_at: string; username: string; error?: { code: string; message: string; }; }[]; has_more: boolean; next_cursor: string; }',
     markdown:
-      "## list\n\n`client.accounts.health.list(): { data: object[]; }`\n\n**get** `/v1/accounts/health`\n\nCheck health of all connected accounts\n\n### Returns\n\n- `{ data: { id: string; healthy: boolean; platform: string; token_expires_at: string; username: string; error?: { code: string; message: string; }; }[]; }`\n\n  - `data: { id: string; healthy: boolean; platform: string; token_expires_at: string; username: string; error?: { code: string; message: string; }; }[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst health = await client.accounts.health.list();\n\nconsole.log(health);\n```",
+      "## list\n\n`client.accounts.health.list(cursor?: string, limit?: number): { data: object[]; has_more: boolean; next_cursor: string; }`\n\n**get** `/v1/accounts/health`\n\nCheck health of all connected accounts\n\n### Parameters\n\n- `cursor?: string`\n  Pagination cursor\n\n- `limit?: number`\n  Number of items per page\n\n### Returns\n\n- `{ data: { id: string; healthy: boolean; platform: string; token_expires_at: string; username: string; error?: { code: string; message: string; }; }[]; has_more: boolean; next_cursor: string; }`\n\n  - `data: { id: string; healthy: boolean; platform: string; token_expires_at: string; username: string; error?: { code: string; message: string; }; }[]`\n  - `has_more: boolean`\n  - `next_cursor: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst health = await client.accounts.health.list();\n\nconsole.log(health);\n```",
     perLanguage: {
       go: {
         method: 'client.Accounts.Health.List',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\thealth, err := client.Accounts.Health.List(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", health.Data)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\thealth, err := client.Accounts.Health.List(context.TODO(), relaygo.AccountHealthListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", health.Data)\n}\n',
       },
       http: {
         example:

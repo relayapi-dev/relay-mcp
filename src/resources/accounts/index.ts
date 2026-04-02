@@ -20,7 +20,12 @@ export {
   type GmbLocationSetDefaultResponse,
   type GmbLocationSetDefaultParams,
 } from './gmb-locations';
-export { Health, type HealthRetrieveResponse, type HealthListResponse } from './health';
+export {
+  Health,
+  type HealthRetrieveResponse,
+  type HealthListResponse,
+  type HealthListParams,
+} from './health';
 export {
   LinkedinOrganizations,
   type LinkedinOrganizationRetrieveResponse,
