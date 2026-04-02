@@ -143,6 +143,11 @@ export interface PostCreateResponse {
   media: Array<PostCreateResponse.Media> | null;
 
   /**
+   * When the post was published
+   */
+  published_at: string | null;
+
+  /**
    * Source post ID if this is a recycled copy
    */
   recycled_from_id: string | null;
@@ -242,6 +247,21 @@ export namespace PostCreateResponse {
       id: string;
 
       /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
+
+      /**
        * Published post URL on the platform
        */
       url: string | null;
@@ -268,6 +288,11 @@ export interface PostRetrieveResponse {
   created_at: string;
 
   media: Array<PostRetrieveResponse.Media> | null;
+
+  /**
+   * When the post was published
+   */
+  published_at: string | null;
 
   /**
    * Source post ID if this is a recycled copy
@@ -369,6 +394,21 @@ export namespace PostRetrieveResponse {
       id: string;
 
       /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
+
+      /**
        * Published post URL on the platform
        */
       url: string | null;
@@ -395,6 +435,11 @@ export interface PostUpdateResponse {
   created_at: string;
 
   media: Array<PostUpdateResponse.Media> | null;
+
+  /**
+   * When the post was published
+   */
+  published_at: string | null;
 
   /**
    * Source post ID if this is a recycled copy
@@ -496,6 +541,21 @@ export namespace PostUpdateResponse {
       id: string;
 
       /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
+
+      /**
        * Published post URL on the platform
        */
       url: string | null;
@@ -539,6 +599,11 @@ export namespace PostListResponse {
     media: Array<Data.Media> | null;
 
     /**
+     * When the post was published
+     */
+    published_at: string | null;
+
+    /**
      * Source post ID if this is a recycled copy
      */
     recycled_from_id: string | null;
@@ -636,6 +701,21 @@ export namespace PostListResponse {
     export namespace Targets {
       export interface Account {
         id: string;
+
+        /**
+         * Account avatar URL
+         */
+        avatar_url: string | null;
+
+        /**
+         * Account display name
+         */
+        display_name: string | null;
+
+        /**
+         * Platform-native post ID
+         */
+        platform_post_id: string | null;
 
         /**
          * Published post URL on the platform
@@ -674,6 +754,11 @@ export namespace PostBulkCreateResponse {
     media: Array<Data.Media> | null;
 
     /**
+     * When the post was published
+     */
+    published_at: string | null;
+
+    /**
      * Source post ID if this is a recycled copy
      */
     recycled_from_id: string | null;
@@ -773,6 +858,21 @@ export namespace PostBulkCreateResponse {
         id: string;
 
         /**
+         * Account avatar URL
+         */
+        avatar_url: string | null;
+
+        /**
+         * Account display name
+         */
+        display_name: string | null;
+
+        /**
+         * Platform-native post ID
+         */
+        platform_post_id: string | null;
+
+        /**
          * Published post URL on the platform
          */
         url: string | null;
@@ -808,6 +908,11 @@ export interface PostRetryResponse {
   created_at: string;
 
   media: Array<PostRetryResponse.Media> | null;
+
+  /**
+   * When the post was published
+   */
+  published_at: string | null;
 
   /**
    * Source post ID if this is a recycled copy
@@ -909,6 +1014,21 @@ export namespace PostRetryResponse {
       id: string;
 
       /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
+
+      /**
        * Published post URL on the platform
        */
       url: string | null;
@@ -935,6 +1055,11 @@ export interface PostUnpublishResponse {
   created_at: string;
 
   media: Array<PostUnpublishResponse.Media> | null;
+
+  /**
+   * When the post was published
+   */
+  published_at: string | null;
 
   /**
    * Source post ID if this is a recycled copy
@@ -1034,6 +1159,21 @@ export namespace PostUnpublishResponse {
   export namespace Targets {
     export interface Account {
       id: string;
+
+      /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
 
       /**
        * Published post URL on the platform
@@ -1251,6 +1391,11 @@ export interface PostListParams {
    * Filter: start date (ISO 8601)
    */
   from?: string;
+
+  /**
+   * Comma-separated list of fields to include in the response (e.g. 'targets,media')
+   */
+  include?: string;
 
   /**
    * Number of items per page
