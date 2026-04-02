@@ -3985,38 +3985,40 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     params: [
       'conversation_id: string;',
       'account_id: string;',
-      'text: string;',
       'attachments?: { type: string; url: string; }[];',
-      'message_tag?: string;',
+      "message_tag?: 'HUMAN_AGENT' | 'CUSTOMER_FEEDBACK';",
+      "quick_replies?: { content_type?: 'text' | 'user_phone_number' | 'user_email'; image_url?: string; payload?: string; title?: string; }[];",
       'reply_to?: string;',
+      "template?: { elements: { title: string; buttons?: { title: string; type: 'web_url' | 'postback'; payload?: string; url?: string; }[]; image_url?: string; subtitle?: string; }[]; type: 'generic' | 'button'; };",
+      'text?: string;',
     ],
-    response: '{ success: boolean; message_id?: string; }',
+    response: '{ success: boolean; error?: string; message_id?: string; }',
     markdown:
-      "## send\n\n`client.inbox.messages.send(conversation_id: string, account_id: string, text: string, attachments?: { type: string; url: string; }[], message_tag?: string, reply_to?: string): { success: boolean; message_id?: string; }`\n\n**post** `/v1/inbox/messages/{conversation_id}`\n\nSend a message in a conversation\n\n### Parameters\n\n- `conversation_id: string`\n  Conversation ID\n\n- `account_id: string`\n  Account ID to send from\n\n- `text: string`\n  Message text\n\n- `attachments?: { type: string; url: string; }[]`\n  Attachments\n\n- `message_tag?: string`\n  Message tag (e.g. for Facebook outside 24h window)\n\n- `reply_to?: string`\n  Message ID to reply to\n\n### Returns\n\n- `{ success: boolean; message_id?: string; }`\n\n  - `success: boolean`\n  - `message_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.inbox.messages.send('conversation_id', { account_id: 'account_id', text: 'x' });\n\nconsole.log(response);\n```",
+      "## send\n\n`client.inbox.messages.send(conversation_id: string, account_id: string, attachments?: { type: string; url: string; }[], message_tag?: 'HUMAN_AGENT' | 'CUSTOMER_FEEDBACK', quick_replies?: { content_type?: 'text' | 'user_phone_number' | 'user_email'; image_url?: string; payload?: string; title?: string; }[], reply_to?: string, template?: { elements: { title: string; buttons?: object[]; image_url?: string; subtitle?: string; }[]; type: 'generic' | 'button'; }, text?: string): { success: boolean; error?: string; message_id?: string; }`\n\n**post** `/v1/inbox/messages/{conversation_id}`\n\nSend a message in a conversation\n\n### Parameters\n\n- `conversation_id: string`\n  Conversation ID\n\n- `account_id: string`\n  Account ID to send from\n\n- `attachments?: { type: string; url: string; }[]`\n  Attachments\n\n- `message_tag?: 'HUMAN_AGENT' | 'CUSTOMER_FEEDBACK'`\n  Message tag for sending outside the 24h window (Facebook only)\n\n- `quick_replies?: { content_type?: 'text' | 'user_phone_number' | 'user_email'; image_url?: string; payload?: string; title?: string; }[]`\n  Quick reply buttons (Facebook/Instagram, max 13)\n\n- `reply_to?: string`\n  Message ID to reply to\n\n- `template?: { elements: { title: string; buttons?: { title: string; type: 'web_url' | 'postback'; payload?: string; url?: string; }[]; image_url?: string; subtitle?: string; }[]; type: 'generic' | 'button'; }`\n  Structured template message (Facebook/Instagram)\n  - `elements: { title: string; buttons?: { title: string; type: 'web_url' | 'postback'; payload?: string; url?: string; }[]; image_url?: string; subtitle?: string; }[]`\n    Template elements (max 10 for carousel)\n  - `type: 'generic' | 'button'`\n    Template type\n\n- `text?: string`\n  Message text\n\n### Returns\n\n- `{ success: boolean; error?: string; message_id?: string; }`\n\n  - `success: boolean`\n  - `error?: string`\n  - `message_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.inbox.messages.send('conversation_id', { account_id: 'account_id' });\n\nconsole.log(response);\n```",
     perLanguage: {
       go: {
         method: 'client.Inbox.Messages.Send',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Inbox.Messages.Send(\n\t\tcontext.TODO(),\n\t\t"conversation_id",\n\t\trelaygo.InboxMessageSendParams{\n\t\t\tAccountID: relaygo.F("account_id"),\n\t\t\tText:      relaygo.F("x"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.MessageID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Inbox.Messages.Send(\n\t\tcontext.TODO(),\n\t\t"conversation_id",\n\t\trelaygo.InboxMessageSendParams{\n\t\t\tAccountID: relaygo.F("account_id"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.MessageID)\n}\n',
       },
       http: {
         example:
-          'curl https://api.relayapi.dev/v1/inbox/messages/$CONVERSATION_ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $RELAY_API_KEY" \\\n    -d \'{\n          "account_id": "account_id",\n          "text": "x"\n        }\'',
+          'curl https://api.relayapi.dev/v1/inbox/messages/$CONVERSATION_ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $RELAY_API_KEY" \\\n    -d \'{\n          "account_id": "account_id"\n        }\'',
       },
       java: {
         method: 'inbox().messages().send',
         example:
-          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.inbox.messages.MessageSendParams;\nimport dev.relayapi.models.inbox.messages.MessageSendResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        MessageSendParams params = MessageSendParams.builder()\n            .conversationId("conversation_id")\n            .accountId("account_id")\n            .text("x")\n            .build();\n        MessageSendResponse response = client.inbox().messages().send(params);\n    }\n}',
+          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.inbox.messages.MessageSendParams;\nimport dev.relayapi.models.inbox.messages.MessageSendResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        MessageSendParams params = MessageSendParams.builder()\n            .conversationId("conversation_id")\n            .accountId("account_id")\n            .build();\n        MessageSendResponse response = client.inbox().messages().send(params);\n    }\n}',
       },
       python: {
         method: 'inbox.messages.send',
         example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.inbox.messages.send(\n    conversation_id="conversation_id",\n    account_id="account_id",\n    text="x",\n)\nprint(response.message_id)',
+          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.inbox.messages.send(\n    conversation_id="conversation_id",\n    account_id="account_id",\n)\nprint(response.message_id)',
       },
       typescript: {
         method: 'client.inbox.messages.send',
         example:
-          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.inbox.messages.send('conversation_id', {\n  account_id: 'account_id',\n  text: 'x',\n});\n\nconsole.log(response.message_id);",
+          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.inbox.messages.send('conversation_id', { account_id: 'account_id' });\n\nconsole.log(response.message_id);",
       },
     },
   },
@@ -4029,9 +4031,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     stainlessPath: '(resource) inbox.messages > (method) archive',
     qualified: 'client.inbox.messages.archive',
     params: ['conversation_id: string;'],
-    response: '{ success: boolean; message_id?: string; }',
+    response: '{ success: boolean; error?: string; message_id?: string; }',
     markdown:
-      "## archive\n\n`client.inbox.messages.archive(conversation_id: string): { success: boolean; message_id?: string; }`\n\n**put** `/v1/inbox/messages/{conversation_id}/archive`\n\nArchive a conversation\n\n### Parameters\n\n- `conversation_id: string`\n  Conversation ID\n\n### Returns\n\n- `{ success: boolean; message_id?: string; }`\n\n  - `success: boolean`\n  - `message_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.inbox.messages.archive('conversation_id');\n\nconsole.log(response);\n```",
+      "## archive\n\n`client.inbox.messages.archive(conversation_id: string): { success: boolean; error?: string; message_id?: string; }`\n\n**put** `/v1/inbox/messages/{conversation_id}/archive`\n\nArchive a conversation\n\n### Parameters\n\n- `conversation_id: string`\n  Conversation ID\n\n### Returns\n\n- `{ success: boolean; error?: string; message_id?: string; }`\n\n  - `success: boolean`\n  - `error?: string`\n  - `message_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.inbox.messages.archive('conversation_id');\n\nconsole.log(response);\n```",
     perLanguage: {
       go: {
         method: 'client.Inbox.Messages.Archive',
@@ -4068,9 +4070,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     stainlessPath: '(resource) inbox.messages > (method) edit',
     qualified: 'client.inbox.messages.edit',
     params: ['conversation_id: string;', 'message_id: string;', 'text: string;'],
-    response: '{ success: boolean; message_id?: string; }',
+    response: '{ success: boolean; error?: string; message_id?: string; }',
     markdown:
-      "## edit\n\n`client.inbox.messages.edit(conversation_id: string, message_id: string, text: string): { success: boolean; message_id?: string; }`\n\n**patch** `/v1/inbox/messages/{conversation_id}/{message_id}`\n\nEdit a sent message\n\n### Parameters\n\n- `conversation_id: string`\n  Conversation ID\n\n- `message_id: string`\n  Message ID\n\n- `text: string`\n  Updated message text\n\n### Returns\n\n- `{ success: boolean; message_id?: string; }`\n\n  - `success: boolean`\n  - `message_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.inbox.messages.edit('message_id', { conversation_id: 'conversation_id', text: 'x' });\n\nconsole.log(response);\n```",
+      "## edit\n\n`client.inbox.messages.edit(conversation_id: string, message_id: string, text: string): { success: boolean; error?: string; message_id?: string; }`\n\n**patch** `/v1/inbox/messages/{conversation_id}/{message_id}`\n\nEdit a sent message\n\n### Parameters\n\n- `conversation_id: string`\n  Conversation ID\n\n- `message_id: string`\n  Message ID\n\n- `text: string`\n  Updated message text\n\n### Returns\n\n- `{ success: boolean; error?: string; message_id?: string; }`\n\n  - `success: boolean`\n  - `error?: string`\n  - `message_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.inbox.messages.edit('message_id', { conversation_id: 'conversation_id', text: 'x' });\n\nconsole.log(response);\n```",
     perLanguage: {
       go: {
         method: 'client.Inbox.Messages.Edit',

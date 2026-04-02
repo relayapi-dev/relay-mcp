@@ -184,6 +184,11 @@ export interface MessageArchiveResponse {
   success: boolean;
 
   /**
+   * Error message if failed
+   */
+  error?: string;
+
+  /**
    * Message ID
    */
   message_id?: string;
@@ -196,6 +201,11 @@ export interface MessageEditResponse {
   success: boolean;
 
   /**
+   * Error message if failed
+   */
+  error?: string;
+
+  /**
    * Message ID
    */
   message_id?: string;
@@ -206,6 +216,11 @@ export interface MessageSendResponse {
    * Whether the action succeeded
    */
   success: boolean;
+
+  /**
+   * Error message if failed
+   */
+  error?: string;
 
   /**
    * Message ID
@@ -276,24 +291,34 @@ export interface MessageSendParams {
   account_id: string;
 
   /**
-   * Message text
-   */
-  text: string;
-
-  /**
    * Attachments
    */
   attachments?: Array<MessageSendParams.Attachment>;
 
   /**
-   * Message tag (e.g. for Facebook outside 24h window)
+   * Message tag for sending outside the 24h window (Facebook only)
    */
-  message_tag?: string;
+  message_tag?: 'HUMAN_AGENT' | 'CUSTOMER_FEEDBACK';
+
+  /**
+   * Quick reply buttons (Facebook/Instagram, max 13)
+   */
+  quick_replies?: Array<MessageSendParams.QuickReply>;
 
   /**
    * Message ID to reply to
    */
   reply_to?: string;
+
+  /**
+   * Structured template message (Facebook/Instagram)
+   */
+  template?: MessageSendParams.Template;
+
+  /**
+   * Message text
+   */
+  text?: string;
 }
 
 export namespace MessageSendParams {
@@ -307,6 +332,91 @@ export namespace MessageSendParams {
      * Attachment URL
      */
     url: string;
+  }
+
+  export interface QuickReply {
+    /**
+     * Quick reply type
+     */
+    content_type?: 'text' | 'user_phone_number' | 'user_email';
+
+    /**
+     * Icon URL for the button
+     */
+    image_url?: string;
+
+    /**
+     * Postback payload
+     */
+    payload?: string;
+
+    /**
+     * Button label (required for text type)
+     */
+    title?: string;
+  }
+
+  /**
+   * Structured template message (Facebook/Instagram)
+   */
+  export interface Template {
+    /**
+     * Template elements (max 10 for carousel)
+     */
+    elements: Array<Template.Element>;
+
+    /**
+     * Template type
+     */
+    type: 'generic' | 'button';
+  }
+
+  export namespace Template {
+    export interface Element {
+      /**
+       * Element title
+       */
+      title: string;
+
+      /**
+       * Element buttons (max 3)
+       */
+      buttons?: Array<Element.Button>;
+
+      /**
+       * Element image URL
+       */
+      image_url?: string;
+
+      /**
+       * Element subtitle
+       */
+      subtitle?: string;
+    }
+
+    export namespace Element {
+      export interface Button {
+        /**
+         * Button label
+         */
+        title: string;
+
+        /**
+         * Button type
+         */
+        type: 'web_url' | 'postback';
+
+        /**
+         * Payload for postback buttons
+         */
+        payload?: string;
+
+        /**
+         * URL for web_url buttons
+         */
+        url?: string;
+      }
+    }
   }
 }
 
