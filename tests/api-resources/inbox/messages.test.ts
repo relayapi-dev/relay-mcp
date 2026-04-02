@@ -86,10 +86,7 @@ describe('resource messages', () => {
 
   // Mock server tests are disabled
   test.skip('send: only required params', async () => {
-    const responsePromise = client.inbox.messages.send('conversation_id', {
-      account_id: 'account_id',
-      text: 'x',
-    });
+    const responsePromise = client.inbox.messages.send('conversation_id', { account_id: 'account_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -103,10 +100,36 @@ describe('resource messages', () => {
   test.skip('send: required and optional params', async () => {
     const response = await client.inbox.messages.send('conversation_id', {
       account_id: 'account_id',
-      text: 'x',
       attachments: [{ type: 'type', url: 'https://example.com' }],
-      message_tag: 'message_tag',
+      message_tag: 'HUMAN_AGENT',
+      quick_replies: [
+        {
+          content_type: 'text',
+          image_url: 'https://example.com',
+          payload: 'payload',
+          title: 'title',
+        },
+      ],
       reply_to: 'reply_to',
+      template: {
+        elements: [
+          {
+            title: 'title',
+            buttons: [
+              {
+                title: 'title',
+                type: 'web_url',
+                payload: 'payload',
+                url: 'https://example.com',
+              },
+            ],
+            image_url: 'https://example.com',
+            subtitle: 'subtitle',
+          },
+        ],
+        type: 'generic',
+      },
+      text: 'x',
     });
   });
 });
