@@ -926,7 +926,14 @@ export interface ValidateValidatePostParams {
   media?: Array<ValidateValidatePostParams.Media>;
 
   /**
-   * Per-target customizations keyed by target value (account ID or platform name)
+   * Recycling configuration for evergreen content (Pro plan only)
+   */
+  recycling?: ValidateValidatePostParams.Recycling;
+
+  /**
+   * Per-target customizations keyed by target value (account ID or platform name).
+   * Supports platform-specific features such as Twitter polls (poll.options,
+   * poll.duration_minutes), threads, reply_to, and reply_settings.
    */
   target_options?: { [key: string]: { [key: string]: unknown } };
 
@@ -952,6 +959,46 @@ export namespace ValidateValidatePostParams {
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration for evergreen content (Pro plan only)
+   */
+  export interface Recycling {
+    /**
+     * Interval value
+     */
+    gap: number;
+
+    /**
+     * Interval unit
+     */
+    gap_freq: 'day' | 'week' | 'month';
+
+    /**
+     * When to start recycling
+     */
+    start_date: string;
+
+    /**
+     * Alternate content texts (round-robin)
+     */
+    content_variations?: Array<string>;
+
+    /**
+     * Whether recycling is active
+     */
+    enabled?: boolean;
+
+    /**
+     * Stop after this many recycles
+     */
+    expire_count?: number;
+
+    /**
+     * Stop after this date
+     */
+    expire_date?: string;
   }
 }
 

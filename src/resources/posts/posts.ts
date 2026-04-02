@@ -142,6 +142,16 @@ export interface PostCreateResponse {
 
   media: Array<PostCreateResponse.Media> | null;
 
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostCreateResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -165,6 +175,39 @@ export namespace PostCreateResponse {
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -226,6 +269,16 @@ export interface PostRetrieveResponse {
 
   media: Array<PostRetrieveResponse.Media> | null;
 
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostRetrieveResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -249,6 +302,39 @@ export namespace PostRetrieveResponse {
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -310,6 +396,16 @@ export interface PostUpdateResponse {
 
   media: Array<PostUpdateResponse.Media> | null;
 
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostUpdateResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -333,6 +429,39 @@ export namespace PostUpdateResponse {
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -409,6 +538,16 @@ export namespace PostListResponse {
 
     media: Array<Data.Media> | null;
 
+    /**
+     * Source post ID if this is a recycled copy
+     */
+    recycled_from_id: string | null;
+
+    /**
+     * Recycling configuration, if any
+     */
+    recycling: Data.Recycling | null;
+
     scheduled_at: string | null;
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -432,6 +571,39 @@ export namespace PostListResponse {
        * Media type. Inferred from URL extension if omitted.
        */
       type?: 'image' | 'video' | 'gif' | 'document';
+    }
+
+    /**
+     * Recycling configuration, if any
+     */
+    export interface Recycling {
+      id: string;
+
+      content_variation_index: number;
+
+      content_variations: Array<string>;
+
+      created_at: string;
+
+      enabled: boolean;
+
+      expire_count: number | null;
+
+      expire_date: string | null;
+
+      gap: number;
+
+      gap_freq: 'day' | 'week' | 'month';
+
+      last_recycled_at: string | null;
+
+      next_recycle_at: string | null;
+
+      recycle_count: number;
+
+      start_date: string;
+
+      updated_at: string;
     }
 
     export interface Targets {
@@ -501,6 +673,16 @@ export namespace PostBulkCreateResponse {
 
     media: Array<Data.Media> | null;
 
+    /**
+     * Source post ID if this is a recycled copy
+     */
+    recycled_from_id: string | null;
+
+    /**
+     * Recycling configuration, if any
+     */
+    recycling: Data.Recycling | null;
+
     scheduled_at: string | null;
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -524,6 +706,39 @@ export namespace PostBulkCreateResponse {
        * Media type. Inferred from URL extension if omitted.
        */
       type?: 'image' | 'video' | 'gif' | 'document';
+    }
+
+    /**
+     * Recycling configuration, if any
+     */
+    export interface Recycling {
+      id: string;
+
+      content_variation_index: number;
+
+      content_variations: Array<string>;
+
+      created_at: string;
+
+      enabled: boolean;
+
+      expire_count: number | null;
+
+      expire_date: string | null;
+
+      gap: number;
+
+      gap_freq: 'day' | 'week' | 'month';
+
+      last_recycled_at: string | null;
+
+      next_recycle_at: string | null;
+
+      recycle_count: number;
+
+      start_date: string;
+
+      updated_at: string;
     }
 
     export interface Targets {
@@ -594,6 +809,16 @@ export interface PostRetryResponse {
 
   media: Array<PostRetryResponse.Media> | null;
 
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostRetryResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -617,6 +842,39 @@ export namespace PostRetryResponse {
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -678,6 +936,16 @@ export interface PostUnpublishResponse {
 
   media: Array<PostUnpublishResponse.Media> | null;
 
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostUnpublishResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -701,6 +969,39 @@ export namespace PostUnpublishResponse {
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -773,7 +1074,14 @@ export interface PostCreateParams {
   media?: Array<PostCreateParams.Media>;
 
   /**
-   * Per-target customizations keyed by target value (account ID or platform name)
+   * Recycling configuration for evergreen content (Pro plan only)
+   */
+  recycling?: PostCreateParams.Recycling;
+
+  /**
+   * Per-target customizations keyed by target value (account ID or platform name).
+   * Supports platform-specific features such as Twitter polls (poll.options,
+   * poll.duration_minutes), threads, reply_to, and reply_settings.
    */
   target_options?: { [key: string]: { [key: string]: unknown } };
 
@@ -800,6 +1108,46 @@ export namespace PostCreateParams {
      */
     type?: 'image' | 'video' | 'gif' | 'document';
   }
+
+  /**
+   * Recycling configuration for evergreen content (Pro plan only)
+   */
+  export interface Recycling {
+    /**
+     * Interval value
+     */
+    gap: number;
+
+    /**
+     * Interval unit
+     */
+    gap_freq: 'day' | 'week' | 'month';
+
+    /**
+     * When to start recycling
+     */
+    start_date: string;
+
+    /**
+     * Alternate content texts (round-robin)
+     */
+    content_variations?: Array<string>;
+
+    /**
+     * Whether recycling is active
+     */
+    enabled?: boolean;
+
+    /**
+     * Stop after this many recycles
+     */
+    expire_count?: number;
+
+    /**
+     * Stop after this date
+     */
+    expire_date?: string;
+  }
 }
 
 export interface PostUpdateParams {
@@ -812,6 +1160,11 @@ export interface PostUpdateParams {
    * Updated media
    */
   media?: Array<PostUpdateParams.Media>;
+
+  /**
+   * Recycling configuration (Pro plan only)
+   */
+  recycling?: PostUpdateParams.Recycling;
 
   /**
    * Publish intent. Use "now" to publish immediately, "draft" to save as draft, or
@@ -840,6 +1193,46 @@ export namespace PostUpdateParams {
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration (Pro plan only)
+   */
+  export interface Recycling {
+    /**
+     * Interval value
+     */
+    gap: number;
+
+    /**
+     * Interval unit
+     */
+    gap_freq: 'day' | 'week' | 'month';
+
+    /**
+     * When to start recycling
+     */
+    start_date: string;
+
+    /**
+     * Alternate content texts (round-robin)
+     */
+    content_variations?: Array<string>;
+
+    /**
+     * Whether recycling is active
+     */
+    enabled?: boolean;
+
+    /**
+     * Stop after this many recycles
+     */
+    expire_count?: number;
+
+    /**
+     * Stop after this date
+     */
+    expire_date?: string;
   }
 }
 
@@ -911,7 +1304,14 @@ export namespace PostBulkCreateParams {
     media?: Array<Post.Media>;
 
     /**
-     * Per-target customizations keyed by target value (account ID or platform name)
+     * Recycling configuration for evergreen content (Pro plan only)
+     */
+    recycling?: Post.Recycling;
+
+    /**
+     * Per-target customizations keyed by target value (account ID or platform name).
+     * Supports platform-specific features such as Twitter polls (poll.options,
+     * poll.duration_minutes), threads, reply_to, and reply_settings.
      */
     target_options?: { [key: string]: { [key: string]: unknown } };
 
@@ -937,6 +1337,46 @@ export namespace PostBulkCreateParams {
        * Media type. Inferred from URL extension if omitted.
        */
       type?: 'image' | 'video' | 'gif' | 'document';
+    }
+
+    /**
+     * Recycling configuration for evergreen content (Pro plan only)
+     */
+    export interface Recycling {
+      /**
+       * Interval value
+       */
+      gap: number;
+
+      /**
+       * Interval unit
+       */
+      gap_freq: 'day' | 'week' | 'month';
+
+      /**
+       * When to start recycling
+       */
+      start_date: string;
+
+      /**
+       * Alternate content texts (round-robin)
+       */
+      content_variations?: Array<string>;
+
+      /**
+       * Whether recycling is active
+       */
+      enabled?: boolean;
+
+      /**
+       * Stop after this many recycles
+       */
+      expire_count?: number;
+
+      /**
+       * Stop after this date
+       */
+      expire_date?: string;
     }
   }
 }
