@@ -16,8 +16,11 @@ export class Health extends APIResource {
   /**
    * Check health of all connected accounts
    */
-  list(options?: RequestOptions): APIPromise<HealthListResponse> {
-    return this._client.get('/v1/accounts/health', options);
+  list(
+    query: HealthListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HealthListResponse> {
+    return this._client.get('/v1/accounts/health', { query, ...options });
   }
 }
 
@@ -51,6 +54,16 @@ export namespace HealthRetrieveResponse {
 
 export interface HealthListResponse {
   data: Array<HealthListResponse.Data>;
+
+  /**
+   * Whether more items exist
+   */
+  has_more: boolean;
+
+  /**
+   * Cursor for next page
+   */
+  next_cursor: string | null;
 }
 
 export namespace HealthListResponse {
@@ -94,9 +107,22 @@ export namespace HealthListResponse {
   }
 }
 
+export interface HealthListParams {
+  /**
+   * Pagination cursor
+   */
+  cursor?: string;
+
+  /**
+   * Number of items per page
+   */
+  limit?: number;
+}
+
 export declare namespace Health {
   export {
     type HealthRetrieveResponse as HealthRetrieveResponse,
     type HealthListResponse as HealthListResponse,
+    type HealthListParams as HealthListParams,
   };
 }
