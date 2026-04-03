@@ -167,6 +167,11 @@ export interface PostCreateResponse {
   targets: { [key: string]: PostCreateResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostCreateResponse.Metrics;
 }
 
 export namespace PostCreateResponse {
@@ -275,6 +280,29 @@ export namespace PostCreateResponse {
       message: string;
     }
   }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
+  }
 }
 
 export interface PostRetrieveResponse {
@@ -314,6 +342,11 @@ export interface PostRetrieveResponse {
   targets: { [key: string]: PostRetrieveResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostRetrieveResponse.Metrics;
 }
 
 export namespace PostRetrieveResponse {
@@ -422,6 +455,29 @@ export namespace PostRetrieveResponse {
       message: string;
     }
   }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
+  }
 }
 
 export interface PostUpdateResponse {
@@ -461,6 +517,11 @@ export interface PostUpdateResponse {
   targets: { [key: string]: PostUpdateResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostUpdateResponse.Metrics;
 }
 
 export namespace PostUpdateResponse {
@@ -569,6 +630,29 @@ export namespace PostUpdateResponse {
       message: string;
     }
   }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
+  }
 }
 
 export interface PostListResponse {
@@ -623,6 +707,11 @@ export namespace PostListResponse {
     targets: { [key: string]: Data.Targets };
 
     updated_at: string;
+
+    /**
+     * Engagement metrics (reactions, comments, views, etc.)
+     */
+    metrics?: Data.Metrics;
   }
 
   export namespace Data {
@@ -730,6 +819,29 @@ export namespace PostListResponse {
 
         message: string;
       }
+    }
+
+    /**
+     * Engagement metrics (reactions, comments, views, etc.)
+     */
+    export interface Metrics {
+      clicks?: number;
+
+      comments?: number;
+
+      engagement_rate?: number;
+
+      impressions?: number;
+
+      likes?: number;
+
+      reach?: number;
+
+      saves?: number;
+
+      shares?: number;
+
+      views?: number;
     }
   }
 }
@@ -778,6 +890,11 @@ export namespace PostBulkCreateResponse {
     targets: { [key: string]: Data.Targets };
 
     updated_at: string;
+
+    /**
+     * Engagement metrics (reactions, comments, views, etc.)
+     */
+    metrics?: Data.Metrics;
   }
 
   export namespace Data {
@@ -885,6 +1002,29 @@ export namespace PostBulkCreateResponse {
 
         message: string;
       }
+    }
+
+    /**
+     * Engagement metrics (reactions, comments, views, etc.)
+     */
+    export interface Metrics {
+      clicks?: number;
+
+      comments?: number;
+
+      engagement_rate?: number;
+
+      impressions?: number;
+
+      likes?: number;
+
+      reach?: number;
+
+      saves?: number;
+
+      shares?: number;
+
+      views?: number;
     }
   }
 
@@ -934,6 +1074,11 @@ export interface PostRetryResponse {
   targets: { [key: string]: PostRetryResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostRetryResponse.Metrics;
 }
 
 export namespace PostRetryResponse {
@@ -1042,6 +1187,29 @@ export namespace PostRetryResponse {
       message: string;
     }
   }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
+  }
 }
 
 export interface PostUnpublishResponse {
@@ -1081,6 +1249,11 @@ export interface PostUnpublishResponse {
   targets: { [key: string]: PostUnpublishResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostUnpublishResponse.Metrics;
 }
 
 export namespace PostUnpublishResponse {
@@ -1188,6 +1361,29 @@ export namespace PostUnpublishResponse {
 
       message: string;
     }
+  }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
   }
 }
 
@@ -1396,6 +1592,12 @@ export interface PostListParams {
    * Comma-separated list of fields to include in the response (e.g. 'targets,media')
    */
   include?: string;
+
+  /**
+   * When true and status=published, also return external posts merged by
+   * published_at
+   */
+  include_external?: 'true' | 'false';
 
   /**
    * Number of items per page
