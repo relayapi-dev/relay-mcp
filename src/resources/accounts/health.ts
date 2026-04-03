@@ -70,6 +70,10 @@ export namespace HealthListResponse {
   export interface Data {
     id: string;
 
+    avatar_url: string | null;
+
+    display_name: string | null;
+
     healthy: boolean;
 
     platform:
@@ -91,14 +95,24 @@ export namespace HealthListResponse {
       | 'discord'
       | 'sms';
 
+    scopes: Array<string>;
+
     token_expires_at: string | null;
 
     username: string | null;
+
+    workspace: Data.Workspace | null;
 
     error?: Data.Error;
   }
 
   export namespace Data {
+    export interface Workspace {
+      id: string;
+
+      name: string;
+    }
+
     export interface Error {
       code: string;
 
