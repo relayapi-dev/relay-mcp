@@ -75,6 +75,7 @@ describe('resource posts', () => {
         {
           content: 'content',
           media: [{ url: 'https://example.com', type: 'image' }],
+          notes: 'notes',
           recycling: {
             gap: 1,
             gap_freq: 'day',
