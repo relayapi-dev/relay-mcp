@@ -172,6 +172,16 @@ export interface PostCreateResponse {
    * Engagement metrics (reactions, comments, views, etc.)
    */
   metrics?: PostCreateResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostCreateResponse {
@@ -347,6 +357,16 @@ export interface PostRetrieveResponse {
    * Engagement metrics (reactions, comments, views, etc.)
    */
   metrics?: PostRetrieveResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostRetrieveResponse {
@@ -522,6 +542,16 @@ export interface PostUpdateResponse {
    * Engagement metrics (reactions, comments, views, etc.)
    */
   metrics?: PostUpdateResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostUpdateResponse {
@@ -712,6 +742,16 @@ export namespace PostListResponse {
      * Engagement metrics (reactions, comments, views, etc.)
      */
     metrics?: Data.Metrics;
+
+    /**
+     * Per-target customizations
+     */
+    target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+    /**
+     * IANA timezone
+     */
+    timezone?: string | null;
   }
 
   export namespace Data {
@@ -895,6 +935,16 @@ export namespace PostBulkCreateResponse {
      * Engagement metrics (reactions, comments, views, etc.)
      */
     metrics?: Data.Metrics;
+
+    /**
+     * Per-target customizations
+     */
+    target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+    /**
+     * IANA timezone
+     */
+    timezone?: string | null;
   }
 
   export namespace Data {
@@ -1079,6 +1129,16 @@ export interface PostRetryResponse {
    * Engagement metrics (reactions, comments, views, etc.)
    */
   metrics?: PostRetryResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostRetryResponse {
@@ -1254,6 +1314,16 @@ export interface PostUnpublishResponse {
    * Engagement metrics (reactions, comments, views, etc.)
    */
   metrics?: PostUnpublishResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostUnpublishResponse {
