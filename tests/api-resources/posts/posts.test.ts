@@ -116,6 +116,7 @@ describe('resource posts', () => {
           cursor: 'cursor',
           from: '2019-12-27T18:11:19.117Z',
           include: 'include',
+          include_external: 'true',
           limit: 1,
           status: 'draft',
           to: '2019-12-27T18:11:19.117Z',
