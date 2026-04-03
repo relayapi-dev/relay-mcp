@@ -138,6 +138,11 @@ export namespace CommentRetrieveResponse {
     text: string;
 
     /**
+     * Social account avatar URL
+     */
+    account_avatar_url?: string | null;
+
+    /**
      * Social account ID
      */
     account_id?: string;
@@ -261,6 +266,11 @@ export namespace CommentListResponse {
      * Comment text
      */
     text: string;
+
+    /**
+     * Social account avatar URL
+     */
+    account_avatar_url?: string | null;
 
     /**
      * Social account ID

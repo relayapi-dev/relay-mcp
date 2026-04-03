@@ -1669,8 +1669,8 @@ export interface PostListParams {
   include?: string;
 
   /**
-   * When true and status=published, also return external posts merged by
-   * published_at
+   * When true, also return external posts merged by published_at (works with
+   * status=published or no status filter)
    */
   include_external?: 'true' | 'false';
 
