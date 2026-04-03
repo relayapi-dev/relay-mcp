@@ -1568,6 +1568,11 @@ export interface PostUpdateParams {
   media?: Array<PostUpdateParams.Media>;
 
   /**
+   * Internal notes for this post
+   */
+  notes?: string | null;
+
+  /**
    * Recycling configuration (Pro plan only)
    */
   recycling?: PostUpdateParams.Recycling;
