@@ -482,22 +482,6 @@ Methods:
 
 ## Messages
 
-Types:
-
-- <code><a href="./src/resources/inbox/messages.ts">MessageRetrieveResponse</a></code>
-- <code><a href="./src/resources/inbox/messages.ts">MessageListResponse</a></code>
-- <code><a href="./src/resources/inbox/messages.ts">MessageArchiveResponse</a></code>
-- <code><a href="./src/resources/inbox/messages.ts">MessageEditResponse</a></code>
-- <code><a href="./src/resources/inbox/messages.ts">MessageSendResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/inbox/messages/{conversation_id}">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">retrieve</a>(conversationID) -> MessageRetrieveResponse</code>
-- <code title="get /v1/inbox/messages">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">list</a>({ ...params }) -> MessageListResponse</code>
-- <code title="put /v1/inbox/messages/{conversation_id}/archive">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">archive</a>(conversationID) -> MessageArchiveResponse</code>
-- <code title="patch /v1/inbox/messages/{conversation_id}/{message_id}">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">edit</a>(messageID, { ...params }) -> MessageEditResponse</code>
-- <code title="post /v1/inbox/messages/{conversation_id}">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">send</a>(conversationID, { ...params }) -> MessageSendResponse</code>
-
 ## Reviews
 
 Types:
