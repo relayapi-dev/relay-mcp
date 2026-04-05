@@ -581,36 +581,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/inbox/comments/{comment_id}/like',
   },
   {
-    clientCallName: 'client.inbox.messages.retrieve',
-    fullyQualifiedName: 'inbox.messages.retrieve',
-    httpMethod: 'get',
-    httpPath: '/v1/inbox/messages/{conversation_id}',
-  },
-  {
-    clientCallName: 'client.inbox.messages.list',
-    fullyQualifiedName: 'inbox.messages.list',
-    httpMethod: 'get',
-    httpPath: '/v1/inbox/messages',
-  },
-  {
-    clientCallName: 'client.inbox.messages.archive',
-    fullyQualifiedName: 'inbox.messages.archive',
-    httpMethod: 'put',
-    httpPath: '/v1/inbox/messages/{conversation_id}/archive',
-  },
-  {
-    clientCallName: 'client.inbox.messages.edit',
-    fullyQualifiedName: 'inbox.messages.edit',
-    httpMethod: 'patch',
-    httpPath: '/v1/inbox/messages/{conversation_id}/{message_id}',
-  },
-  {
-    clientCallName: 'client.inbox.messages.send',
-    fullyQualifiedName: 'inbox.messages.send',
-    httpMethod: 'post',
-    httpPath: '/v1/inbox/messages/{conversation_id}',
-  },
-  {
     clientCallName: 'client.inbox.reviews.list',
     fullyQualifiedName: 'inbox.reviews.list',
     httpMethod: 'get',
