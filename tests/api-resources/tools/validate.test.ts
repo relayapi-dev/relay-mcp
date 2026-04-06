@@ -77,6 +77,14 @@ describe('resource validate', () => {
       scheduled_at: 'now',
       targets: ['string'],
       content: 'content',
+      cross_post_actions: [
+        {
+          action_type: 'repost',
+          target_account_id: 'target_account_id',
+          content: 'content',
+          delay_minutes: 0,
+        },
+      ],
       media: [{ url: 'https://example.com', type: 'image' }],
       recycling: {
         gap: 1,
@@ -87,7 +95,11 @@ describe('resource validate', () => {
         expire_count: 1,
         expire_date: '2019-12-27T18:11:19.117Z',
       },
+      shorten_urls: true,
+      skip_signature: true,
       target_options: { foo: { foo: 'bar' } },
+      template_id: 'template_id',
+      template_variables: { foo: 'string' },
       timezone: 'timezone',
       workspace_id: 'workspace_id',
     });

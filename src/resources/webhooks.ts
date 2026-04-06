@@ -235,6 +235,11 @@ export interface WebhookCreateParams {
     | 'account.disconnected'
     | 'comment.received'
     | 'message.received'
+    | 'auto_post.created'
+    | 'auto_post.error'
+    | 'engagement_rule.triggered'
+    | 'cross_post_action.executed'
+    | 'cross_post_action.failed'
   >;
 
   /**
@@ -267,6 +272,11 @@ export interface WebhookUpdateParams {
     | 'account.disconnected'
     | 'comment.received'
     | 'message.received'
+    | 'auto_post.created'
+    | 'auto_post.error'
+    | 'engagement_rule.triggered'
+    | 'cross_post_action.executed'
+    | 'cross_post_action.failed'
   >;
 
   /**
