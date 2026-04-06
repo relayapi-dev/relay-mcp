@@ -179,6 +179,16 @@ export interface PostCreateResponse {
   target_options?: { [key: string]: { [key: string]: unknown } } | null;
 
   /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
    * IANA timezone
    */
   timezone?: string | null;
@@ -248,7 +258,11 @@ export namespace PostCreateResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -364,6 +378,16 @@ export interface PostRetrieveResponse {
   target_options?: { [key: string]: { [key: string]: unknown } } | null;
 
   /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
    * IANA timezone
    */
   timezone?: string | null;
@@ -433,7 +457,11 @@ export namespace PostRetrieveResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -549,6 +577,16 @@ export interface PostUpdateResponse {
   target_options?: { [key: string]: { [key: string]: unknown } } | null;
 
   /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
    * IANA timezone
    */
   timezone?: string | null;
@@ -618,7 +656,11 @@ export namespace PostUpdateResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -749,6 +791,16 @@ export namespace PostListResponse {
     target_options?: { [key: string]: { [key: string]: unknown } } | null;
 
     /**
+     * Thread group ID (non-null if part of a thread)
+     */
+    thread_group_id?: string | null;
+
+    /**
+     * Position within thread (0 = root)
+     */
+    thread_position?: number | null;
+
+    /**
      * IANA timezone
      */
     timezone?: string | null;
@@ -818,7 +870,11 @@ export namespace PostListResponse {
         | 'whatsapp'
         | 'mastodon'
         | 'discord'
-        | 'sms';
+        | 'sms'
+        | 'beehiiv'
+        | 'convertkit'
+        | 'mailchimp'
+        | 'listmonk';
 
       status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -942,6 +998,16 @@ export namespace PostBulkCreateResponse {
     target_options?: { [key: string]: { [key: string]: unknown } } | null;
 
     /**
+     * Thread group ID (non-null if part of a thread)
+     */
+    thread_group_id?: string | null;
+
+    /**
+     * Position within thread (0 = root)
+     */
+    thread_position?: number | null;
+
+    /**
      * IANA timezone
      */
     timezone?: string | null;
@@ -1011,7 +1077,11 @@ export namespace PostBulkCreateResponse {
         | 'whatsapp'
         | 'mastodon'
         | 'discord'
-        | 'sms';
+        | 'sms'
+        | 'beehiiv'
+        | 'convertkit'
+        | 'mailchimp'
+        | 'listmonk';
 
       status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -1136,6 +1206,16 @@ export interface PostRetryResponse {
   target_options?: { [key: string]: { [key: string]: unknown } } | null;
 
   /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
    * IANA timezone
    */
   timezone?: string | null;
@@ -1205,7 +1285,11 @@ export namespace PostRetryResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -1321,6 +1405,16 @@ export interface PostUnpublishResponse {
   target_options?: { [key: string]: { [key: string]: unknown } } | null;
 
   /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
    * IANA timezone
    */
   timezone?: string | null;
@@ -1390,7 +1484,11 @@ export namespace PostUnpublishResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -1459,8 +1557,9 @@ export namespace PostUnpublishResponse {
 
 export interface PostCreateParams {
   /**
-   * Publish intent. Use "now" to publish immediately, "draft" to save as draft, or
-   * an ISO 8601 timestamp to schedule.
+   * Publish intent. Use "now" to publish immediately, "draft" to save as draft,
+   * "auto" to auto-schedule to the best available slot, or an ISO 8601 timestamp to
+   * schedule.
    */
   scheduled_at: string;
 
@@ -1629,8 +1728,9 @@ export interface PostUpdateParams {
   recycling?: PostUpdateParams.Recycling;
 
   /**
-   * Publish intent. Use "now" to publish immediately, "draft" to save as draft, or
-   * an ISO 8601 timestamp to schedule.
+   * Publish intent. Use "now" to publish immediately, "draft" to save as draft,
+   * "auto" to auto-schedule to the best available slot, or an ISO 8601 timestamp to
+   * schedule.
    */
   scheduled_at?: string;
 
@@ -1756,8 +1856,9 @@ export interface PostBulkCreateParams {
 export namespace PostBulkCreateParams {
   export interface Post {
     /**
-     * Publish intent. Use "now" to publish immediately, "draft" to save as draft, or
-     * an ISO 8601 timestamp to schedule.
+     * Publish intent. Use "now" to publish immediately, "draft" to save as draft,
+     * "auto" to auto-schedule to the best available slot, or an ISO 8601 timestamp to
+     * schedule.
      */
     scheduled_at: string;
 

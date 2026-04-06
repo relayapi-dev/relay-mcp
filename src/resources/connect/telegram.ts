@@ -74,7 +74,11 @@ export namespace TelegramConnectDirectlyResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
@@ -194,7 +198,11 @@ export namespace TelegramPollConnectionStatusResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
