@@ -1475,6 +1475,12 @@ export interface PostCreateParams {
   content?: string;
 
   /**
+   * Cross-post actions to execute after publishing (e.g., repost from another
+   * account, comment from another account)
+   */
+  cross_post_actions?: Array<PostCreateParams.CrossPostAction>;
+
+  /**
    * Media attachments
    */
   media?: Array<PostCreateParams.Media>;
@@ -1485,11 +1491,34 @@ export interface PostCreateParams {
   recycling?: PostCreateParams.Recycling;
 
   /**
+   * Shorten URLs in post content. Only relevant when short link mode is 'ask'.
+   * Ignored when mode is 'always' or 'never'. (Pro plan only)
+   */
+  shorten_urls?: boolean;
+
+  /**
+   * When true, the default signature is not auto-appended even if one is configured.
+   */
+  skip_signature?: boolean;
+
+  /**
    * Per-target customizations keyed by target value (account ID or platform name).
    * Supports platform-specific features such as Twitter polls (poll.options,
    * poll.duration_minutes), threads, reply_to, and reply_settings.
    */
   target_options?: { [key: string]: { [key: string]: unknown } };
+
+  /**
+   * Content template ID. When provided, the template content is used as the base for
+   * the post. Explicit 'content' field takes precedence.
+   */
+  template_id?: string;
+
+  /**
+   * Variables to interpolate in the template (e.g., { "promo_code": "SUMMER25" }).
+   * Built-in variables: {{date}}, {{account_name}}.
+   */
+  template_variables?: { [key: string]: string };
 
   /**
    * IANA timezone for scheduling
@@ -1503,6 +1532,28 @@ export interface PostCreateParams {
 }
 
 export namespace PostCreateParams {
+  export interface CrossPostAction {
+    /**
+     * Type of cross-post action
+     */
+    action_type: 'repost' | 'comment' | 'quote';
+
+    /**
+     * Account to perform the action from
+     */
+    target_account_id: string;
+
+    /**
+     * Text content for comment/quote actions (required for comment and quote)
+     */
+    content?: string;
+
+    /**
+     * Delay in minutes after publishing
+     */
+    delay_minutes?: number;
+  }
+
   export interface Media {
     /**
      * Public URL of the media file
@@ -1721,6 +1772,12 @@ export namespace PostBulkCreateParams {
     content?: string;
 
     /**
+     * Cross-post actions to execute after publishing (e.g., repost from another
+     * account, comment from another account)
+     */
+    cross_post_actions?: Array<Post.CrossPostAction>;
+
+    /**
      * Media attachments
      */
     media?: Array<Post.Media>;
@@ -1731,11 +1788,34 @@ export namespace PostBulkCreateParams {
     recycling?: Post.Recycling;
 
     /**
+     * Shorten URLs in post content. Only relevant when short link mode is 'ask'.
+     * Ignored when mode is 'always' or 'never'. (Pro plan only)
+     */
+    shorten_urls?: boolean;
+
+    /**
+     * When true, the default signature is not auto-appended even if one is configured.
+     */
+    skip_signature?: boolean;
+
+    /**
      * Per-target customizations keyed by target value (account ID or platform name).
      * Supports platform-specific features such as Twitter polls (poll.options,
      * poll.duration_minutes), threads, reply_to, and reply_settings.
      */
     target_options?: { [key: string]: { [key: string]: unknown } };
+
+    /**
+     * Content template ID. When provided, the template content is used as the base for
+     * the post. Explicit 'content' field takes precedence.
+     */
+    template_id?: string;
+
+    /**
+     * Variables to interpolate in the template (e.g., { "promo_code": "SUMMER25" }).
+     * Built-in variables: {{date}}, {{account_name}}.
+     */
+    template_variables?: { [key: string]: string };
 
     /**
      * IANA timezone for scheduling
@@ -1749,6 +1829,28 @@ export namespace PostBulkCreateParams {
   }
 
   export namespace Post {
+    export interface CrossPostAction {
+      /**
+       * Type of cross-post action
+       */
+      action_type: 'repost' | 'comment' | 'quote';
+
+      /**
+       * Account to perform the action from
+       */
+      target_account_id: string;
+
+      /**
+       * Text content for comment/quote actions (required for comment and quote)
+       */
+      content?: string;
+
+      /**
+       * Delay in minutes after publishing
+       */
+      delay_minutes?: number;
+    }
+
     export interface Media {
       /**
        * Public URL of the media file

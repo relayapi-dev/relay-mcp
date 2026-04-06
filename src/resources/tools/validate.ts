@@ -921,6 +921,12 @@ export interface ValidateValidatePostParams {
   content?: string;
 
   /**
+   * Cross-post actions to execute after publishing (e.g., repost from another
+   * account, comment from another account)
+   */
+  cross_post_actions?: Array<ValidateValidatePostParams.CrossPostAction>;
+
+  /**
    * Media attachments
    */
   media?: Array<ValidateValidatePostParams.Media>;
@@ -931,11 +937,34 @@ export interface ValidateValidatePostParams {
   recycling?: ValidateValidatePostParams.Recycling;
 
   /**
+   * Shorten URLs in post content. Only relevant when short link mode is 'ask'.
+   * Ignored when mode is 'always' or 'never'. (Pro plan only)
+   */
+  shorten_urls?: boolean;
+
+  /**
+   * When true, the default signature is not auto-appended even if one is configured.
+   */
+  skip_signature?: boolean;
+
+  /**
    * Per-target customizations keyed by target value (account ID or platform name).
    * Supports platform-specific features such as Twitter polls (poll.options,
    * poll.duration_minutes), threads, reply_to, and reply_settings.
    */
   target_options?: { [key: string]: { [key: string]: unknown } };
+
+  /**
+   * Content template ID. When provided, the template content is used as the base for
+   * the post. Explicit 'content' field takes precedence.
+   */
+  template_id?: string;
+
+  /**
+   * Variables to interpolate in the template (e.g., { "promo_code": "SUMMER25" }).
+   * Built-in variables: {{date}}, {{account_name}}.
+   */
+  template_variables?: { [key: string]: string };
 
   /**
    * IANA timezone for scheduling
@@ -949,6 +978,28 @@ export interface ValidateValidatePostParams {
 }
 
 export namespace ValidateValidatePostParams {
+  export interface CrossPostAction {
+    /**
+     * Type of cross-post action
+     */
+    action_type: 'repost' | 'comment' | 'quote';
+
+    /**
+     * Account to perform the action from
+     */
+    target_account_id: string;
+
+    /**
+     * Text content for comment/quote actions (required for comment and quote)
+     */
+    content?: string;
+
+    /**
+     * Delay in minutes after publishing
+     */
+    delay_minutes?: number;
+  }
+
   export interface Media {
     /**
      * Public URL of the media file
