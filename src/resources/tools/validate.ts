@@ -89,7 +89,11 @@ export namespace ValidateCheckPostLengthResponse {
    * Character count per platform
    */
   export interface Platforms {
+    beehiiv?: Platforms.Beehiiv;
+
     bluesky?: Platforms.Bluesky;
+
+    convertkit?: Platforms.Convertkit;
 
     discord?: Platforms.Discord;
 
@@ -100,6 +104,10 @@ export namespace ValidateCheckPostLengthResponse {
     instagram?: Platforms.Instagram;
 
     linkedin?: Platforms.Linkedin;
+
+    listmonk?: Platforms.Listmonk;
+
+    mailchimp?: Platforms.Mailchimp;
 
     mastodon?: Platforms.Mastodon;
 
@@ -125,7 +133,41 @@ export namespace ValidateCheckPostLengthResponse {
   }
 
   export namespace Platforms {
+    export interface Beehiiv {
+      /**
+       * Character count for this platform
+       */
+      count: number;
+
+      /**
+       * Character limit for this platform
+       */
+      limit: number;
+
+      /**
+       * Whether content is within limit
+       */
+      within_limit: boolean;
+    }
+
     export interface Bluesky {
+      /**
+       * Character count for this platform
+       */
+      count: number;
+
+      /**
+       * Character limit for this platform
+       */
+      limit: number;
+
+      /**
+       * Whether content is within limit
+       */
+      within_limit: boolean;
+    }
+
+    export interface Convertkit {
       /**
        * Character count for this platform
        */
@@ -211,6 +253,40 @@ export namespace ValidateCheckPostLengthResponse {
     }
 
     export interface Linkedin {
+      /**
+       * Character count for this platform
+       */
+      count: number;
+
+      /**
+       * Character limit for this platform
+       */
+      limit: number;
+
+      /**
+       * Whether content is within limit
+       */
+      within_limit: boolean;
+    }
+
+    export interface Listmonk {
+      /**
+       * Character count for this platform
+       */
+      count: number;
+
+      /**
+       * Character limit for this platform
+       */
+      limit: number;
+
+      /**
+       * Whether content is within limit
+       */
+      within_limit: boolean;
+    }
+
+    export interface Mailchimp {
       /**
        * Character count for this platform
        */
@@ -502,7 +578,11 @@ export namespace ValidateValidateMediaResponse {
    * Per-platform size limits
    */
   export interface PlatformLimits {
+    beehiiv?: PlatformLimits.Beehiiv;
+
     bluesky?: PlatformLimits.Bluesky;
+
+    convertkit?: PlatformLimits.Convertkit;
 
     discord?: PlatformLimits.Discord;
 
@@ -513,6 +593,10 @@ export namespace ValidateValidateMediaResponse {
     instagram?: PlatformLimits.Instagram;
 
     linkedin?: PlatformLimits.Linkedin;
+
+    listmonk?: PlatformLimits.Listmonk;
+
+    mailchimp?: PlatformLimits.Mailchimp;
 
     mastodon?: PlatformLimits.Mastodon;
 
@@ -538,7 +622,41 @@ export namespace ValidateValidateMediaResponse {
   }
 
   export namespace PlatformLimits {
+    export interface Beehiiv {
+      /**
+       * Maximum file size in bytes
+       */
+      max_size: number;
+
+      /**
+       * Whether file size is within limit
+       */
+      within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
+    }
+
     export interface Bluesky {
+      /**
+       * Maximum file size in bytes
+       */
+      max_size: number;
+
+      /**
+       * Whether file size is within limit
+       */
+      within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
+    }
+
+    export interface Convertkit {
       /**
        * Maximum file size in bytes
        */
@@ -624,6 +742,40 @@ export namespace ValidateValidateMediaResponse {
     }
 
     export interface Linkedin {
+      /**
+       * Maximum file size in bytes
+       */
+      max_size: number;
+
+      /**
+       * Whether file size is within limit
+       */
+      within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
+    }
+
+    export interface Listmonk {
+      /**
+       * Maximum file size in bytes
+       */
+      max_size: number;
+
+      /**
+       * Whether file size is within limit
+       */
+      within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
+    }
+
+    export interface Mailchimp {
       /**
        * Maximum file size in bytes
        */
@@ -905,8 +1057,9 @@ export interface ValidateValidateMediaParams {
 
 export interface ValidateValidatePostParams {
   /**
-   * Publish intent. Use "now" to publish immediately, "draft" to save as draft, or
-   * an ISO 8601 timestamp to schedule.
+   * Publish intent. Use "now" to publish immediately, "draft" to save as draft,
+   * "auto" to auto-schedule to the best available slot, or an ISO 8601 timestamp to
+   * schedule.
    */
   scheduled_at: string;
 
