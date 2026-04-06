@@ -83,9 +83,9 @@ export namespace UsageRetrieveResponse {
 
   export interface Usage {
     /**
-     * API calls remaining this cycle (Infinity for pro overage)
+     * API calls remaining this cycle. Null for pro plan (unlimited, overage billed).
      */
-    api_calls_remaining: number;
+    api_calls_remaining: number | null;
 
     /**
      * API calls used this cycle
