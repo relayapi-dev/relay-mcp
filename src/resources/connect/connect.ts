@@ -333,6 +333,11 @@ export interface ConnectCompleteOAuthCallbackParams {
    * Redirect URL used during the OAuth flow (must match)
    */
   redirect_url?: string;
+
+  /**
+   * OAuth state token for direct KV lookup
+   */
+  state?: string;
 }
 
 export interface ConnectCreateBlueskyConnectionParams {

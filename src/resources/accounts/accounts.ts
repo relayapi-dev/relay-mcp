@@ -340,7 +340,7 @@ export interface AccountListParams {
   ungrouped?: boolean | null;
 
   /**
-   * Filter by group ID
+   * Filter by workspace ID
    */
   workspace_id?: string;
 }
