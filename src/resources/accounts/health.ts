@@ -42,6 +42,8 @@ export interface HealthRetrieveResponse {
   username: string | null;
 
   error?: HealthRetrieveResponse.Error;
+
+  sync?: HealthRetrieveResponse.Sync | null;
 }
 
 export namespace HealthRetrieveResponse {
@@ -49,6 +51,26 @@ export namespace HealthRetrieveResponse {
     code: string;
 
     message: string;
+  }
+
+  export interface Sync {
+    consecutive_errors: number;
+
+    enabled: boolean;
+
+    last_error: string | null;
+
+    last_error_at: string | null;
+
+    last_sync_at: string | null;
+
+    next_sync_at: string | null;
+
+    rate_limit_reset_at: string | null;
+
+    total_posts_synced: number;
+
+    total_sync_runs: number;
   }
 }
 
@@ -108,6 +130,8 @@ export namespace HealthListResponse {
     workspace: Data.Workspace | null;
 
     error?: Data.Error;
+
+    sync?: Data.Sync | null;
   }
 
   export namespace Data {
@@ -121,6 +145,26 @@ export namespace HealthListResponse {
       code: string;
 
       message: string;
+    }
+
+    export interface Sync {
+      consecutive_errors: number;
+
+      enabled: boolean;
+
+      last_error: string | null;
+
+      last_error_at: string | null;
+
+      last_sync_at: string | null;
+
+      next_sync_at: string | null;
+
+      rate_limit_reset_at: string | null;
+
+      total_posts_synced: number;
+
+      total_sync_runs: number;
     }
   }
 }
