@@ -564,35 +564,7 @@ Methods:
 
 ## Contacts
 
-Types:
-
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactCreateResponse</a></code>
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactRetrieveResponse</a></code>
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactListResponse</a></code>
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactBulkOperationsResponse</a></code>
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactImportResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/whatsapp/contacts">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">create</a>({ ...params }) -> ContactCreateResponse</code>
-- <code title="get /v1/whatsapp/contacts/{contact_id}">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">retrieve</a>(contactID) -> ContactRetrieveResponse</code>
-- <code title="get /v1/whatsapp/contacts">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">list</a>({ ...params }) -> ContactListResponse</code>
-- <code title="delete /v1/whatsapp/contacts/{contact_id}">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">delete</a>(contactID) -> void</code>
-- <code title="post /v1/whatsapp/contacts/bulk">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">bulkOperations</a>({ ...params }) -> ContactBulkOperationsResponse</code>
-- <code title="post /v1/whatsapp/contacts/import">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">import</a>({ ...params }) -> ContactImportResponse</code>
-
 ## Groups
-
-Types:
-
-- <code><a href="./src/resources/whatsapp/groups.ts">GroupCreateResponse</a></code>
-- <code><a href="./src/resources/whatsapp/groups.ts">GroupListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/whatsapp/groups">client.whatsapp.groups.<a href="./src/resources/whatsapp/groups.ts">create</a>({ ...params }) -> GroupCreateResponse</code>
-- <code title="get /v1/whatsapp/groups">client.whatsapp.groups.<a href="./src/resources/whatsapp/groups.ts">list</a>({ ...params }) -> GroupListResponse</code>
-- <code title="delete /v1/whatsapp/groups/{group_id}">client.whatsapp.groups.<a href="./src/resources/whatsapp/groups.ts">delete</a>(groupID) -> void</code>
 
 ## BusinessProfile
 

@@ -21,20 +21,9 @@ import {
   BusinessProfileUpdateResponse,
 } from './business-profile';
 import * as ContactsAPI from './contacts';
-import {
-  ContactBulkOperationsParams,
-  ContactBulkOperationsResponse,
-  ContactCreateParams,
-  ContactCreateResponse,
-  ContactImportParams,
-  ContactImportResponse,
-  ContactListParams,
-  ContactListResponse,
-  ContactRetrieveResponse,
-  Contacts,
-} from './contacts';
+import { Contacts } from './contacts';
 import * as GroupsAPI from './groups';
-import { GroupCreateParams, GroupCreateResponse, GroupListParams, GroupListResponse, Groups } from './groups';
+import { Groups } from './groups';
 import * as TemplatesAPI from './templates';
 import {
   TemplateCreateParams,
@@ -266,26 +255,9 @@ export declare namespace Whatsapp {
     type TemplateDeleteParams as TemplateDeleteParams,
   };
 
-  export {
-    Contacts as Contacts,
-    type ContactCreateResponse as ContactCreateResponse,
-    type ContactRetrieveResponse as ContactRetrieveResponse,
-    type ContactListResponse as ContactListResponse,
-    type ContactBulkOperationsResponse as ContactBulkOperationsResponse,
-    type ContactImportResponse as ContactImportResponse,
-    type ContactCreateParams as ContactCreateParams,
-    type ContactListParams as ContactListParams,
-    type ContactBulkOperationsParams as ContactBulkOperationsParams,
-    type ContactImportParams as ContactImportParams,
-  };
+  export { Contacts as Contacts };
 
-  export {
-    Groups as Groups,
-    type GroupCreateResponse as GroupCreateResponse,
-    type GroupListResponse as GroupListResponse,
-    type GroupCreateParams as GroupCreateParams,
-    type GroupListParams as GroupListParams,
-  };
+  export { Groups as Groups };
 
   export {
     BusinessProfile as BusinessProfile,
