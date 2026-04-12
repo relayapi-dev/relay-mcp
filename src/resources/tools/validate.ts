@@ -1059,7 +1059,7 @@ export interface ValidateValidatePostParams {
   /**
    * Publish intent. Use "now" to publish immediately, "draft" to save as draft,
    * "auto" to auto-schedule to the best available slot, or an ISO 8601 timestamp to
-   * schedule.
+   * schedule (max 30 days ahead).
    */
   scheduled_at: string;
 
