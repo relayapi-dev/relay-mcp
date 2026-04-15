@@ -51,11 +51,6 @@ export interface FacebookPageSetDefaultResponse {
 
   display_name: string | null;
 
-  /**
-   * Account group
-   */
-  group: FacebookPageSetDefaultResponse.Group | null;
-
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -86,13 +81,18 @@ export interface FacebookPageSetDefaultResponse {
   updated_at: string;
 
   username: string | null;
+
+  /**
+   * Account workspace
+   */
+  workspace: FacebookPageSetDefaultResponse.Workspace | null;
 }
 
 export namespace FacebookPageSetDefaultResponse {
   /**
-   * Account group
+   * Account workspace
    */
-  export interface Group {
+  export interface Workspace {
     id: string;
 
     name: string;

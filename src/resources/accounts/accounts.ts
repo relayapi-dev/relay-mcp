@@ -108,11 +108,6 @@ export interface AccountRetrieveResponse {
 
   display_name: string | null;
 
-  /**
-   * Account group
-   */
-  group: AccountRetrieveResponse.Group | null;
-
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -143,13 +138,18 @@ export interface AccountRetrieveResponse {
   updated_at: string;
 
   username: string | null;
+
+  /**
+   * Account workspace
+   */
+  workspace: AccountRetrieveResponse.Workspace | null;
 }
 
 export namespace AccountRetrieveResponse {
   /**
-   * Account group
+   * Account workspace
    */
-  export interface Group {
+  export interface Workspace {
     id: string;
 
     name: string;
@@ -168,11 +168,6 @@ export interface AccountUpdateResponse {
 
   display_name: string | null;
 
-  /**
-   * Account group
-   */
-  group: AccountUpdateResponse.Group | null;
-
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -203,13 +198,18 @@ export interface AccountUpdateResponse {
   updated_at: string;
 
   username: string | null;
+
+  /**
+   * Account workspace
+   */
+  workspace: AccountUpdateResponse.Workspace | null;
 }
 
 export namespace AccountUpdateResponse {
   /**
-   * Account group
+   * Account workspace
    */
-  export interface Group {
+  export interface Workspace {
     id: string;
 
     name: string;
@@ -243,11 +243,6 @@ export namespace AccountListResponse {
 
     display_name: string | null;
 
-    /**
-     * Account group
-     */
-    group: Data.Group | null;
-
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -278,13 +273,18 @@ export namespace AccountListResponse {
     updated_at: string;
 
     username: string | null;
+
+    /**
+     * Account workspace
+     */
+    workspace: Data.Workspace | null;
   }
 
   export namespace Data {
     /**
-     * Account group
+     * Account workspace
      */
-    export interface Group {
+    export interface Workspace {
       id: string;
 
       name: string;

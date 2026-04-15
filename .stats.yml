@@ -1,4 +1,4 @@
 configured_endpoints: 114
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/relay%2Frelay-3ee55ead5f628c112d5fe6b404a26a9c35cbb46093f10ecd6f33a5c835f8decb.yml
-openapi_spec_hash: ac174fe1398e5fcfe8ea65bcda915c74
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/relay%2Frelay-0e6eb38aeb82d5321391126a1203538913e308e890d18727268ade38926b979d.yml
+openapi_spec_hash: 10694c30c5bf9bc110456c685197b3b0
 config_hash: 979d51261e85cb9e4c7bf7a28ecc8d87
