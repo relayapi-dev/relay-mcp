@@ -79,11 +79,6 @@ export namespace OrganizationSelectResponse {
 
     display_name: string | null;
 
-    /**
-     * Account group
-     */
-    group: Account.Group | null;
-
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -114,13 +109,18 @@ export namespace OrganizationSelectResponse {
     updated_at: string;
 
     username: string | null;
+
+    /**
+     * Account workspace
+     */
+    workspace: Account.Workspace | null;
   }
 
   export namespace Account {
     /**
-     * Account group
+     * Account workspace
      */
-    export interface Group {
+    export interface Workspace {
       id: string;
 
       name: string;

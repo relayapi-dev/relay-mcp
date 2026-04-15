@@ -51,11 +51,6 @@ export interface LinkedinOrganizationSwitchTypeResponse {
 
   display_name: string | null;
 
-  /**
-   * Account group
-   */
-  group: LinkedinOrganizationSwitchTypeResponse.Group | null;
-
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -86,13 +81,18 @@ export interface LinkedinOrganizationSwitchTypeResponse {
   updated_at: string;
 
   username: string | null;
+
+  /**
+   * Account workspace
+   */
+  workspace: LinkedinOrganizationSwitchTypeResponse.Workspace | null;
 }
 
 export namespace LinkedinOrganizationSwitchTypeResponse {
   /**
-   * Account group
+   * Account workspace
    */
-  export interface Group {
+  export interface Workspace {
     id: string;
 
     name: string;
