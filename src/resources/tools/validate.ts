@@ -1080,6 +1080,12 @@ export interface ValidateValidatePostParams {
   cross_post_actions?: Array<ValidateValidatePostParams.CrossPostAction>;
 
   /**
+   * Create post from an idea. Pre-fills content from the idea. Explicit 'content'
+   * field takes precedence.
+   */
+  idea_id?: string;
+
+  /**
    * Media attachments
    */
   media?: Array<ValidateValidatePostParams.Media>;

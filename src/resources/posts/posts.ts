@@ -1580,6 +1580,12 @@ export interface PostCreateParams {
   cross_post_actions?: Array<PostCreateParams.CrossPostAction>;
 
   /**
+   * Create post from an idea. Pre-fills content from the idea. Explicit 'content'
+   * field takes precedence.
+   */
+  idea_id?: string;
+
+  /**
    * Media attachments
    */
   media?: Array<PostCreateParams.Media>;
@@ -1877,6 +1883,12 @@ export namespace PostBulkCreateParams {
      * account, comment from another account)
      */
     cross_post_actions?: Array<Post.CrossPostAction>;
+
+    /**
+     * Create post from an idea. Pre-fills content from the idea. Explicit 'content'
+     * field takes precedence.
+     */
+    idea_id?: string;
 
     /**
      * Media attachments

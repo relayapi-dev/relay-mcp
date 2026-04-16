@@ -34,6 +34,7 @@ describe('resource posts', () => {
           delay_minutes: 0,
         },
       ],
+      idea_id: 'idea_id',
       media: [{ url: 'https://example.com', type: 'image' }],
       recycling: {
         gap: 1,
@@ -182,6 +183,7 @@ describe('resource posts', () => {
               delay_minutes: 0,
             },
           ],
+          idea_id: 'idea_id',
           media: [{ url: 'https://example.com', type: 'image' }],
           recycling: {
             gap: 1,
