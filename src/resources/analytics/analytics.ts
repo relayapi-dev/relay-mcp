@@ -74,6 +74,12 @@ export interface AnalyticsRetrieveResponse {
   data: Array<AnalyticsRetrieveResponse.Data>;
 
   overview?: AnalyticsRetrieveResponse.Overview;
+
+  /**
+   * True when the matching target set exceeds the per-response cap. Narrow by
+   * from_date/to_date/platform to see the full set.
+   */
+  truncated?: boolean;
 }
 
 export namespace AnalyticsRetrieveResponse {
