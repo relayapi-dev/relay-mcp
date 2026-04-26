@@ -2,14 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as SlotsAPI from './slots';
-import {
-  SlotCreateParams,
-  SlotCreateResponse,
-  SlotListResponse,
-  SlotUpdateParams,
-  SlotUpdateResponse,
-  Slots,
-} from './slots';
+import { SlotCreateParams, SlotCreateResponse, SlotListResponse, SlotUpdateParams, SlotUpdateResponse, Slots } from './slots';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -26,10 +19,7 @@ export class Queue extends APIResource {
   /**
    * Preview upcoming queue slots
    */
-  preview(
-    query: QueuePreviewParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<QueuePreviewResponse> {
+  preview(query: QueuePreviewParams | null | undefined = {}, options?: RequestOptions): APIPromise<QueuePreviewResponse> {
     return this._client.get('/v1/queue/preview', { query, ...options });
   }
 }
@@ -66,7 +56,7 @@ export declare namespace Queue {
   export {
     type QueueGetNextSlotResponse as QueueGetNextSlotResponse,
     type QueuePreviewResponse as QueuePreviewResponse,
-    type QueuePreviewParams as QueuePreviewParams,
+    type QueuePreviewParams as QueuePreviewParams
   };
 
   export {
@@ -75,6 +65,6 @@ export declare namespace Queue {
     type SlotUpdateResponse as SlotUpdateResponse,
     type SlotListResponse as SlotListResponse,
     type SlotCreateParams as SlotCreateParams,
-    type SlotUpdateParams as SlotUpdateParams,
+    type SlotUpdateParams as SlotUpdateParams
   };
 }

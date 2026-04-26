@@ -67,28 +67,7 @@ export namespace PageSelectResponse {
 
     metadata: { [key: string]: unknown } | null;
 
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     platform_account_id: string;
 
@@ -130,6 +109,6 @@ export declare namespace Pages {
   export {
     type PageListResponse as PageListResponse,
     type PageSelectResponse as PageSelectResponse,
-    type PageSelectParams as PageSelectParams,
+    type PageSelectParams as PageSelectParams
   };
 }

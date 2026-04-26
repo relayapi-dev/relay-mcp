@@ -2,4 +2,6 @@
 
 import { APIResource } from '../../core/resource';
 
-export class Groups extends APIResource {}
+export class Groups extends APIResource {
+
+}

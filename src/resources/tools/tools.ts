@@ -2,23 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as InstagramAPI from './instagram';
-import {
-  Instagram,
-  InstagramCheckHashtagSafetyParams,
-  InstagramCheckHashtagSafetyResponse,
-} from './instagram';
+import { Instagram, InstagramCheckHashtagSafetyParams, InstagramCheckHashtagSafetyResponse } from './instagram';
 import * as ValidateAPI from './validate';
-import {
-  Validate,
-  ValidateCheckPostLengthParams,
-  ValidateCheckPostLengthResponse,
-  ValidateRetrieveSubredditParams,
-  ValidateRetrieveSubredditResponse,
-  ValidateValidateMediaParams,
-  ValidateValidateMediaResponse,
-  ValidateValidatePostParams,
-  ValidateValidatePostResponse,
-} from './validate';
+import { Validate, ValidateCheckPostLengthParams, ValidateCheckPostLengthResponse, ValidateRetrieveSubredditParams, ValidateRetrieveSubredditResponse, ValidateValidateMediaParams, ValidateValidateMediaResponse, ValidateValidatePostParams, ValidateValidatePostResponse } from './validate';
 
 export class Tools extends APIResource {
   validate: ValidateAPI.Validate = new ValidateAPI.Validate(this._client);
@@ -38,12 +24,12 @@ export declare namespace Tools {
     type ValidateCheckPostLengthParams as ValidateCheckPostLengthParams,
     type ValidateRetrieveSubredditParams as ValidateRetrieveSubredditParams,
     type ValidateValidateMediaParams as ValidateValidateMediaParams,
-    type ValidateValidatePostParams as ValidateValidatePostParams,
+    type ValidateValidatePostParams as ValidateValidatePostParams
   };
 
   export {
     Instagram as Instagram,
     type InstagramCheckHashtagSafetyResponse as InstagramCheckHashtagSafetyResponse,
-    type InstagramCheckHashtagSafetyParams as InstagramCheckHashtagSafetyParams,
+    type InstagramCheckHashtagSafetyParams as InstagramCheckHashtagSafetyParams
   };
 }

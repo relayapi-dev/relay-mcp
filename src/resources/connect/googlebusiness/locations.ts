@@ -67,28 +67,7 @@ export namespace LocationSelectResponse {
 
     metadata: { [key: string]: unknown } | null;
 
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     platform_account_id: string;
 
@@ -130,6 +109,6 @@ export declare namespace Locations {
   export {
     type LocationListResponse as LocationListResponse,
     type LocationSelectResponse as LocationSelectResponse,
-    type LocationSelectParams as LocationSelectParams,
+    type LocationSelectParams as LocationSelectParams
   };
 }

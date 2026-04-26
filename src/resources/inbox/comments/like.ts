@@ -46,5 +46,8 @@ export interface LikeDeleteResponse {
 }
 
 export declare namespace Like {
-  export { type LikeCreateResponse as LikeCreateResponse, type LikeDeleteResponse as LikeDeleteResponse };
+  export {
+    type LikeCreateResponse as LikeCreateResponse,
+    type LikeDeleteResponse as LikeDeleteResponse
+  };
 }

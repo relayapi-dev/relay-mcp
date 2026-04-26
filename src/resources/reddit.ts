@@ -258,6 +258,6 @@ export declare namespace Reddit {
     type RedditGetFeedResponse as RedditGetFeedResponse,
     type RedditSearchResponse as RedditSearchResponse,
     type RedditGetFeedParams as RedditGetFeedParams,
-    type RedditSearchParams as RedditSearchParams,
+    type RedditSearchParams as RedditSearchParams
   };
 }

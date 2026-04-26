@@ -16,21 +16,14 @@ export class Comments extends APIResource {
   /**
    * Get comments for a specific post
    */
-  retrieve(
-    postID: string,
-    query: CommentRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<CommentRetrieveResponse> {
+  retrieve(postID: string, query: CommentRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<CommentRetrieveResponse> {
     return this._client.get(path`/v1/inbox/comments/${postID}`, { query, ...options });
   }
 
   /**
    * List comments across platforms
    */
-  list(
-    query: CommentListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<CommentListResponse> {
+  list(query: CommentListParams | null | undefined = {}, options?: RequestOptions): APIPromise<CommentListResponse> {
     return this._client.get('/v1/inbox/comments', { query, ...options });
   }
 
@@ -44,22 +37,14 @@ export class Comments extends APIResource {
   /**
    * Send a private reply to a commenter
    */
-  privateReply(
-    commentID: string,
-    body: CommentPrivateReplyParams,
-    options?: RequestOptions,
-  ): APIPromise<CommentPrivateReplyResponse> {
+  privateReply(commentID: string, body: CommentPrivateReplyParams, options?: RequestOptions): APIPromise<CommentPrivateReplyResponse> {
     return this._client.post(path`/v1/inbox/comments/${commentID}/private-reply`, { body, ...options });
   }
 
   /**
    * Reply to a comment
    */
-  reply(
-    postID: string,
-    body: CommentReplyParams,
-    options?: RequestOptions,
-  ): APIPromise<CommentReplyResponse> {
+  reply(postID: string, body: CommentReplyParams, options?: RequestOptions): APIPromise<CommentReplyResponse> {
     return this._client.post(path`/v1/inbox/comments/${postID}/reply`, { body, ...options });
   }
 }
@@ -71,28 +56,7 @@ export interface CommentRetrieveResponse {
 
   next_cursor?: string | null;
 
-  platform?:
-    | 'twitter'
-    | 'instagram'
-    | 'facebook'
-    | 'linkedin'
-    | 'tiktok'
-    | 'youtube'
-    | 'pinterest'
-    | 'reddit'
-    | 'bluesky'
-    | 'threads'
-    | 'telegram'
-    | 'snapchat'
-    | 'googlebusiness'
-    | 'whatsapp'
-    | 'mastodon'
-    | 'discord'
-    | 'sms'
-    | 'beehiiv'
-    | 'convertkit'
-    | 'mailchimp'
-    | 'listmonk';
+  platform?: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
   /**
    * Post ID if filtered by post
@@ -117,28 +81,7 @@ export namespace CommentRetrieveResponse {
      */
     created_at: string;
 
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     /**
      * Comment text
@@ -209,28 +152,7 @@ export interface CommentListResponse {
 
   next_cursor?: string | null;
 
-  platform?:
-    | 'twitter'
-    | 'instagram'
-    | 'facebook'
-    | 'linkedin'
-    | 'tiktok'
-    | 'youtube'
-    | 'pinterest'
-    | 'reddit'
-    | 'bluesky'
-    | 'threads'
-    | 'telegram'
-    | 'snapchat'
-    | 'googlebusiness'
-    | 'whatsapp'
-    | 'mastodon'
-    | 'discord'
-    | 'sms'
-    | 'beehiiv'
-    | 'convertkit'
-    | 'mailchimp'
-    | 'listmonk';
+  platform?: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
   /**
    * Post ID if filtered by post
@@ -255,28 +177,7 @@ export namespace CommentListResponse {
      */
     created_at: string;
 
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     /**
      * Comment text
@@ -395,28 +296,7 @@ export interface CommentRetrieveParams {
   /**
    * Filter by platform
    */
-  platform?:
-    | 'twitter'
-    | 'instagram'
-    | 'facebook'
-    | 'linkedin'
-    | 'tiktok'
-    | 'youtube'
-    | 'pinterest'
-    | 'reddit'
-    | 'bluesky'
-    | 'threads'
-    | 'telegram'
-    | 'snapchat'
-    | 'googlebusiness'
-    | 'whatsapp'
-    | 'mastodon'
-    | 'discord'
-    | 'sms'
-    | 'beehiiv'
-    | 'convertkit'
-    | 'mailchimp'
-    | 'listmonk';
+  platform?: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 }
 
 export interface CommentListParams {
@@ -438,28 +318,7 @@ export interface CommentListParams {
   /**
    * Filter by platform
    */
-  platform?:
-    | 'twitter'
-    | 'instagram'
-    | 'facebook'
-    | 'linkedin'
-    | 'tiktok'
-    | 'youtube'
-    | 'pinterest'
-    | 'reddit'
-    | 'bluesky'
-    | 'threads'
-    | 'telegram'
-    | 'snapchat'
-    | 'googlebusiness'
-    | 'whatsapp'
-    | 'mastodon'
-    | 'discord'
-    | 'sms'
-    | 'beehiiv'
-    | 'convertkit'
-    | 'mailchimp'
-    | 'listmonk';
+  platform?: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 }
 
 export interface CommentPrivateReplyParams {
@@ -504,18 +363,18 @@ export declare namespace Comments {
     type CommentRetrieveParams as CommentRetrieveParams,
     type CommentListParams as CommentListParams,
     type CommentPrivateReplyParams as CommentPrivateReplyParams,
-    type CommentReplyParams as CommentReplyParams,
+    type CommentReplyParams as CommentReplyParams
   };
 
   export {
     Hide as Hide,
     type HideCreateResponse as HideCreateResponse,
-    type HideDeleteResponse as HideDeleteResponse,
+    type HideDeleteResponse as HideDeleteResponse
   };
 
   export {
     Like as Like,
     type LikeCreateResponse as LikeCreateResponse,
-    type LikeDeleteResponse as LikeDeleteResponse,
+    type LikeDeleteResponse as LikeDeleteResponse
   };
 }

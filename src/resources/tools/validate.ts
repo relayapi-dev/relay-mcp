@@ -16,10 +16,7 @@ export class Validate extends APIResource {
    *   });
    * ```
    */
-  checkPostLength(
-    body: ValidateCheckPostLengthParams,
-    options?: RequestOptions,
-  ): APIPromise<ValidateCheckPostLengthResponse> {
+  checkPostLength(body: ValidateCheckPostLengthParams, options?: RequestOptions): APIPromise<ValidateCheckPostLengthResponse> {
     return this._client.post('/v1/tools/validate/post-length', { body, ...options });
   }
 
@@ -34,10 +31,7 @@ export class Validate extends APIResource {
    *   });
    * ```
    */
-  retrieveSubreddit(
-    query: ValidateRetrieveSubredditParams,
-    options?: RequestOptions,
-  ): APIPromise<ValidateRetrieveSubredditResponse> {
+  retrieveSubreddit(query: ValidateRetrieveSubredditParams, options?: RequestOptions): APIPromise<ValidateRetrieveSubredditResponse> {
     return this._client.get('/v1/tools/validate/subreddit', { query, ...options });
   }
 
@@ -51,10 +45,7 @@ export class Validate extends APIResource {
    * });
    * ```
    */
-  validateMedia(
-    body: ValidateValidateMediaParams,
-    options?: RequestOptions,
-  ): APIPromise<ValidateValidateMediaResponse> {
+  validateMedia(body: ValidateValidateMediaParams, options?: RequestOptions): APIPromise<ValidateValidateMediaResponse> {
     return this._client.post('/v1/tools/validate/media', { body, ...options });
   }
 
@@ -69,10 +60,7 @@ export class Validate extends APIResource {
    * });
    * ```
    */
-  validatePost(
-    body: ValidateValidatePostParams,
-    options?: RequestOptions,
-  ): APIPromise<ValidateValidatePostResponse> {
+  validatePost(body: ValidateValidatePostParams, options?: RequestOptions): APIPromise<ValidateValidatePostResponse> {
     return this._client.post('/v1/tools/validate/post', { body, ...options });
   }
 }
@@ -1221,6 +1209,6 @@ export declare namespace Validate {
     type ValidateCheckPostLengthParams as ValidateCheckPostLengthParams,
     type ValidateRetrieveSubredditParams as ValidateRetrieveSubredditParams,
     type ValidateValidateMediaParams as ValidateValidateMediaParams,
-    type ValidateValidatePostParams as ValidateValidatePostParams,
+    type ValidateValidatePostParams as ValidateValidatePostParams
   };
 }
