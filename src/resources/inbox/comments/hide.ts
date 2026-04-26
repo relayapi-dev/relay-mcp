@@ -46,5 +46,8 @@ export interface HideDeleteResponse {
 }
 
 export declare namespace Hide {
-  export { type HideCreateResponse as HideCreateResponse, type HideDeleteResponse as HideDeleteResponse };
+  export {
+    type HideCreateResponse as HideCreateResponse,
+    type HideDeleteResponse as HideDeleteResponse
+  };
 }

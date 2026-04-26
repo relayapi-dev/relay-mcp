@@ -153,6 +153,6 @@ export declare namespace Bookmark {
     type BookmarkCreateResponse as BookmarkCreateResponse,
     type BookmarkRemoveResponse as BookmarkRemoveResponse,
     type BookmarkCreateParams as BookmarkCreateParams,
-    type BookmarkRemoveParams as BookmarkRemoveParams,
+    type BookmarkRemoveParams as BookmarkRemoveParams
   };
 }

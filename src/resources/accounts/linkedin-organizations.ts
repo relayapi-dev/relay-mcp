@@ -16,11 +16,7 @@ export class LinkedinOrganizations extends APIResource {
   /**
    * Switch LinkedIn account type
    */
-  switchType(
-    id: string,
-    body: LinkedinOrganizationSwitchTypeParams,
-    options?: RequestOptions,
-  ): APIPromise<LinkedinOrganizationSwitchTypeResponse> {
+  switchType(id: string, body: LinkedinOrganizationSwitchTypeParams, options?: RequestOptions): APIPromise<LinkedinOrganizationSwitchTypeResponse> {
     return this._client.put(path`/v1/accounts/${id}/linkedin-organizations`, { body, ...options });
   }
 }
@@ -53,28 +49,7 @@ export interface LinkedinOrganizationSwitchTypeResponse {
 
   metadata: { [key: string]: unknown } | null;
 
-  platform:
-    | 'twitter'
-    | 'instagram'
-    | 'facebook'
-    | 'linkedin'
-    | 'tiktok'
-    | 'youtube'
-    | 'pinterest'
-    | 'reddit'
-    | 'bluesky'
-    | 'threads'
-    | 'telegram'
-    | 'snapchat'
-    | 'googlebusiness'
-    | 'whatsapp'
-    | 'mastodon'
-    | 'discord'
-    | 'sms'
-    | 'beehiiv'
-    | 'convertkit'
-    | 'mailchimp'
-    | 'listmonk';
+  platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
   platform_account_id: string;
 
@@ -115,6 +90,6 @@ export declare namespace LinkedinOrganizations {
   export {
     type LinkedinOrganizationRetrieveResponse as LinkedinOrganizationRetrieveResponse,
     type LinkedinOrganizationSwitchTypeResponse as LinkedinOrganizationSwitchTypeResponse,
-    type LinkedinOrganizationSwitchTypeParams as LinkedinOrganizationSwitchTypeParams,
+    type LinkedinOrganizationSwitchTypeParams as LinkedinOrganizationSwitchTypeParams
   };
 }

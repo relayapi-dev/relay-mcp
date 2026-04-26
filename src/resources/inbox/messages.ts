@@ -2,4 +2,6 @@
 
 import { APIResource } from '../../core/resource';
 
-export class Messages extends APIResource {}
+export class Messages extends APIResource {
+
+}

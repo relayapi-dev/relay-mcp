@@ -15,6 +15,6 @@ export declare namespace Facebook {
     Pages as Pages,
     type PageListResponse as PageListResponse,
     type PageSelectResponse as PageSelectResponse,
-    type PageSelectParams as PageSelectParams,
+    type PageSelectParams as PageSelectParams
   };
 }

@@ -2,29 +2,11 @@
 
 import { APIResource } from '../../core/resource';
 import * as BookmarkAPI from './bookmark';
-import {
-  Bookmark,
-  BookmarkCreateParams,
-  BookmarkCreateResponse,
-  BookmarkRemoveParams,
-  BookmarkRemoveResponse,
-} from './bookmark';
+import { Bookmark, BookmarkCreateParams, BookmarkCreateResponse, BookmarkRemoveParams, BookmarkRemoveResponse } from './bookmark';
 import * as FollowAPI from './follow';
-import {
-  Follow,
-  FollowCreateParams,
-  FollowCreateResponse,
-  FollowUnfollowParams,
-  FollowUnfollowResponse,
-} from './follow';
+import { Follow, FollowCreateParams, FollowCreateResponse, FollowUnfollowParams, FollowUnfollowResponse } from './follow';
 import * as RetweetAPI from './retweet';
-import {
-  Retweet,
-  RetweetCreateParams,
-  RetweetCreateResponse,
-  RetweetUndoParams,
-  RetweetUndoResponse,
-} from './retweet';
+import { Retweet, RetweetCreateParams, RetweetCreateResponse, RetweetUndoParams, RetweetUndoResponse } from './retweet';
 
 export class Twitter extends APIResource {
   retweet: RetweetAPI.Retweet = new RetweetAPI.Retweet(this._client);
@@ -42,7 +24,7 @@ export declare namespace Twitter {
     type RetweetCreateResponse as RetweetCreateResponse,
     type RetweetUndoResponse as RetweetUndoResponse,
     type RetweetCreateParams as RetweetCreateParams,
-    type RetweetUndoParams as RetweetUndoParams,
+    type RetweetUndoParams as RetweetUndoParams
   };
 
   export {
@@ -50,7 +32,7 @@ export declare namespace Twitter {
     type BookmarkCreateResponse as BookmarkCreateResponse,
     type BookmarkRemoveResponse as BookmarkRemoveResponse,
     type BookmarkCreateParams as BookmarkCreateParams,
-    type BookmarkRemoveParams as BookmarkRemoveParams,
+    type BookmarkRemoveParams as BookmarkRemoveParams
   };
 
   export {
@@ -58,6 +40,6 @@ export declare namespace Twitter {
     type FollowCreateResponse as FollowCreateResponse,
     type FollowUnfollowResponse as FollowUnfollowResponse,
     type FollowCreateParams as FollowCreateParams,
-    type FollowUnfollowParams as FollowUnfollowParams,
+    type FollowUnfollowParams as FollowUnfollowParams
   };
 }

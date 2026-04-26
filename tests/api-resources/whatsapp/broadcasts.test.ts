@@ -2,20 +2,17 @@
 
 import Relay from '@relayapi/mcp';
 
-const client = new Relay({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Relay({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource broadcasts', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.whatsapp.broadcasts.create({
-      account_id: 'account_id',
-      name: 'name',
-      recipients: [{ phone: 'phone' }],
-      template: { language: 'language', name: 'name' },
-    });
+    account_id: 'account_id',
+    name: 'name',
+    recipients: [{ phone: 'phone' }],
+    template: { language: 'language', name: 'name' },
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,21 +25,19 @@ describe('resource broadcasts', () => {
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.whatsapp.broadcasts.create({
-      account_id: 'account_id',
-      name: 'name',
-      recipients: [
-        {
-          phone: 'phone',
-          variables: { foo: 'string' },
-        },
-      ],
-      template: {
-        language: 'language',
-        name: 'name',
-        components: [{ type: 'header', parameters: [{ foo: 'bar' }] }],
-      },
-      scheduled_at: 'scheduled_at',
-    });
+    account_id: 'account_id',
+    name: 'name',
+    recipients: [{
+    phone: 'phone',
+    variables: { foo: 'string' },
+  }],
+    template: {
+    language: 'language',
+    name: 'name',
+    components: [{ type: 'header', parameters: [{ foo: 'bar' }] }],
+  },
+    scheduled_at: 'scheduled_at',
+  });
   });
 
   // Mock server tests are disabled

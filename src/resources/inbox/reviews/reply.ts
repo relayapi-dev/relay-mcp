@@ -9,11 +9,7 @@ export class Reply extends APIResource {
   /**
    * Reply to a review
    */
-  create(
-    reviewID: string,
-    body: ReplyCreateParams,
-    options?: RequestOptions,
-  ): APIPromise<ReplyCreateResponse> {
+  create(reviewID: string, body: ReplyCreateParams, options?: RequestOptions): APIPromise<ReplyCreateResponse> {
     return this._client.post(path`/v1/inbox/reviews/${reviewID}/reply`, { body, ...options });
   }
 
@@ -55,6 +51,6 @@ export declare namespace Reply {
   export {
     type ReplyCreateResponse as ReplyCreateResponse,
     type ReplyDeleteResponse as ReplyDeleteResponse,
-    type ReplyCreateParams as ReplyCreateParams,
+    type ReplyCreateParams as ReplyCreateParams
   };
 }

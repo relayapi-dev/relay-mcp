@@ -40,10 +40,7 @@ export class Broadcasts extends APIResource {
    * @deprecated
    */
   delete(broadcastID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/whatsapp/broadcasts/${broadcastID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/v1/whatsapp/broadcasts/${broadcastID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -387,6 +384,6 @@ export declare namespace Broadcasts {
     type BroadcastScheduleResponse as BroadcastScheduleResponse,
     type BroadcastSendResponse as BroadcastSendResponse,
     type BroadcastCreateParams as BroadcastCreateParams,
-    type BroadcastListParams as BroadcastListParams,
+    type BroadcastListParams as BroadcastListParams
   };
 }

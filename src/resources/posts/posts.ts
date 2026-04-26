@@ -47,11 +47,7 @@ export class Posts extends APIResource {
    * const post = await client.posts.update('id');
    * ```
    */
-  update(
-    id: string,
-    body: PostUpdateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<PostUpdateResponse> {
+  update(id: string, body: PostUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<PostUpdateResponse> {
     return this._client.patch(path`/v1/posts/${id}`, { body, ...options });
   }
 
@@ -63,10 +59,7 @@ export class Posts extends APIResource {
    * const posts = await client.posts.list();
    * ```
    */
-  list(
-    query: PostListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<PostListResponse> {
+  list(query: PostListParams | null | undefined = {}, options?: RequestOptions): APIPromise<PostListResponse> {
     return this._client.get('/v1/posts', { query, ...options });
   }
 
@@ -79,10 +72,7 @@ export class Posts extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/posts/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/v1/posts/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -121,11 +111,7 @@ export class Posts extends APIResource {
    * const response = await client.posts.unpublish('id');
    * ```
    */
-  unpublish(
-    id: string,
-    body: PostUnpublishParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<PostUnpublishResponse> {
+  unpublish(id: string, body: PostUnpublishParams | null | undefined = {}, options?: RequestOptions): APIPromise<PostUnpublishResponse> {
     return this._client.post(path`/v1/posts/${id}/unpublish`, { body, ...options });
   }
 }
@@ -241,28 +227,7 @@ export namespace PostCreateResponse {
   }
 
   export interface Targets {
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -440,28 +405,7 @@ export namespace PostRetrieveResponse {
   }
 
   export interface Targets {
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -639,28 +583,7 @@ export namespace PostUpdateResponse {
   }
 
   export interface Targets {
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -853,28 +776,7 @@ export namespace PostListResponse {
     }
 
     export interface Targets {
-      platform:
-        | 'twitter'
-        | 'instagram'
-        | 'facebook'
-        | 'linkedin'
-        | 'tiktok'
-        | 'youtube'
-        | 'pinterest'
-        | 'reddit'
-        | 'bluesky'
-        | 'threads'
-        | 'telegram'
-        | 'snapchat'
-        | 'googlebusiness'
-        | 'whatsapp'
-        | 'mastodon'
-        | 'discord'
-        | 'sms'
-        | 'beehiiv'
-        | 'convertkit'
-        | 'mailchimp'
-        | 'listmonk';
+      platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
       status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -1060,28 +962,7 @@ export namespace PostBulkCreateResponse {
     }
 
     export interface Targets {
-      platform:
-        | 'twitter'
-        | 'instagram'
-        | 'facebook'
-        | 'linkedin'
-        | 'tiktok'
-        | 'youtube'
-        | 'pinterest'
-        | 'reddit'
-        | 'bluesky'
-        | 'threads'
-        | 'telegram'
-        | 'snapchat'
-        | 'googlebusiness'
-        | 'whatsapp'
-        | 'mastodon'
-        | 'discord'
-        | 'sms'
-        | 'beehiiv'
-        | 'convertkit'
-        | 'mailchimp'
-        | 'listmonk';
+      platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
       status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -1268,28 +1149,7 @@ export namespace PostRetryResponse {
   }
 
   export interface Targets {
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -1467,28 +1327,7 @@ export namespace PostUnpublishResponse {
   }
 
   export interface Targets {
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
 
@@ -2040,13 +1879,13 @@ export declare namespace Posts {
     type PostUpdateParams as PostUpdateParams,
     type PostListParams as PostListParams,
     type PostBulkCreateParams as PostBulkCreateParams,
-    type PostUnpublishParams as PostUnpublishParams,
+    type PostUnpublishParams as PostUnpublishParams
   };
 
   export {
     Logs as Logs,
     type LogRetrieveResponse as LogRetrieveResponse,
     type LogListResponse as LogListResponse,
-    type LogListParams as LogListParams,
+    type LogListParams as LogListParams
   };
 }

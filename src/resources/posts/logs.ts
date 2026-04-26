@@ -181,6 +181,6 @@ export declare namespace Logs {
   export {
     type LogRetrieveResponse as LogRetrieveResponse,
     type LogListResponse as LogListResponse,
-    type LogListParams as LogListParams,
+    type LogListParams as LogListParams
   };
 }

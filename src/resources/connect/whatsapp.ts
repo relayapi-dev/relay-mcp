@@ -8,20 +8,14 @@ export class Whatsapp extends APIResource {
   /**
    * Complete WhatsApp Embedded Signup
    */
-  completeEmbeddedSignup(
-    body: WhatsappCompleteEmbeddedSignupParams,
-    options?: RequestOptions,
-  ): APIPromise<WhatsappCompleteEmbeddedSignupResponse> {
+  completeEmbeddedSignup(body: WhatsappCompleteEmbeddedSignupParams, options?: RequestOptions): APIPromise<WhatsappCompleteEmbeddedSignupResponse> {
     return this._client.post('/v1/connect/whatsapp/embedded-signup', { body, ...options });
   }
 
   /**
    * Connect WhatsApp via System User credentials
    */
-  connectViaCredentials(
-    body: WhatsappConnectViaCredentialsParams,
-    options?: RequestOptions,
-  ): APIPromise<WhatsappConnectViaCredentialsResponse> {
+  connectViaCredentials(body: WhatsappConnectViaCredentialsParams, options?: RequestOptions): APIPromise<WhatsappConnectViaCredentialsResponse> {
     return this._client.post('/v1/connect/whatsapp/credentials', { body, ...options });
   }
 
@@ -52,28 +46,7 @@ export namespace WhatsappCompleteEmbeddedSignupResponse {
 
     metadata: { [key: string]: unknown } | null;
 
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     platform_account_id: string;
 
@@ -118,28 +91,7 @@ export namespace WhatsappConnectViaCredentialsResponse {
 
     metadata: { [key: string]: unknown } | null;
 
-    platform:
-      | 'twitter'
-      | 'instagram'
-      | 'facebook'
-      | 'linkedin'
-      | 'tiktok'
-      | 'youtube'
-      | 'pinterest'
-      | 'reddit'
-      | 'bluesky'
-      | 'threads'
-      | 'telegram'
-      | 'snapchat'
-      | 'googlebusiness'
-      | 'whatsapp'
-      | 'mastodon'
-      | 'discord'
-      | 'sms'
-      | 'beehiiv'
-      | 'convertkit'
-      | 'mailchimp'
-      | 'listmonk';
+    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
     platform_account_id: string;
 
@@ -207,6 +159,6 @@ export declare namespace Whatsapp {
     type WhatsappConnectViaCredentialsResponse as WhatsappConnectViaCredentialsResponse,
     type WhatsappGetSDKConfigResponse as WhatsappGetSDKConfigResponse,
     type WhatsappCompleteEmbeddedSignupParams as WhatsappCompleteEmbeddedSignupParams,
-    type WhatsappConnectViaCredentialsParams as WhatsappConnectViaCredentialsParams,
+    type WhatsappConnectViaCredentialsParams as WhatsappConnectViaCredentialsParams
   };
 }

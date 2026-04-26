@@ -15,6 +15,6 @@ export declare namespace Googlebusiness {
     Locations as Locations,
     type LocationListResponse as LocationListResponse,
     type LocationSelectResponse as LocationSelectResponse,
-    type LocationSelectParams as LocationSelectParams,
+    type LocationSelectParams as LocationSelectParams
   };
 }

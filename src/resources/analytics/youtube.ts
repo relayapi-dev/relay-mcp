@@ -8,10 +8,7 @@ export class Youtube extends APIResource {
   /**
    * Get YouTube daily views and watch time
    */
-  getDailyViews(
-    query: YoutubeGetDailyViewsParams,
-    options?: RequestOptions,
-  ): APIPromise<YoutubeGetDailyViewsResponse> {
+  getDailyViews(query: YoutubeGetDailyViewsParams, options?: RequestOptions): APIPromise<YoutubeGetDailyViewsResponse> {
     return this._client.get('/v1/analytics/youtube/daily-views', { query, ...options });
   }
 }
@@ -64,6 +61,6 @@ export interface YoutubeGetDailyViewsParams {
 export declare namespace Youtube {
   export {
     type YoutubeGetDailyViewsResponse as YoutubeGetDailyViewsResponse,
-    type YoutubeGetDailyViewsParams as YoutubeGetDailyViewsParams,
+    type YoutubeGetDailyViewsParams as YoutubeGetDailyViewsParams
   };
 }

@@ -16,11 +16,7 @@ export class GmbLocations extends APIResource {
   /**
    * Set default GMB location
    */
-  setDefault(
-    id: string,
-    body: GmbLocationSetDefaultParams,
-    options?: RequestOptions,
-  ): APIPromise<GmbLocationSetDefaultResponse> {
+  setDefault(id: string, body: GmbLocationSetDefaultParams, options?: RequestOptions): APIPromise<GmbLocationSetDefaultResponse> {
     return this._client.put(path`/v1/accounts/${id}/gmb-locations`, { body, ...options });
   }
 }
@@ -53,28 +49,7 @@ export interface GmbLocationSetDefaultResponse {
 
   metadata: { [key: string]: unknown } | null;
 
-  platform:
-    | 'twitter'
-    | 'instagram'
-    | 'facebook'
-    | 'linkedin'
-    | 'tiktok'
-    | 'youtube'
-    | 'pinterest'
-    | 'reddit'
-    | 'bluesky'
-    | 'threads'
-    | 'telegram'
-    | 'snapchat'
-    | 'googlebusiness'
-    | 'whatsapp'
-    | 'mastodon'
-    | 'discord'
-    | 'sms'
-    | 'beehiiv'
-    | 'convertkit'
-    | 'mailchimp'
-    | 'listmonk';
+  platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
 
   platform_account_id: string;
 
@@ -110,6 +85,6 @@ export declare namespace GmbLocations {
   export {
     type GmbLocationRetrieveResponse as GmbLocationRetrieveResponse,
     type GmbLocationSetDefaultResponse as GmbLocationSetDefaultResponse,
-    type GmbLocationSetDefaultParams as GmbLocationSetDefaultParams,
+    type GmbLocationSetDefaultParams as GmbLocationSetDefaultParams
   };
 }
