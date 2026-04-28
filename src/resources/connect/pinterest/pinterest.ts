@@ -15,6 +15,6 @@ export declare namespace Pinterest {
     Boards as Boards,
     type BoardListResponse as BoardListResponse,
     type BoardSelectResponse as BoardSelectResponse,
-    type BoardSelectParams as BoardSelectParams
+    type BoardSelectParams as BoardSelectParams,
   };
 }

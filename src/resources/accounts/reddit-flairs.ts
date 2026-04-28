@@ -9,7 +9,11 @@ export class RedditFlairs extends APIResource {
   /**
    * Fetch Reddit flairs for a subreddit
    */
-  retrieve(id: string, query: RedditFlairRetrieveParams, options?: RequestOptions): APIPromise<RedditFlairRetrieveResponse> {
+  retrieve(
+    id: string,
+    query: RedditFlairRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<RedditFlairRetrieveResponse> {
     return this._client.get(path`/v1/accounts/${id}/reddit-flairs`, { query, ...options });
   }
 }
@@ -36,6 +40,6 @@ export interface RedditFlairRetrieveParams {
 export declare namespace RedditFlairs {
   export {
     type RedditFlairRetrieveResponse as RedditFlairRetrieveResponse,
-    type RedditFlairRetrieveParams as RedditFlairRetrieveParams
+    type RedditFlairRetrieveParams as RedditFlairRetrieveParams,
   };
 }

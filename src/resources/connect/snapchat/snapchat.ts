@@ -15,6 +15,6 @@ export declare namespace Snapchat {
     Profiles as Profiles,
     type ProfileListResponse as ProfileListResponse,
     type ProfileSelectResponse as ProfileSelectResponse,
-    type ProfileSelectParams as ProfileSelectParams
+    type ProfileSelectParams as ProfileSelectParams,
   };
 }

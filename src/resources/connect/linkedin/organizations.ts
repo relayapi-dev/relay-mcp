@@ -81,7 +81,28 @@ export namespace OrganizationSelectResponse {
 
     metadata: { [key: string]: unknown } | null;
 
-    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'bluesky'
+      | 'threads'
+      | 'telegram'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'whatsapp'
+      | 'mastodon'
+      | 'discord'
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
@@ -128,6 +149,6 @@ export declare namespace Organizations {
   export {
     type OrganizationListResponse as OrganizationListResponse,
     type OrganizationSelectResponse as OrganizationSelectResponse,
-    type OrganizationSelectParams as OrganizationSelectParams
+    type OrganizationSelectParams as OrganizationSelectParams,
   };
 }

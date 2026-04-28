@@ -2,6 +2,4 @@
 
 import { APIResource } from '../core/resource';
 
-export class AccountGroups extends APIResource {
-
-}
+export class AccountGroups extends APIResource {}

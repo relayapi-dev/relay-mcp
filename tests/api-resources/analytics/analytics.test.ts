@@ -2,7 +2,10 @@
 
 import Relay from '@relayapi/mcp';
 
-const client = new Relay({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new Relay({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource analytics', () => {
   // Mock server tests are disabled
@@ -20,17 +23,20 @@ describe('resource analytics', () => {
   // Mock server tests are disabled
   test.skip('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.analytics.retrieve({
-    account_id: 'account_id',
-    from_date: 'from_date',
-    limit: 1,
-    offset: 0,
-    platform: 'twitter',
-    post_id: 'post_id',
-    to_date: 'to_date',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Relay.NotFoundError);
+    await expect(
+      client.analytics.retrieve(
+        {
+          account_id: 'account_id',
+          from_date: 'from_date',
+          limit: 1,
+          offset: 0,
+          platform: 'twitter',
+          post_id: 'post_id',
+          to_date: 'to_date',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
   });
 
   // Mock server tests are disabled
@@ -48,14 +54,17 @@ describe('resource analytics', () => {
   // Mock server tests are disabled
   test.skip('getBestTime: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.analytics.getBestTime({
-    account_id: 'account_id',
-    from_date: 'from_date',
-    platform: 'twitter',
-    to_date: 'to_date',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Relay.NotFoundError);
+    await expect(
+      client.analytics.getBestTime(
+        {
+          account_id: 'account_id',
+          from_date: 'from_date',
+          platform: 'twitter',
+          to_date: 'to_date',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
   });
 
   // Mock server tests are disabled
@@ -90,10 +99,10 @@ describe('resource analytics', () => {
   // Mock server tests are disabled
   test.skip('getPostTimeline: required and optional params', async () => {
     const response = await client.analytics.getPostTimeline({
-    post_id: 'post_id',
-    from_date: 'from_date',
-    to_date: 'to_date',
-  });
+      post_id: 'post_id',
+      from_date: 'from_date',
+      to_date: 'to_date',
+    });
   });
 
   // Mock server tests are disabled
@@ -111,14 +120,17 @@ describe('resource analytics', () => {
   // Mock server tests are disabled
   test.skip('getPostingFrequency: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.analytics.getPostingFrequency({
-    account_id: 'account_id',
-    from_date: 'from_date',
-    platform: 'twitter',
-    to_date: 'to_date',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Relay.NotFoundError);
+    await expect(
+      client.analytics.getPostingFrequency(
+        {
+          account_id: 'account_id',
+          from_date: 'from_date',
+          platform: 'twitter',
+          to_date: 'to_date',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
   });
 
   // Mock server tests are disabled
@@ -136,13 +148,16 @@ describe('resource analytics', () => {
   // Mock server tests are disabled
   test.skip('listDailyMetrics: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.analytics.listDailyMetrics({
-    account_id: 'account_id',
-    from_date: 'from_date',
-    platform: 'twitter',
-    to_date: 'to_date',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Relay.NotFoundError);
+    await expect(
+      client.analytics.listDailyMetrics(
+        {
+          account_id: 'account_id',
+          from_date: 'from_date',
+          platform: 'twitter',
+          to_date: 'to_date',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
   });
 });

@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { ClientOptions } from '@relayapi/mcp'
+import { ClientOptions } from '@relayapi/mcp';
 
 export type WorkerInput = {
   project_name: string;

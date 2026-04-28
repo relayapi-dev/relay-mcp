@@ -153,6 +153,6 @@ export declare namespace Follow {
     type FollowCreateResponse as FollowCreateResponse,
     type FollowUnfollowResponse as FollowUnfollowResponse,
     type FollowCreateParams as FollowCreateParams,
-    type FollowUnfollowParams as FollowUnfollowParams
+    type FollowUnfollowParams as FollowUnfollowParams,
   };
 }

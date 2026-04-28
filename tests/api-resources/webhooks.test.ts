@@ -2,12 +2,18 @@
 
 import Relay from '@relayapi/mcp';
 
-const client = new Relay({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new Relay({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource webhooks', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
-    const responsePromise = client.webhooks.create({ events: ['post.published'], url: 'https://example.com' });
+    const responsePromise = client.webhooks.create({
+      events: ['post.published'],
+      url: 'https://example.com',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,10 +26,10 @@ describe('resource webhooks', () => {
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.webhooks.create({
-    events: ['post.published'],
-    url: 'https://example.com',
-    workspace_id: 'workspace_id',
-  });
+      events: ['post.published'],
+      url: 'https://example.com',
+      workspace_id: 'workspace_id',
+    });
   });
 
   // Mock server tests are disabled
@@ -41,13 +47,17 @@ describe('resource webhooks', () => {
   // Mock server tests are disabled
   test.skip('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.webhooks.update('id', {
-    enabled: true,
-    events: ['post.published'],
-    url: 'https://example.com',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Relay.NotFoundError);
+    await expect(
+      client.webhooks.update(
+        'id',
+        {
+          enabled: true,
+          events: ['post.published'],
+          url: 'https://example.com',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
   });
 
   // Mock server tests are disabled
@@ -65,15 +75,18 @@ describe('resource webhooks', () => {
   // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.webhooks.list({
-    cursor: 'cursor',
-    from: '2019-12-27T18:11:19.117Z',
-    limit: 1,
-    to: '2019-12-27T18:11:19.117Z',
-    workspace_id: 'workspace_id',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Relay.NotFoundError);
+    await expect(
+      client.webhooks.list(
+        {
+          cursor: 'cursor',
+          from: '2019-12-27T18:11:19.117Z',
+          limit: 1,
+          to: '2019-12-27T18:11:19.117Z',
+          workspace_id: 'workspace_id',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
   });
 
   // Mock server tests are disabled
@@ -103,14 +116,17 @@ describe('resource webhooks', () => {
   // Mock server tests are disabled
   test.skip('listLogs: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.webhooks.listLogs({
-    cursor: 'cursor',
-    from: '2019-12-27T18:11:19.117Z',
-    limit: 1,
-    to: '2019-12-27T18:11:19.117Z',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Relay.NotFoundError);
+    await expect(
+      client.webhooks.listLogs(
+        {
+          cursor: 'cursor',
+          from: '2019-12-27T18:11:19.117Z',
+          limit: 1,
+          to: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
   });
 
   // Mock server tests are disabled

@@ -16,7 +16,11 @@ export class PinterestBoards extends APIResource {
   /**
    * Set default Pinterest board
    */
-  setDefault(id: string, body: PinterestBoardSetDefaultParams, options?: RequestOptions): APIPromise<PinterestBoardSetDefaultResponse> {
+  setDefault(
+    id: string,
+    body: PinterestBoardSetDefaultParams,
+    options?: RequestOptions,
+  ): APIPromise<PinterestBoardSetDefaultResponse> {
     return this._client.put(path`/v1/accounts/${id}/pinterest-boards`, { body, ...options });
   }
 }
@@ -49,7 +53,28 @@ export interface PinterestBoardSetDefaultResponse {
 
   metadata: { [key: string]: unknown } | null;
 
-  platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   platform_account_id: string;
 
@@ -85,6 +110,6 @@ export declare namespace PinterestBoards {
   export {
     type PinterestBoardRetrieveResponse as PinterestBoardRetrieveResponse,
     type PinterestBoardSetDefaultResponse as PinterestBoardSetDefaultResponse,
-    type PinterestBoardSetDefaultParams as PinterestBoardSetDefaultParams
+    type PinterestBoardSetDefaultParams as PinterestBoardSetDefaultParams,
   };
 }

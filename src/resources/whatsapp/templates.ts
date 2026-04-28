@@ -17,7 +17,11 @@ export class Templates extends APIResource {
   /**
    * Get template details
    */
-  retrieve(templateName: string, query: TemplateRetrieveParams, options?: RequestOptions): APIPromise<TemplateRetrieveResponse> {
+  retrieve(
+    templateName: string,
+    query: TemplateRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<TemplateRetrieveResponse> {
     return this._client.get(path`/v1/whatsapp/templates/${templateName}`, { query, ...options });
   }
 
@@ -32,8 +36,12 @@ export class Templates extends APIResource {
    * Delete a message template
    */
   delete(templateName: string, params: TemplateDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { account_id } = params
-    return this._client.delete(path`/v1/whatsapp/templates/${templateName}`, { query: { account_id }, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { account_id } = params;
+    return this._client.delete(path`/v1/whatsapp/templates/${templateName}`, {
+      query: { account_id },
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -327,6 +335,6 @@ export declare namespace Templates {
     type TemplateCreateParams as TemplateCreateParams,
     type TemplateRetrieveParams as TemplateRetrieveParams,
     type TemplateListParams as TemplateListParams,
-    type TemplateDeleteParams as TemplateDeleteParams
+    type TemplateDeleteParams as TemplateDeleteParams,
   };
 }
