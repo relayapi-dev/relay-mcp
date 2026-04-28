@@ -18,14 +18,21 @@ export class Webhooks extends APIResource {
   /**
    * Update a webhook endpoint
    */
-  update(id: string, body: WebhookUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<WebhookUpdateResponse> {
+  update(
+    id: string,
+    body: WebhookUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<WebhookUpdateResponse> {
     return this._client.patch(path`/v1/webhooks/${id}`, { body, ...options });
   }
 
   /**
    * List webhook endpoints
    */
-  list(query: WebhookListParams | null | undefined = {}, options?: RequestOptions): APIPromise<WebhookListResponse> {
+  list(
+    query: WebhookListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<WebhookListResponse> {
     return this._client.get('/v1/webhooks', { query, ...options });
   }
 
@@ -33,13 +40,19 @@ export class Webhooks extends APIResource {
    * Delete a webhook endpoint
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/webhooks/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/v1/webhooks/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
    * Returns delivery logs from the last 7 days.
    */
-  listLogs(query: WebhookListLogsParams | null | undefined = {}, options?: RequestOptions): APIPromise<WebhookListLogsResponse> {
+  listLogs(
+    query: WebhookListLogsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<WebhookListLogsResponse> {
     return this._client.get('/v1/webhooks/logs', { query, ...options });
   }
 
@@ -212,7 +225,22 @@ export interface WebhookCreateParams {
   /**
    * Events to subscribe to
    */
-  events: Array<'post.published' | 'post.partial' | 'post.failed' | 'post.scheduled' | 'post.recycled' | 'account.connected' | 'account.disconnected' | 'comment.received' | 'message.received' | 'auto_post.created' | 'auto_post.error' | 'engagement_rule.triggered' | 'cross_post_action.executed' | 'cross_post_action.failed'>;
+  events: Array<
+    | 'post.published'
+    | 'post.partial'
+    | 'post.failed'
+    | 'post.scheduled'
+    | 'post.recycled'
+    | 'account.connected'
+    | 'account.disconnected'
+    | 'comment.received'
+    | 'message.received'
+    | 'auto_post.created'
+    | 'auto_post.error'
+    | 'engagement_rule.triggered'
+    | 'cross_post_action.executed'
+    | 'cross_post_action.failed'
+  >;
 
   /**
    * Webhook endpoint URL
@@ -234,7 +262,22 @@ export interface WebhookUpdateParams {
   /**
    * Updated events
    */
-  events?: Array<'post.published' | 'post.partial' | 'post.failed' | 'post.scheduled' | 'post.recycled' | 'account.connected' | 'account.disconnected' | 'comment.received' | 'message.received' | 'auto_post.created' | 'auto_post.error' | 'engagement_rule.triggered' | 'cross_post_action.executed' | 'cross_post_action.failed'>;
+  events?: Array<
+    | 'post.published'
+    | 'post.partial'
+    | 'post.failed'
+    | 'post.scheduled'
+    | 'post.recycled'
+    | 'account.connected'
+    | 'account.disconnected'
+    | 'comment.received'
+    | 'message.received'
+    | 'auto_post.created'
+    | 'auto_post.error'
+    | 'engagement_rule.triggered'
+    | 'cross_post_action.executed'
+    | 'cross_post_action.failed'
+  >;
 
   /**
    * Updated endpoint URL
@@ -309,6 +352,6 @@ export declare namespace Webhooks {
     type WebhookUpdateParams as WebhookUpdateParams,
     type WebhookListParams as WebhookListParams,
     type WebhookListLogsParams as WebhookListLogsParams,
-    type WebhookSendTestParams as WebhookSendTestParams
+    type WebhookSendTestParams as WebhookSendTestParams,
   };
 }

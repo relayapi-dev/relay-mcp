@@ -16,7 +16,10 @@ export class Slots extends APIResource {
   /**
    * Update queue schedule
    */
-  update(body: SlotUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<SlotUpdateResponse> {
+  update(
+    body: SlotUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SlotUpdateResponse> {
     return this._client.put('/v1/queue/slots', { body, ...options });
   }
 
@@ -31,7 +34,10 @@ export class Slots extends APIResource {
    * Delete queue schedule
    */
   delete(options?: RequestOptions): APIPromise<void> {
-    return this._client.delete('/v1/queue/slots', { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete('/v1/queue/slots', {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -272,6 +278,6 @@ export declare namespace Slots {
     type SlotUpdateResponse as SlotUpdateResponse,
     type SlotListResponse as SlotListResponse,
     type SlotCreateParams as SlotCreateParams,
-    type SlotUpdateParams as SlotUpdateParams
+    type SlotUpdateParams as SlotUpdateParams,
   };
 }

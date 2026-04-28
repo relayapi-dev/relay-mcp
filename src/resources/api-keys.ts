@@ -18,7 +18,10 @@ export class APIKeys extends APIResource {
   /**
    * List API keys
    */
-  list(query: APIKeyListParams | null | undefined = {}, options?: RequestOptions): APIPromise<APIKeyListResponse> {
+  list(
+    query: APIKeyListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<APIKeyListResponse> {
     return this._client.get('/v1/api-keys', { query, ...options });
   }
 
@@ -26,7 +29,10 @@ export class APIKeys extends APIResource {
    * Delete an API key
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/api-keys/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/v1/api-keys/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -184,6 +190,6 @@ export declare namespace APIKeys {
     type APIKeyCreateResponse as APIKeyCreateResponse,
     type APIKeyListResponse as APIKeyListResponse,
     type APIKeyCreateParams as APIKeyCreateParams,
-    type APIKeyListParams as APIKeyListParams
+    type APIKeyListParams as APIKeyListParams,
   };
 }

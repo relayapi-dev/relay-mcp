@@ -16,7 +16,10 @@ export class Health extends APIResource {
   /**
    * Check health of all connected accounts
    */
-  list(query: HealthListParams | null | undefined = {}, options?: RequestOptions): APIPromise<HealthListResponse> {
+  list(
+    query: HealthListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HealthListResponse> {
     return this._client.get('/v1/accounts/health', { query, ...options });
   }
 }
@@ -95,7 +98,28 @@ export namespace HealthListResponse {
 
     healthy: boolean;
 
-    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'bluesky'
+      | 'threads'
+      | 'telegram'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'whatsapp'
+      | 'mastodon'
+      | 'discord'
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     scopes: Array<string>;
 
@@ -161,6 +185,6 @@ export declare namespace Health {
   export {
     type HealthRetrieveResponse as HealthRetrieveResponse,
     type HealthListResponse as HealthListResponse,
-    type HealthListParams as HealthListParams
+    type HealthListParams as HealthListParams,
   };
 }

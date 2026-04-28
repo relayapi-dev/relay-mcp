@@ -16,7 +16,11 @@ export class RedditSubreddits extends APIResource {
   /**
    * Set default Reddit subreddit
    */
-  setDefault(id: string, body: RedditSubredditSetDefaultParams, options?: RequestOptions): APIPromise<RedditSubredditSetDefaultResponse> {
+  setDefault(
+    id: string,
+    body: RedditSubredditSetDefaultParams,
+    options?: RequestOptions,
+  ): APIPromise<RedditSubredditSetDefaultResponse> {
     return this._client.put(path`/v1/accounts/${id}/reddit-subreddits`, { body, ...options });
   }
 }
@@ -49,7 +53,28 @@ export interface RedditSubredditSetDefaultResponse {
 
   metadata: { [key: string]: unknown } | null;
 
-  platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   platform_account_id: string;
 
@@ -85,6 +110,6 @@ export declare namespace RedditSubreddits {
   export {
     type RedditSubredditRetrieveResponse as RedditSubredditRetrieveResponse,
     type RedditSubredditSetDefaultResponse as RedditSubredditSetDefaultResponse,
-    type RedditSubredditSetDefaultParams as RedditSubredditSetDefaultParams
+    type RedditSubredditSetDefaultParams as RedditSubredditSetDefaultParams,
   };
 }

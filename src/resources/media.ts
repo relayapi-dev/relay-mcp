@@ -18,14 +18,20 @@ export class Media extends APIResource {
    * Delete media
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/media/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/v1/media/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
    * Generate a pre-signed URL for direct upload to R2. The client can PUT the file
    * to the returned URL.
    */
-  getPresignURL(body: MediaGetPresignURLParams, options?: RequestOptions): APIPromise<MediaGetPresignURLResponse> {
+  getPresignURL(
+    body: MediaGetPresignURLParams,
+    options?: RequestOptions,
+  ): APIPromise<MediaGetPresignURLResponse> {
     return this._client.post('/v1/media/presign', { body, ...options });
   }
 
@@ -33,9 +39,18 @@ export class Media extends APIResource {
    * Upload a raw file body. Pass the filename as a query parameter and set the
    * Content-Type header.
    */
-  upload(body: string | ArrayBuffer | ArrayBufferView | Blob | DataView, params: MediaUploadParams, options?: RequestOptions): APIPromise<MediaUploadResponse> {
-    const { filename } = params
-    return this._client.post('/v1/media/upload', { body: body, query: { filename }, ...options, headers: buildHeaders([{'Content-Type': 'application/octet-stream'}, options?.headers]) });
+  upload(
+    body: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    params: MediaUploadParams,
+    options?: RequestOptions,
+  ): APIPromise<MediaUploadResponse> {
+    const { filename } = params;
+    return this._client.post('/v1/media/upload', {
+      body: body,
+      query: { filename },
+      ...options,
+      headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
+    });
   }
 }
 
@@ -150,6 +165,6 @@ export declare namespace Media {
     type MediaGetPresignURLResponse as MediaGetPresignURLResponse,
     type MediaUploadResponse as MediaUploadResponse,
     type MediaGetPresignURLParams as MediaGetPresignURLParams,
-    type MediaUploadParams as MediaUploadParams
+    type MediaUploadParams as MediaUploadParams,
   };
 }

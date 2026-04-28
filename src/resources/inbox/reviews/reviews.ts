@@ -12,7 +12,10 @@ export class Reviews extends APIResource {
   /**
    * List reviews across platforms
    */
-  list(query: ReviewListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ReviewListResponse> {
+  list(
+    query: ReviewListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ReviewListResponse> {
     return this._client.get('/v1/inbox/reviews', { query, ...options });
   }
 }
@@ -48,7 +51,28 @@ export namespace ReviewListResponse {
      */
     created_at: string;
 
-    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'bluesky'
+      | 'threads'
+      | 'telegram'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'whatsapp'
+      | 'mastodon'
+      | 'discord'
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     /**
      * Rating (1-5)
@@ -90,21 +114,39 @@ export interface ReviewListParams {
   /**
    * Filter by platform
    */
-  platform?: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform?:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 }
 
 Reviews.Reply = Reply;
 
 export declare namespace Reviews {
-  export {
-    type ReviewListResponse as ReviewListResponse,
-    type ReviewListParams as ReviewListParams
-  };
+  export { type ReviewListResponse as ReviewListResponse, type ReviewListParams as ReviewListParams };
 
   export {
     Reply as Reply,
     type ReplyCreateResponse as ReplyCreateResponse,
     type ReplyDeleteResponse as ReplyDeleteResponse,
-    type ReplyCreateParams as ReplyCreateParams
+    type ReplyCreateParams as ReplyCreateParams,
   };
 }

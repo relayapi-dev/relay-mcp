@@ -10,9 +10,7 @@ const config: JestConfigWithTsJest = {
     '^relay-mcp$': '<rootDir>/src/index.ts',
     '^relay-mcp/(.*)$': '<rootDir>/src/$1',
   },
-  modulePathIgnorePatterns: [
-    '<rootDir>/dist/',
-  ],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],
 };
 

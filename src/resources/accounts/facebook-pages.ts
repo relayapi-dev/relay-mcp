@@ -16,7 +16,11 @@ export class FacebookPages extends APIResource {
   /**
    * Set default Facebook page
    */
-  setDefault(id: string, body: FacebookPageSetDefaultParams, options?: RequestOptions): APIPromise<FacebookPageSetDefaultResponse> {
+  setDefault(
+    id: string,
+    body: FacebookPageSetDefaultParams,
+    options?: RequestOptions,
+  ): APIPromise<FacebookPageSetDefaultResponse> {
     return this._client.put(path`/v1/accounts/${id}/facebook-pages`, { body, ...options });
   }
 }
@@ -49,7 +53,28 @@ export interface FacebookPageSetDefaultResponse {
 
   metadata: { [key: string]: unknown } | null;
 
-  platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   platform_account_id: string;
 
@@ -85,6 +110,6 @@ export declare namespace FacebookPages {
   export {
     type FacebookPageRetrieveResponse as FacebookPageRetrieveResponse,
     type FacebookPageSetDefaultResponse as FacebookPageSetDefaultResponse,
-    type FacebookPageSetDefaultParams as FacebookPageSetDefaultParams
+    type FacebookPageSetDefaultParams as FacebookPageSetDefaultParams,
   };
 }

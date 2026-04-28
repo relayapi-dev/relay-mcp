@@ -8,7 +8,10 @@ export class Telegram extends APIResource {
   /**
    * Connect Telegram directly with chat ID
    */
-  connectDirectly(body: TelegramConnectDirectlyParams, options?: RequestOptions): APIPromise<TelegramConnectDirectlyResponse> {
+  connectDirectly(
+    body: TelegramConnectDirectlyParams,
+    options?: RequestOptions,
+  ): APIPromise<TelegramConnectDirectlyResponse> {
     return this._client.post('/v1/connect/telegram/direct', { body, ...options });
   }
 
@@ -22,7 +25,10 @@ export class Telegram extends APIResource {
   /**
    * Poll Telegram connection status
    */
-  pollConnectionStatus(query: TelegramPollConnectionStatusParams, options?: RequestOptions): APIPromise<TelegramPollConnectionStatusResponse> {
+  pollConnectionStatus(
+    query: TelegramPollConnectionStatusParams,
+    options?: RequestOptions,
+  ): APIPromise<TelegramPollConnectionStatusResponse> {
     return this._client.get('/v1/connect/telegram', { query, ...options });
   }
 }
@@ -46,7 +52,28 @@ export namespace TelegramConnectDirectlyResponse {
 
     metadata: { [key: string]: unknown } | null;
 
-    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'bluesky'
+      | 'threads'
+      | 'telegram'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'whatsapp'
+      | 'mastodon'
+      | 'discord'
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
@@ -149,7 +176,28 @@ export namespace TelegramPollConnectionStatusResponse {
 
     metadata: { [key: string]: unknown } | null;
 
-    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'bluesky'
+      | 'threads'
+      | 'telegram'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'whatsapp'
+      | 'mastodon'
+      | 'discord'
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
@@ -195,6 +243,6 @@ export declare namespace Telegram {
     type TelegramInitiateConnectionResponse as TelegramInitiateConnectionResponse,
     type TelegramPollConnectionStatusResponse as TelegramPollConnectionStatusResponse,
     type TelegramConnectDirectlyParams as TelegramConnectDirectlyParams,
-    type TelegramPollConnectionStatusParams as TelegramPollConnectionStatusParams
+    type TelegramPollConnectionStatusParams as TelegramPollConnectionStatusParams,
   };
 }

@@ -2,9 +2,23 @@
 
 import { APIResource } from '../../core/resource';
 import * as TelegramAPI from './telegram';
-import { Telegram, TelegramConnectDirectlyParams, TelegramConnectDirectlyResponse, TelegramInitiateConnectionResponse, TelegramPollConnectionStatusParams, TelegramPollConnectionStatusResponse } from './telegram';
+import {
+  Telegram,
+  TelegramConnectDirectlyParams,
+  TelegramConnectDirectlyResponse,
+  TelegramInitiateConnectionResponse,
+  TelegramPollConnectionStatusParams,
+  TelegramPollConnectionStatusResponse,
+} from './telegram';
 import * as WhatsappAPI from './whatsapp';
-import { Whatsapp, WhatsappCompleteEmbeddedSignupParams, WhatsappCompleteEmbeddedSignupResponse, WhatsappConnectViaCredentialsParams, WhatsappConnectViaCredentialsResponse, WhatsappGetSDKConfigResponse } from './whatsapp';
+import {
+  Whatsapp,
+  WhatsappCompleteEmbeddedSignupParams,
+  WhatsappCompleteEmbeddedSignupResponse,
+  WhatsappConnectViaCredentialsParams,
+  WhatsappConnectViaCredentialsResponse,
+  WhatsappGetSDKConfigResponse,
+} from './whatsapp';
 import * as FacebookAPI from './facebook/facebook';
 import { Facebook } from './facebook/facebook';
 import * as GooglebusinessAPI from './googlebusiness/googlebusiness';
@@ -31,28 +45,66 @@ export class Connect extends APIResource {
   /**
    * Exchange OAuth code for tokens and save the account.
    */
-  completeOAuthCallback(platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'threads' | 'snapchat' | 'googlebusiness' | 'mastodon', body: ConnectCompleteOAuthCallbackParams, options?: RequestOptions): APIPromise<ConnectCompleteOAuthCallbackResponse> {
+  completeOAuthCallback(
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'threads'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'mastodon',
+    body: ConnectCompleteOAuthCallbackParams,
+    options?: RequestOptions,
+  ): APIPromise<ConnectCompleteOAuthCallbackResponse> {
     return this._client.post(path`/v1/connect/${platform}`, { body, ...options });
   }
 
   /**
    * Connect Bluesky via app password
    */
-  createBlueskyConnection(body: ConnectCreateBlueskyConnectionParams, options?: RequestOptions): APIPromise<ConnectCreateBlueskyConnectionResponse> {
+  createBlueskyConnection(
+    body: ConnectCreateBlueskyConnectionParams,
+    options?: RequestOptions,
+  ): APIPromise<ConnectCreateBlueskyConnectionResponse> {
     return this._client.post('/v1/connect/bluesky', { body, ...options });
   }
 
   /**
    * One-time use, expires after 10 minutes. For headless OAuth flows.
    */
-  fetchPendingData(query: ConnectFetchPendingDataParams, options?: RequestOptions): APIPromise<ConnectFetchPendingDataResponse> {
+  fetchPendingData(
+    query: ConnectFetchPendingDataParams,
+    options?: RequestOptions,
+  ): APIPromise<ConnectFetchPendingDataResponse> {
     return this._client.get('/v1/connect/pending-data', { query, ...options });
   }
 
   /**
    * Returns an auth_url to redirect the user for OAuth authorization.
    */
-  startOAuthFlow(platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'threads' | 'snapchat' | 'googlebusiness' | 'mastodon', query: ConnectStartOAuthFlowParams | null | undefined = {}, options?: RequestOptions): APIPromise<ConnectStartOAuthFlowResponse> {
+  startOAuthFlow(
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'threads'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'mastodon',
+    query: ConnectStartOAuthFlowParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ConnectStartOAuthFlowResponse> {
     return this._client.get(path`/v1/connect/${platform}`, { query, ...options });
   }
 }
@@ -76,7 +128,28 @@ export namespace ConnectCompleteOAuthCallbackResponse {
 
     metadata: { [key: string]: unknown } | null;
 
-    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'bluesky'
+      | 'threads'
+      | 'telegram'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'whatsapp'
+      | 'mastodon'
+      | 'discord'
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
@@ -121,7 +194,28 @@ export namespace ConnectCreateBlueskyConnectionResponse {
 
     metadata: { [key: string]: unknown } | null;
 
-    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'bluesky'
+      | 'threads'
+      | 'telegram'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'whatsapp'
+      | 'mastodon'
+      | 'discord'
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
@@ -148,7 +242,28 @@ export namespace ConnectCreateBlueskyConnectionResponse {
 }
 
 export interface ConnectFetchPendingDataResponse {
-  platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * Token to use for secondary selection
@@ -279,7 +394,7 @@ export declare namespace Connect {
     type ConnectCompleteOAuthCallbackParams as ConnectCompleteOAuthCallbackParams,
     type ConnectCreateBlueskyConnectionParams as ConnectCreateBlueskyConnectionParams,
     type ConnectFetchPendingDataParams as ConnectFetchPendingDataParams,
-    type ConnectStartOAuthFlowParams as ConnectStartOAuthFlowParams
+    type ConnectStartOAuthFlowParams as ConnectStartOAuthFlowParams,
   };
 
   export {
@@ -288,7 +403,7 @@ export declare namespace Connect {
     type TelegramInitiateConnectionResponse as TelegramInitiateConnectionResponse,
     type TelegramPollConnectionStatusResponse as TelegramPollConnectionStatusResponse,
     type TelegramConnectDirectlyParams as TelegramConnectDirectlyParams,
-    type TelegramPollConnectionStatusParams as TelegramPollConnectionStatusParams
+    type TelegramPollConnectionStatusParams as TelegramPollConnectionStatusParams,
   };
 
   export {
@@ -297,26 +412,16 @@ export declare namespace Connect {
     type WhatsappConnectViaCredentialsResponse as WhatsappConnectViaCredentialsResponse,
     type WhatsappGetSDKConfigResponse as WhatsappGetSDKConfigResponse,
     type WhatsappCompleteEmbeddedSignupParams as WhatsappCompleteEmbeddedSignupParams,
-    type WhatsappConnectViaCredentialsParams as WhatsappConnectViaCredentialsParams
+    type WhatsappConnectViaCredentialsParams as WhatsappConnectViaCredentialsParams,
   };
 
-  export {
-    Facebook as Facebook
-  };
+  export { Facebook as Facebook };
 
-  export {
-    Linkedin as Linkedin
-  };
+  export { Linkedin as Linkedin };
 
-  export {
-    Pinterest as Pinterest
-  };
+  export { Pinterest as Pinterest };
 
-  export {
-    Googlebusiness as Googlebusiness
-  };
+  export { Googlebusiness as Googlebusiness };
 
-  export {
-    Snapchat as Snapchat
-  };
+  export { Snapchat as Snapchat };
 }

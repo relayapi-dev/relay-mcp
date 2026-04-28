@@ -2,7 +2,12 @@
 
 import { APIResource } from '../../../core/resource';
 import * as OrganizationsAPI from './organizations';
-import { OrganizationListResponse, OrganizationSelectParams, OrganizationSelectResponse, Organizations } from './organizations';
+import {
+  OrganizationListResponse,
+  OrganizationSelectParams,
+  OrganizationSelectResponse,
+  Organizations,
+} from './organizations';
 
 export class Linkedin extends APIResource {
   organizations: OrganizationsAPI.Organizations = new OrganizationsAPI.Organizations(this._client);
@@ -15,6 +20,6 @@ export declare namespace Linkedin {
     Organizations as Organizations,
     type OrganizationListResponse as OrganizationListResponse,
     type OrganizationSelectResponse as OrganizationSelectResponse,
-    type OrganizationSelectParams as OrganizationSelectParams
+    type OrganizationSelectParams as OrganizationSelectParams,
   };
 }

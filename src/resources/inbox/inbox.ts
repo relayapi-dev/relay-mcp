@@ -4,7 +4,18 @@ import { APIResource } from '../../core/resource';
 import * as MessagesAPI from './messages';
 import { Messages } from './messages';
 import * as CommentsAPI from './comments/comments';
-import { CommentDeleteResponse, CommentListParams, CommentListResponse, CommentPrivateReplyParams, CommentPrivateReplyResponse, CommentReplyParams, CommentReplyResponse, CommentRetrieveParams, CommentRetrieveResponse, Comments } from './comments/comments';
+import {
+  CommentDeleteResponse,
+  CommentListParams,
+  CommentListResponse,
+  CommentPrivateReplyParams,
+  CommentPrivateReplyResponse,
+  CommentReplyParams,
+  CommentReplyResponse,
+  CommentRetrieveParams,
+  CommentRetrieveResponse,
+  Comments,
+} from './comments/comments';
 import * as ReviewsAPI from './reviews/reviews';
 import { ReviewListParams, ReviewListResponse, Reviews } from './reviews/reviews';
 
@@ -29,16 +40,14 @@ export declare namespace Inbox {
     type CommentRetrieveParams as CommentRetrieveParams,
     type CommentListParams as CommentListParams,
     type CommentPrivateReplyParams as CommentPrivateReplyParams,
-    type CommentReplyParams as CommentReplyParams
+    type CommentReplyParams as CommentReplyParams,
   };
 
-  export {
-    Messages as Messages
-  };
+  export { Messages as Messages };
 
   export {
     Reviews as Reviews,
     type ReviewListResponse as ReviewListResponse,
-    type ReviewListParams as ReviewListParams
+    type ReviewListParams as ReviewListParams,
   };
 }

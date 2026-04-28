@@ -2,12 +2,18 @@
 
 import Relay from '@relayapi/mcp';
 
-const client = new Relay({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new Relay({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource bookmark', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
-    const responsePromise = client.twitter.bookmark.create({ account_id: 'account_id', tweet_id: 'tweet_id' });
+    const responsePromise = client.twitter.bookmark.create({
+      account_id: 'account_id',
+      tweet_id: 'tweet_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,7 +30,10 @@ describe('resource bookmark', () => {
 
   // Mock server tests are disabled
   test.skip('remove: only required params', async () => {
-    const responsePromise = client.twitter.bookmark.remove({ account_id: 'account_id', tweet_id: 'tweet_id' });
+    const responsePromise = client.twitter.bookmark.remove({
+      account_id: 'account_id',
+      tweet_id: 'tweet_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

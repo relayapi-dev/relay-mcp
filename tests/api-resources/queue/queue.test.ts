@@ -2,7 +2,10 @@
 
 import Relay from '@relayapi/mcp';
 
-const client = new Relay({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new Relay({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource queue', () => {
   // Mock server tests are disabled
@@ -32,8 +35,8 @@ describe('resource queue', () => {
   // Mock server tests are disabled
   test.skip('preview: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.queue.preview({ count: 1 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Relay.NotFoundError);
+    await expect(client.queue.preview({ count: 1 }, { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Relay.NotFoundError,
+    );
   });
 });

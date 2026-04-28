@@ -8,14 +8,20 @@ export class BusinessProfile extends APIResource {
   /**
    * Get WhatsApp Business profile
    */
-  retrieve(query: BusinessProfileRetrieveParams, options?: RequestOptions): APIPromise<BusinessProfileRetrieveResponse> {
+  retrieve(
+    query: BusinessProfileRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<BusinessProfileRetrieveResponse> {
     return this._client.get('/v1/whatsapp/business-profile', { query, ...options });
   }
 
   /**
    * Update WhatsApp Business profile
    */
-  update(body: BusinessProfileUpdateParams, options?: RequestOptions): APIPromise<BusinessProfileUpdateResponse> {
+  update(
+    body: BusinessProfileUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<BusinessProfileUpdateResponse> {
     return this._client.put('/v1/whatsapp/business-profile', { body, ...options });
   }
 }
@@ -113,6 +119,6 @@ export declare namespace BusinessProfile {
     type BusinessProfileRetrieveResponse as BusinessProfileRetrieveResponse,
     type BusinessProfileUpdateResponse as BusinessProfileUpdateResponse,
     type BusinessProfileRetrieveParams as BusinessProfileRetrieveParams,
-    type BusinessProfileUpdateParams as BusinessProfileUpdateParams
+    type BusinessProfileUpdateParams as BusinessProfileUpdateParams,
   };
 }

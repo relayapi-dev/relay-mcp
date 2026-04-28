@@ -8,7 +8,10 @@ export class Connections extends APIResource {
   /**
    * Returns connection event history for the organization.
    */
-  listLogs(query: ConnectionListLogsParams | null | undefined = {}, options?: RequestOptions): APIPromise<ConnectionListLogsResponse> {
+  listLogs(
+    query: ConnectionListLogsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ConnectionListLogsResponse> {
     return this._client.get('/v1/connections/logs', { query, ...options });
   }
 }
@@ -80,6 +83,6 @@ export interface ConnectionListLogsParams {
 export declare namespace Connections {
   export {
     type ConnectionListLogsResponse as ConnectionListLogsResponse,
-    type ConnectionListLogsParams as ConnectionListLogsParams
+    type ConnectionListLogsParams as ConnectionListLogsParams,
   };
 }

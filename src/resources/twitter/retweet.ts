@@ -153,6 +153,6 @@ export declare namespace Retweet {
     type RetweetCreateResponse as RetweetCreateResponse,
     type RetweetUndoResponse as RetweetUndoResponse,
     type RetweetCreateParams as RetweetCreateParams,
-    type RetweetUndoParams as RetweetUndoParams
+    type RetweetUndoParams as RetweetUndoParams,
   };
 }

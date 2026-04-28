@@ -12,42 +12,60 @@ export class Analytics extends APIResource {
   /**
    * Get post analytics
    */
-  retrieve(query: AnalyticsRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<AnalyticsRetrieveResponse> {
+  retrieve(
+    query: AnalyticsRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AnalyticsRetrieveResponse> {
     return this._client.get('/v1/analytics', { query, ...options });
   }
 
   /**
    * Get best posting times based on engagement
    */
-  getBestTime(query: AnalyticsGetBestTimeParams | null | undefined = {}, options?: RequestOptions): APIPromise<AnalyticsGetBestTimeResponse> {
+  getBestTime(
+    query: AnalyticsGetBestTimeParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AnalyticsGetBestTimeResponse> {
     return this._client.get('/v1/analytics/best-time', { query, ...options });
   }
 
   /**
    * Get engagement decay curve for a post
    */
-  getContentDecay(query: AnalyticsGetContentDecayParams, options?: RequestOptions): APIPromise<AnalyticsGetContentDecayResponse> {
+  getContentDecay(
+    query: AnalyticsGetContentDecayParams,
+    options?: RequestOptions,
+  ): APIPromise<AnalyticsGetContentDecayResponse> {
     return this._client.get('/v1/analytics/content-decay', { query, ...options });
   }
 
   /**
    * Get per-post daily timeline of metrics
    */
-  getPostTimeline(query: AnalyticsGetPostTimelineParams, options?: RequestOptions): APIPromise<AnalyticsGetPostTimelineResponse> {
+  getPostTimeline(
+    query: AnalyticsGetPostTimelineParams,
+    options?: RequestOptions,
+  ): APIPromise<AnalyticsGetPostTimelineResponse> {
     return this._client.get('/v1/analytics/post-timeline', { query, ...options });
   }
 
   /**
    * Get posting frequency vs engagement analysis
    */
-  getPostingFrequency(query: AnalyticsGetPostingFrequencyParams | null | undefined = {}, options?: RequestOptions): APIPromise<AnalyticsGetPostingFrequencyResponse> {
+  getPostingFrequency(
+    query: AnalyticsGetPostingFrequencyParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AnalyticsGetPostingFrequencyResponse> {
     return this._client.get('/v1/analytics/posting-frequency', { query, ...options });
   }
 
   /**
    * Get daily aggregated metrics
    */
-  listDailyMetrics(query: AnalyticsListDailyMetricsParams | null | undefined = {}, options?: RequestOptions): APIPromise<AnalyticsListDailyMetricsResponse> {
+  listDailyMetrics(
+    query: AnalyticsListDailyMetricsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AnalyticsListDailyMetricsResponse> {
     return this._client.get('/v1/analytics/daily-metrics', { query, ...options });
   }
 }
@@ -66,7 +84,28 @@ export interface AnalyticsRetrieveResponse {
 
 export namespace AnalyticsRetrieveResponse {
   export interface Data {
-    platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'bluesky'
+      | 'threads'
+      | 'telegram'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'whatsapp'
+      | 'mastodon'
+      | 'discord'
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     /**
      * Post ID
@@ -193,7 +232,28 @@ export interface AnalyticsGetContentDecayResponse {
    */
   half_life_days: number | null;
 
-  platform: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   post_id: string;
 }
@@ -364,7 +424,28 @@ export interface AnalyticsRetrieveParams {
   /**
    * Filter by platform
    */
-  platform?: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform?:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * Filter by post ID
@@ -391,7 +472,28 @@ export interface AnalyticsGetBestTimeParams {
   /**
    * Filter by platform
    */
-  platform?: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform?:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * End date (ISO 8601)
@@ -442,7 +544,28 @@ export interface AnalyticsGetPostingFrequencyParams {
   /**
    * Filter by platform
    */
-  platform?: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform?:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * End date (ISO 8601)
@@ -464,7 +587,28 @@ export interface AnalyticsListDailyMetricsParams {
   /**
    * Filter by platform
    */
-  platform?: 'twitter' | 'instagram' | 'facebook' | 'linkedin' | 'tiktok' | 'youtube' | 'pinterest' | 'reddit' | 'bluesky' | 'threads' | 'telegram' | 'snapchat' | 'googlebusiness' | 'whatsapp' | 'mastodon' | 'discord' | 'sms' | 'beehiiv' | 'convertkit' | 'mailchimp' | 'listmonk';
+  platform?:
+    | 'twitter'
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'reddit'
+    | 'bluesky'
+    | 'threads'
+    | 'telegram'
+    | 'snapchat'
+    | 'googlebusiness'
+    | 'whatsapp'
+    | 'mastodon'
+    | 'discord'
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * End date (ISO 8601)
@@ -487,12 +631,12 @@ export declare namespace Analytics {
     type AnalyticsGetContentDecayParams as AnalyticsGetContentDecayParams,
     type AnalyticsGetPostTimelineParams as AnalyticsGetPostTimelineParams,
     type AnalyticsGetPostingFrequencyParams as AnalyticsGetPostingFrequencyParams,
-    type AnalyticsListDailyMetricsParams as AnalyticsListDailyMetricsParams
+    type AnalyticsListDailyMetricsParams as AnalyticsListDailyMetricsParams,
   };
 
   export {
     Youtube as Youtube,
     type YoutubeGetDailyViewsResponse as YoutubeGetDailyViewsResponse,
-    type YoutubeGetDailyViewsParams as YoutubeGetDailyViewsParams
+    type YoutubeGetDailyViewsParams as YoutubeGetDailyViewsParams,
   };
 }

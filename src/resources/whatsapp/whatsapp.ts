@@ -2,15 +2,39 @@
 
 import { APIResource } from '../../core/resource';
 import * as BroadcastsAPI from './broadcasts';
-import { BroadcastCreateParams, BroadcastCreateResponse, BroadcastListParams, BroadcastListResponse, BroadcastRetrieveResponse, BroadcastScheduleResponse, BroadcastSendResponse, Broadcasts } from './broadcasts';
+import {
+  BroadcastCreateParams,
+  BroadcastCreateResponse,
+  BroadcastListParams,
+  BroadcastListResponse,
+  BroadcastRetrieveResponse,
+  BroadcastScheduleResponse,
+  BroadcastSendResponse,
+  Broadcasts,
+} from './broadcasts';
 import * as BusinessProfileAPI from './business-profile';
-import { BusinessProfile, BusinessProfileRetrieveParams, BusinessProfileRetrieveResponse, BusinessProfileUpdateParams, BusinessProfileUpdateResponse } from './business-profile';
+import {
+  BusinessProfile,
+  BusinessProfileRetrieveParams,
+  BusinessProfileRetrieveResponse,
+  BusinessProfileUpdateParams,
+  BusinessProfileUpdateResponse,
+} from './business-profile';
 import * as ContactsAPI from './contacts';
 import { Contacts } from './contacts';
 import * as GroupsAPI from './groups';
 import { Groups } from './groups';
 import * as TemplatesAPI from './templates';
-import { TemplateCreateParams, TemplateCreateResponse, TemplateDeleteParams, TemplateListParams, TemplateListResponse, TemplateRetrieveParams, TemplateRetrieveResponse, Templates } from './templates';
+import {
+  TemplateCreateParams,
+  TemplateCreateResponse,
+  TemplateDeleteParams,
+  TemplateListParams,
+  TemplateListResponse,
+  TemplateRetrieveParams,
+  TemplateRetrieveResponse,
+  Templates,
+} from './templates';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -31,7 +55,10 @@ export class Whatsapp extends APIResource {
   /**
    * List purchased phone numbers
    */
-  listPhoneNumbers(query: WhatsappListPhoneNumbersParams | null | undefined = {}, options?: RequestOptions): APIPromise<WhatsappListPhoneNumbersResponse> {
+  listPhoneNumbers(
+    query: WhatsappListPhoneNumbersParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<WhatsappListPhoneNumbersResponse> {
     return this._client.get('/v1/whatsapp/phone-numbers', { query, ...options });
   }
 }
@@ -203,7 +230,7 @@ export declare namespace Whatsapp {
     type WhatsappBulkSendResponse as WhatsappBulkSendResponse,
     type WhatsappListPhoneNumbersResponse as WhatsappListPhoneNumbersResponse,
     type WhatsappBulkSendParams as WhatsappBulkSendParams,
-    type WhatsappListPhoneNumbersParams as WhatsappListPhoneNumbersParams
+    type WhatsappListPhoneNumbersParams as WhatsappListPhoneNumbersParams,
   };
 
   export {
@@ -214,7 +241,7 @@ export declare namespace Whatsapp {
     type BroadcastScheduleResponse as BroadcastScheduleResponse,
     type BroadcastSendResponse as BroadcastSendResponse,
     type BroadcastCreateParams as BroadcastCreateParams,
-    type BroadcastListParams as BroadcastListParams
+    type BroadcastListParams as BroadcastListParams,
   };
 
   export {
@@ -225,22 +252,18 @@ export declare namespace Whatsapp {
     type TemplateCreateParams as TemplateCreateParams,
     type TemplateRetrieveParams as TemplateRetrieveParams,
     type TemplateListParams as TemplateListParams,
-    type TemplateDeleteParams as TemplateDeleteParams
+    type TemplateDeleteParams as TemplateDeleteParams,
   };
 
-  export {
-    Contacts as Contacts
-  };
+  export { Contacts as Contacts };
 
-  export {
-    Groups as Groups
-  };
+  export { Groups as Groups };
 
   export {
     BusinessProfile as BusinessProfile,
     type BusinessProfileRetrieveResponse as BusinessProfileRetrieveResponse,
     type BusinessProfileUpdateResponse as BusinessProfileUpdateResponse,
     type BusinessProfileRetrieveParams as BusinessProfileRetrieveParams,
-    type BusinessProfileUpdateParams as BusinessProfileUpdateParams
+    type BusinessProfileUpdateParams as BusinessProfileUpdateParams,
   };
 }

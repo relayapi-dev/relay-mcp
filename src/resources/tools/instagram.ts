@@ -16,7 +16,10 @@ export class Instagram extends APIResource {
    *   });
    * ```
    */
-  checkHashtagSafety(body: InstagramCheckHashtagSafetyParams, options?: RequestOptions): APIPromise<InstagramCheckHashtagSafetyResponse> {
+  checkHashtagSafety(
+    body: InstagramCheckHashtagSafetyParams,
+    options?: RequestOptions,
+  ): APIPromise<InstagramCheckHashtagSafetyResponse> {
     return this._client.post('/v1/tools/instagram/hashtag-checker', { body, ...options });
   }
 }
@@ -49,6 +52,6 @@ export interface InstagramCheckHashtagSafetyParams {
 export declare namespace Instagram {
   export {
     type InstagramCheckHashtagSafetyResponse as InstagramCheckHashtagSafetyResponse,
-    type InstagramCheckHashtagSafetyParams as InstagramCheckHashtagSafetyParams
+    type InstagramCheckHashtagSafetyParams as InstagramCheckHashtagSafetyParams,
   };
 }
