@@ -264,7 +264,7 @@ export namespace PostCreateResponse {
       | 'mailchimp'
       | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -291,6 +291,11 @@ export namespace PostCreateResponse {
       platform_post_id: string | null;
 
       /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
+
+      /**
        * Published post URL on the platform
        */
       url: string | null;
@@ -302,6 +307,11 @@ export namespace PostCreateResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
   }
 
@@ -463,7 +473,7 @@ export namespace PostRetrieveResponse {
       | 'mailchimp'
       | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -490,6 +500,11 @@ export namespace PostRetrieveResponse {
       platform_post_id: string | null;
 
       /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
+
+      /**
        * Published post URL on the platform
        */
       url: string | null;
@@ -501,6 +516,11 @@ export namespace PostRetrieveResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
   }
 
@@ -662,7 +682,7 @@ export namespace PostUpdateResponse {
       | 'mailchimp'
       | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -689,6 +709,11 @@ export namespace PostUpdateResponse {
       platform_post_id: string | null;
 
       /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
+
+      /**
        * Published post URL on the platform
        */
       url: string | null;
@@ -700,6 +725,11 @@ export namespace PostUpdateResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
   }
 
@@ -876,7 +906,7 @@ export namespace PostListResponse {
         | 'mailchimp'
         | 'listmonk';
 
-      status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+      status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
       accounts?: Array<Targets.Account>;
 
@@ -903,6 +933,11 @@ export namespace PostListResponse {
         platform_post_id: string | null;
 
         /**
+         * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+         */
+        target_id: string | null;
+
+        /**
          * Published post URL on the platform
          */
         url: string | null;
@@ -914,6 +949,11 @@ export namespace PostListResponse {
         code: string;
 
         message: string;
+
+        /**
+         * Raw platform error (HTTP status + response body), sanitized and truncated
+         */
+        detail?: string;
       }
     }
 
@@ -1083,7 +1123,7 @@ export namespace PostBulkCreateResponse {
         | 'mailchimp'
         | 'listmonk';
 
-      status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+      status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
       accounts?: Array<Targets.Account>;
 
@@ -1110,6 +1150,11 @@ export namespace PostBulkCreateResponse {
         platform_post_id: string | null;
 
         /**
+         * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+         */
+        target_id: string | null;
+
+        /**
          * Published post URL on the platform
          */
         url: string | null;
@@ -1121,6 +1166,11 @@ export namespace PostBulkCreateResponse {
         code: string;
 
         message: string;
+
+        /**
+         * Raw platform error (HTTP status + response body), sanitized and truncated
+         */
+        detail?: string;
       }
     }
 
@@ -1291,7 +1341,7 @@ export namespace PostRetryResponse {
       | 'mailchimp'
       | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -1318,6 +1368,11 @@ export namespace PostRetryResponse {
       platform_post_id: string | null;
 
       /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
+
+      /**
        * Published post URL on the platform
        */
       url: string | null;
@@ -1329,6 +1384,11 @@ export namespace PostRetryResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
   }
 
@@ -1490,7 +1550,7 @@ export namespace PostUnpublishResponse {
       | 'mailchimp'
       | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -1517,6 +1577,11 @@ export namespace PostUnpublishResponse {
       platform_post_id: string | null;
 
       /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
+
+      /**
        * Published post URL on the platform
        */
       url: string | null;
@@ -1528,6 +1593,11 @@ export namespace PostUnpublishResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
   }
 
