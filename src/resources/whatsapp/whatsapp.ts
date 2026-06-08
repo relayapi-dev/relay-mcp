@@ -64,40 +64,35 @@ export class Whatsapp extends APIResource {
 }
 
 export interface WhatsappBulkSendResponse {
-  results: Array<WhatsappBulkSendResponse.Result>;
+  id: string;
 
-  summary: WhatsappBulkSendResponse.Summary;
-}
+  account_id: string;
 
-export namespace WhatsappBulkSendResponse {
-  export interface Result {
-    /**
-     * Recipient phone number
-     */
-    phone: string;
+  completed_at: string | null;
 
-    /**
-     * Send status
-     */
-    status: 'sent' | 'failed';
+  created_at: string;
 
-    /**
-     * Error message if failed
-     */
-    error?: string | null;
-  }
+  description: string | null;
 
-  export interface Summary {
-    /**
-     * Failed count
-     */
-    failed: number;
+  failed_count: number;
 
-    /**
-     * Successfully sent count
-     */
-    sent: number;
-  }
+  message_text: string | null;
+
+  name: string | null;
+
+  platform: string;
+
+  recipient_count: number;
+
+  scheduled_at: string | null;
+
+  sent_count: number;
+
+  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed' | 'cancelled';
+
+  template_language: string | null;
+
+  template_name: string | null;
 }
 
 export interface WhatsappListPhoneNumbersResponse {
