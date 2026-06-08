@@ -127,6 +127,7 @@ describe('resource posts', () => {
       client.posts.list(
         {
           account_id: 'account_id',
+          account_ids: 'account_ids',
           cursor: 'cursor',
           from: '2019-12-27T18:11:19.117Z',
           include: 'include',
