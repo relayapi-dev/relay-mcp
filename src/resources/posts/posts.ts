@@ -1881,6 +1881,12 @@ export interface PostListParams {
   account_id?: string;
 
   /**
+   * Filter by any of several account IDs (comma-separated). Takes precedence over
+   * account_id.
+   */
+  account_ids?: string;
+
+  /**
    * Pagination cursor
    */
   cursor?: string;
