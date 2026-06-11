@@ -2,9 +2,9 @@
 
 import { APIResource } from '../../../core/resource';
 import * as HideAPI from './hide';
-import { Hide, HideCreateResponse, HideDeleteResponse } from './hide';
+import { Hide, HideCreateParams, HideCreateResponse, HideDeleteParams, HideDeleteResponse } from './hide';
 import * as LikeAPI from './like';
-import { Like, LikeCreateResponse, LikeDeleteResponse } from './like';
+import { Like, LikeCreateParams, LikeCreateResponse, LikeDeleteParams, LikeDeleteResponse } from './like';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -37,8 +37,13 @@ export class Comments extends APIResource {
   /**
    * Delete a comment
    */
-  delete(commentID: string, options?: RequestOptions): APIPromise<CommentDeleteResponse> {
-    return this._client.delete(path`/v1/inbox/comments/${commentID}`, options);
+  delete(
+    commentID: string,
+    params: CommentDeleteParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CommentDeleteResponse> {
+    const { account_id } = params ?? {};
+    return this._client.delete(path`/v1/inbox/comments/${commentID}`, { query: { account_id }, ...options });
   }
 
   /**
@@ -462,6 +467,13 @@ export interface CommentListParams {
     | 'listmonk';
 }
 
+export interface CommentDeleteParams {
+  /**
+   * Target a specific account instead of fanning out to all org accounts
+   */
+  account_id?: string;
+}
+
 export interface CommentPrivateReplyParams {
   /**
    * Account ID to reply from
@@ -503,6 +515,7 @@ export declare namespace Comments {
     type CommentReplyResponse as CommentReplyResponse,
     type CommentRetrieveParams as CommentRetrieveParams,
     type CommentListParams as CommentListParams,
+    type CommentDeleteParams as CommentDeleteParams,
     type CommentPrivateReplyParams as CommentPrivateReplyParams,
     type CommentReplyParams as CommentReplyParams,
   };
@@ -511,11 +524,15 @@ export declare namespace Comments {
     Hide as Hide,
     type HideCreateResponse as HideCreateResponse,
     type HideDeleteResponse as HideDeleteResponse,
+    type HideCreateParams as HideCreateParams,
+    type HideDeleteParams as HideDeleteParams,
   };
 
   export {
     Like as Like,
     type LikeCreateResponse as LikeCreateResponse,
     type LikeDeleteResponse as LikeDeleteResponse,
+    type LikeCreateParams as LikeCreateParams,
+    type LikeDeleteParams as LikeDeleteParams,
   };
 }

@@ -43,8 +43,8 @@ describe('resource whatsapp', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('listPhoneNumbers', async () => {
-    const responsePromise = client.whatsapp.listPhoneNumbers();
+  test.skip('listPhoneNumbers: only required params', async () => {
+    const responsePromise = client.whatsapp.listPhoneNumbers({ account_id: 'account_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -55,10 +55,7 @@ describe('resource whatsapp', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('listPhoneNumbers: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.whatsapp.listPhoneNumbers({ status: 'purchasing' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Relay.NotFoundError);
+  test.skip('listPhoneNumbers: required and optional params', async () => {
+    const response = await client.whatsapp.listPhoneNumbers({ account_id: 'account_id' });
   });
 });

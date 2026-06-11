@@ -5,6 +5,7 @@ import * as MessagesAPI from './messages';
 import { Messages } from './messages';
 import * as CommentsAPI from './comments/comments';
 import {
+  CommentDeleteParams,
   CommentDeleteResponse,
   CommentListParams,
   CommentListResponse,
@@ -39,6 +40,7 @@ export declare namespace Inbox {
     type CommentReplyResponse as CommentReplyResponse,
     type CommentRetrieveParams as CommentRetrieveParams,
     type CommentListParams as CommentListParams,
+    type CommentDeleteParams as CommentDeleteParams,
     type CommentPrivateReplyParams as CommentPrivateReplyParams,
     type CommentReplyParams as CommentReplyParams,
   };

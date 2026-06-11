@@ -9,6 +9,7 @@ export {
   type CommentReplyResponse,
   type CommentRetrieveParams,
   type CommentListParams,
+  type CommentDeleteParams,
   type CommentPrivateReplyParams,
   type CommentReplyParams,
 } from './comments/index';

@@ -9,15 +9,31 @@ export class Like extends APIResource {
   /**
    * Like a comment
    */
-  create(commentID: string, options?: RequestOptions): APIPromise<LikeCreateResponse> {
-    return this._client.post(path`/v1/inbox/comments/${commentID}/like`, options);
+  create(
+    commentID: string,
+    params: LikeCreateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LikeCreateResponse> {
+    const { account_id } = params ?? {};
+    return this._client.post(path`/v1/inbox/comments/${commentID}/like`, {
+      query: { account_id },
+      ...options,
+    });
   }
 
   /**
    * Unlike a comment
    */
-  delete(commentID: string, options?: RequestOptions): APIPromise<LikeDeleteResponse> {
-    return this._client.delete(path`/v1/inbox/comments/${commentID}/like`, options);
+  delete(
+    commentID: string,
+    params: LikeDeleteParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LikeDeleteResponse> {
+    const { account_id } = params ?? {};
+    return this._client.delete(path`/v1/inbox/comments/${commentID}/like`, {
+      query: { account_id },
+      ...options,
+    });
   }
 }
 
@@ -45,6 +61,25 @@ export interface LikeDeleteResponse {
   comment_id?: string;
 }
 
+export interface LikeCreateParams {
+  /**
+   * Target a specific account instead of fanning out to all org accounts
+   */
+  account_id?: string;
+}
+
+export interface LikeDeleteParams {
+  /**
+   * Target a specific account instead of fanning out to all org accounts
+   */
+  account_id?: string;
+}
+
 export declare namespace Like {
-  export { type LikeCreateResponse as LikeCreateResponse, type LikeDeleteResponse as LikeDeleteResponse };
+  export {
+    type LikeCreateResponse as LikeCreateResponse,
+    type LikeDeleteResponse as LikeDeleteResponse,
+    type LikeCreateParams as LikeCreateParams,
+    type LikeDeleteParams as LikeDeleteParams,
+  };
 }

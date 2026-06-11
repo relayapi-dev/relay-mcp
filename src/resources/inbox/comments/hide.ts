@@ -9,15 +9,31 @@ export class Hide extends APIResource {
   /**
    * Hide a comment
    */
-  create(commentID: string, options?: RequestOptions): APIPromise<HideCreateResponse> {
-    return this._client.post(path`/v1/inbox/comments/${commentID}/hide`, options);
+  create(
+    commentID: string,
+    params: HideCreateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HideCreateResponse> {
+    const { account_id } = params ?? {};
+    return this._client.post(path`/v1/inbox/comments/${commentID}/hide`, {
+      query: { account_id },
+      ...options,
+    });
   }
 
   /**
    * Unhide a comment
    */
-  delete(commentID: string, options?: RequestOptions): APIPromise<HideDeleteResponse> {
-    return this._client.delete(path`/v1/inbox/comments/${commentID}/hide`, options);
+  delete(
+    commentID: string,
+    params: HideDeleteParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HideDeleteResponse> {
+    const { account_id } = params ?? {};
+    return this._client.delete(path`/v1/inbox/comments/${commentID}/hide`, {
+      query: { account_id },
+      ...options,
+    });
   }
 }
 
@@ -45,6 +61,25 @@ export interface HideDeleteResponse {
   comment_id?: string;
 }
 
+export interface HideCreateParams {
+  /**
+   * Target a specific account instead of fanning out to all org accounts
+   */
+  account_id?: string;
+}
+
+export interface HideDeleteParams {
+  /**
+   * Target a specific account instead of fanning out to all org accounts
+   */
+  account_id?: string;
+}
+
 export declare namespace Hide {
-  export { type HideCreateResponse as HideCreateResponse, type HideDeleteResponse as HideDeleteResponse };
+  export {
+    type HideCreateResponse as HideCreateResponse,
+    type HideDeleteResponse as HideDeleteResponse,
+    type HideCreateParams as HideCreateParams,
+    type HideDeleteParams as HideDeleteParams,
+  };
 }

@@ -71,7 +71,11 @@ describe('resource broadcasts', () => {
 
   // Mock server tests are disabled
   test.skip('list: required and optional params', async () => {
-    const response = await client.whatsapp.broadcasts.list({ account_id: 'account_id' });
+    const response = await client.whatsapp.broadcasts.list({
+      account_id: 'account_id',
+      cursor: 'cursor',
+      limit: 1,
+    });
   });
 
   // Mock server tests are disabled

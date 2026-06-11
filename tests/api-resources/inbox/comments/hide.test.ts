@@ -21,6 +21,18 @@ describe('resource hide', () => {
   });
 
   // Mock server tests are disabled
+  test.skip('create: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.inbox.comments.hide.create(
+        'comment_id',
+        { account_id: 'account_id' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
+  });
+
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.inbox.comments.hide.delete('comment_id');
     const rawResponse = await responsePromise.asResponse();
@@ -30,5 +42,17 @@ describe('resource hide', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('delete: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.inbox.comments.hide.delete(
+        'comment_id',
+        { account_id: 'account_id' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Relay.NotFoundError);
   });
 });

@@ -1174,13 +1174,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'post',
     summary: 'Upload a file',
     description:
-      'Upload a raw file body. Pass the filename as a query parameter and set the Content-Type header.',
+      "Upload a raw file body. Pass the filename as a query parameter and set the Content-Type header to the file's actual MIME type (e.g. image/png, video/mp4). The Content-Type is validated against an allowlist; application/octet-stream is rejected.",
     stainlessPath: '(resource) media > (method) upload',
     qualified: 'client.media.upload',
     params: ['filename: string;', 'body: string;'],
     response: '{ filename: string; size: number; type: string; url: string; }',
     markdown:
-      "## upload\n\n`client.media.upload(filename: string, body: string): { filename: string; size: number; type: string; url: string; }`\n\n**post** `/v1/media/upload`\n\nUpload a raw file body. Pass the filename as a query parameter and set the Content-Type header.\n\n### Parameters\n\n- `filename: string`\n  Original filename\n\n- `body: string`\n\n### Returns\n\n- `{ filename: string; size: number; type: string; url: string; }`\n\n  - `filename: string`\n  - `size: number`\n  - `type: string`\n  - `url: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.media.upload(fs.createReadStream('path/to/file'), { filename: 'filename' });\n\nconsole.log(response);\n```",
+      "## upload\n\n`client.media.upload(filename: string, body: string): { filename: string; size: number; type: string; url: string; }`\n\n**post** `/v1/media/upload`\n\nUpload a raw file body. Pass the filename as a query parameter and set the Content-Type header to the file's actual MIME type (e.g. image/png, video/mp4). The Content-Type is validated against an allowlist; application/octet-stream is rejected.\n\n### Parameters\n\n- `filename: string`\n  Original filename\n\n- `body: string`\n\n### Returns\n\n- `{ filename: string; size: number; type: string; url: string; }`\n\n  - `filename: string`\n  - `size: number`\n  - `type: string`\n  - `url: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.media.upload(fs.createReadStream('path/to/file'), { filename: 'filename' });\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.media.upload',
@@ -1781,9 +1781,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.connect.fetchPendingData',
     params: ['token: string;'],
     response:
-      '{ platform: string; temp_token: string; user_profile: { id: string; avatar_url: string; name: string; username: string; }; boards?: object[]; locations?: object[]; organizations?: object[]; pages?: object[]; profiles?: object[]; }',
+      "{ platform: string; status: 'success' | 'pending_selection' | 'error'; account?: { id: string; avatar_url: string; connected_at: string; display_name: string; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; workspace: { id: string; name: string; }; }; error?: string; error_code?: string; error_description?: string; error_message?: string; }",
     markdown:
-      "## fetch_pending_data\n\n`client.connect.fetchPendingData(token: string): { platform: string; temp_token: string; user_profile: object; boards?: object[]; locations?: object[]; organizations?: object[]; pages?: object[]; profiles?: object[]; }`\n\n**get** `/v1/connect/pending-data`\n\nOne-time use, expires after 10 minutes. For headless OAuth flows.\n\n### Parameters\n\n- `token: string`\n  Temporary token from headless OAuth flow\n\n### Returns\n\n- `{ platform: string; temp_token: string; user_profile: { id: string; avatar_url: string; name: string; username: string; }; boards?: object[]; locations?: object[]; organizations?: object[]; pages?: object[]; profiles?: object[]; }`\n\n  - `platform: string`\n  - `temp_token: string`\n  - `user_profile: { id: string; avatar_url: string; name: string; username: string; }`\n  - `boards?: object[]`\n  - `locations?: object[]`\n  - `organizations?: object[]`\n  - `pages?: object[]`\n  - `profiles?: object[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.connect.fetchPendingData({ token: 'token' });\n\nconsole.log(response);\n```",
+      "## fetch_pending_data\n\n`client.connect.fetchPendingData(token: string): { platform: string; status: 'success' | 'pending_selection' | 'error'; account?: object; error?: string; error_code?: string; error_description?: string; error_message?: string; }`\n\n**get** `/v1/connect/pending-data`\n\nOne-time use, expires after 10 minutes. For headless OAuth flows.\n\n### Parameters\n\n- `token: string`\n  Temporary token from headless OAuth flow\n\n### Returns\n\n- `{ platform: string; status: 'success' | 'pending_selection' | 'error'; account?: { id: string; avatar_url: string; connected_at: string; display_name: string; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; workspace: { id: string; name: string; }; }; error?: string; error_code?: string; error_description?: string; error_message?: string; }`\n\n  - `platform: string`\n  - `status: 'success' | 'pending_selection' | 'error'`\n  - `account?: { id: string; avatar_url: string; connected_at: string; display_name: string; metadata: object; platform: string; platform_account_id: string; updated_at: string; username: string; workspace: { id: string; name: string; }; }`\n  - `error?: string`\n  - `error_code?: string`\n  - `error_description?: string`\n  - `error_message?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.connect.fetchPendingData({ token: 'token' });\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.connect.fetchPendingData',
@@ -1820,9 +1820,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     stainlessPath: '(resource) connect > (method) start_oauth_flow',
     qualified: 'client.connect.startOAuthFlow',
     params: ['platform: string;', 'headless?: string;', 'method?: string;', 'redirect_url?: string;'],
-    response: '{ auth_url: string; }',
+    response: '{ auth_url: string; temp_token?: string; }',
     markdown:
-      '## start_oauth_flow\n\n`client.connect.startOAuthFlow(platform: string, headless?: string, method?: string, redirect_url?: string): { auth_url: string; }`\n\n**get** `/v1/connect/{platform}`\n\nReturns an auth_url to redirect the user for OAuth authorization.\n\n### Parameters\n\n- `platform: string`\n  OAuth platform to connect\n\n- `headless?: string`\n  Set to "true" for headless mode (returns data instead of redirecting)\n\n- `method?: string`\n  Auth method variant (e.g. "direct" for Instagram Login instead of Facebook Login)\n\n- `redirect_url?: string`\n  URL to redirect after OAuth completes\n\n### Returns\n\n- `{ auth_url: string; }`\n\n  - `auth_url: string`\n\n### Example\n\n```typescript\nimport Relay from \'@relayapi/mcp\';\n\nconst client = new Relay();\n\nconst response = await client.connect.startOAuthFlow(\'twitter\');\n\nconsole.log(response);\n```',
+      '## start_oauth_flow\n\n`client.connect.startOAuthFlow(platform: string, headless?: string, method?: string, redirect_url?: string): { auth_url: string; temp_token?: string; }`\n\n**get** `/v1/connect/{platform}`\n\nReturns an auth_url to redirect the user for OAuth authorization.\n\n### Parameters\n\n- `platform: string`\n  OAuth platform to connect\n\n- `headless?: string`\n  Set to "true" for headless mode (returns data instead of redirecting)\n\n- `method?: string`\n  Auth method variant (e.g. "direct" for Instagram Login instead of Facebook Login)\n\n- `redirect_url?: string`\n  URL to redirect after OAuth completes\n\n### Returns\n\n- `{ auth_url: string; temp_token?: string; }`\n\n  - `auth_url: string`\n  - `temp_token?: string`\n\n### Example\n\n```typescript\nimport Relay from \'@relayapi/mcp\';\n\nconst client = new Relay();\n\nconst response = await client.connect.startOAuthFlow(\'twitter\');\n\nconsole.log(response);\n```',
     perLanguage: {
       typescript: {
         method: 'client.connect.startOAuthFlow',
@@ -3197,31 +3197,31 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       '{ id: string; created_at: string; is_default: boolean; slots: { day_of_week: number; time: string; timezone: string; }[]; updated_at: string; name?: string; }',
     markdown:
-      "## create\n\n`client.queue.slots.create(slots: { day_of_week: number; time: string; timezone: string; }[], timezone: string, name?: string): { id: string; created_at: string; is_default: boolean; slots: object[]; updated_at: string; name?: string; }`\n\n**post** `/v1/queue/slots`\n\nCreate a queue schedule\n\n### Parameters\n\n- `slots: { day_of_week: number; time: string; timezone: string; }[]`\n  Time slots\n\n- `timezone: string`\n  Default timezone for slots\n\n- `name?: string`\n  Schedule name\n\n### Returns\n\n- `{ id: string; created_at: string; is_default: boolean; slots: { day_of_week: number; time: string; timezone: string; }[]; updated_at: string; name?: string; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `is_default: boolean`\n  - `slots: { day_of_week: number; time: string; timezone: string; }[]`\n  - `updated_at: string`\n  - `name?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst slot = await client.queue.slots.create({ slots: [{\n  day_of_week: 0,\n  time: '73:16',\n  timezone: 'timezone',\n}], timezone: 'timezone' });\n\nconsole.log(slot);\n```",
+      "## create\n\n`client.queue.slots.create(slots: { day_of_week: number; time: string; timezone: string; }[], timezone: string, name?: string): { id: string; created_at: string; is_default: boolean; slots: object[]; updated_at: string; name?: string; }`\n\n**post** `/v1/queue/slots`\n\nCreate a queue schedule\n\n### Parameters\n\n- `slots: { day_of_week: number; time: string; timezone: string; }[]`\n  Time slots\n\n- `timezone: string`\n  Default timezone for slots\n\n- `name?: string`\n  Schedule name\n\n### Returns\n\n- `{ id: string; created_at: string; is_default: boolean; slots: { day_of_week: number; time: string; timezone: string; }[]; updated_at: string; name?: string; }`\n\n  - `id: string`\n  - `created_at: string`\n  - `is_default: boolean`\n  - `slots: { day_of_week: number; time: string; timezone: string; }[]`\n  - `updated_at: string`\n  - `name?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst slot = await client.queue.slots.create({ slots: [{\n  day_of_week: 0,\n  time: '20:29',\n  timezone: 'timezone',\n}], timezone: 'timezone' });\n\nconsole.log(slot);\n```",
     perLanguage: {
       typescript: {
         method: 'client.queue.slots.create',
         example:
-          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst slot = await client.queue.slots.create({\n  slots: [\n    {\n      day_of_week: 0,\n      time: '73:16',\n      timezone: 'timezone',\n    },\n  ],\n  timezone: 'timezone',\n});\n\nconsole.log(slot.id);",
+          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst slot = await client.queue.slots.create({\n  slots: [\n    {\n      day_of_week: 0,\n      time: '20:29',\n      timezone: 'timezone',\n    },\n  ],\n  timezone: 'timezone',\n});\n\nconsole.log(slot.id);",
       },
       python: {
         method: 'queue.slots.create',
         example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nslot = client.queue.slots.create(\n    slots=[{\n        "day_of_week": 0,\n        "time": "73:16",\n        "timezone": "timezone",\n    }],\n    timezone="timezone",\n)\nprint(slot.id)',
+          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nslot = client.queue.slots.create(\n    slots=[{\n        "day_of_week": 0,\n        "time": "20:29",\n        "timezone": "timezone",\n    }],\n    timezone="timezone",\n)\nprint(slot.id)',
       },
       java: {
         method: 'queue().slots().create',
         example:
-          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.queue.slots.SlotCreateParams;\nimport dev.relayapi.models.queue.slots.SlotCreateResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        SlotCreateParams params = SlotCreateParams.builder()\n            .addSlot(SlotCreateParams.Slot.builder()\n                .dayOfWeek(0L)\n                .time("73:16")\n                .timezone("timezone")\n                .build())\n            .timezone("timezone")\n            .build();\n        SlotCreateResponse slot = client.queue().slots().create(params);\n    }\n}',
+          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.queue.slots.SlotCreateParams;\nimport dev.relayapi.models.queue.slots.SlotCreateResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        SlotCreateParams params = SlotCreateParams.builder()\n            .addSlot(SlotCreateParams.Slot.builder()\n                .dayOfWeek(0L)\n                .time("20:29")\n                .timezone("timezone")\n                .build())\n            .timezone("timezone")\n            .build();\n        SlotCreateResponse slot = client.queue().slots().create(params);\n    }\n}',
       },
       go: {
         method: 'client.Queue.Slots.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tslot, err := client.Queue.Slots.New(context.TODO(), relaygo.QueueSlotNewParams{\n\t\tSlots: relaygo.F([]relaygo.QueueSlotNewParamsSlot{{\n\t\t\tDayOfWeek: relaygo.F(int64(0)),\n\t\t\tTime:      relaygo.F("73:16"),\n\t\t\tTimezone:  relaygo.F("timezone"),\n\t\t}}),\n\t\tTimezone: relaygo.F("timezone"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", slot.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tslot, err := client.Queue.Slots.New(context.TODO(), relaygo.QueueSlotNewParams{\n\t\tSlots: relaygo.F([]relaygo.QueueSlotNewParamsSlot{{\n\t\t\tDayOfWeek: relaygo.F(int64(0)),\n\t\t\tTime:      relaygo.F("20:29"),\n\t\t\tTimezone:  relaygo.F("timezone"),\n\t\t}}),\n\t\tTimezone: relaygo.F("timezone"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", slot.ID)\n}\n',
       },
       http: {
         example:
-          'curl https://api.relayapi.dev/v1/queue/slots \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $RELAY_API_KEY" \\\n    -d \'{\n          "slots": [\n            {\n              "day_of_week": 0,\n              "time": "73:16",\n              "timezone": "timezone"\n            }\n          ],\n          "timezone": "timezone"\n        }\'',
+          'curl https://api.relayapi.dev/v1/queue/slots \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $RELAY_API_KEY" \\\n    -d \'{\n          "slots": [\n            {\n              "day_of_week": 0,\n              "time": "20:29",\n              "timezone": "timezone"\n            }\n          ],\n          "timezone": "timezone"\n        }\'',
       },
     },
   },
@@ -3679,10 +3679,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Delete a comment',
     stainlessPath: '(resource) inbox.comments > (method) delete',
     qualified: 'client.inbox.comments.delete',
-    params: ['comment_id: string;'],
+    params: ['comment_id: string;', 'account_id?: string;'],
     response: '{ success: boolean; comment_id?: string; }',
     markdown:
-      "## delete\n\n`client.inbox.comments.delete(comment_id: string): { success: boolean; comment_id?: string; }`\n\n**delete** `/v1/inbox/comments/{comment_id}`\n\nDelete a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst comment = await client.inbox.comments.delete('comment_id');\n\nconsole.log(comment);\n```",
+      "## delete\n\n`client.inbox.comments.delete(comment_id: string, account_id?: string): { success: boolean; comment_id?: string; }`\n\n**delete** `/v1/inbox/comments/{comment_id}`\n\nDelete a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n- `account_id?: string`\n  Target a specific account instead of fanning out to all org accounts\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst comment = await client.inbox.comments.delete('comment_id');\n\nconsole.log(comment);\n```",
     perLanguage: {
       typescript: {
         method: 'client.inbox.comments.delete',
@@ -3692,7 +3692,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'inbox.comments.delete',
         example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\ncomment = client.inbox.comments.delete(\n    "comment_id",\n)\nprint(comment.comment_id)',
+          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\ncomment = client.inbox.comments.delete(\n    comment_id="comment_id",\n)\nprint(comment.comment_id)',
       },
       java: {
         method: 'inbox().comments().delete',
@@ -3702,7 +3702,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Inbox.Comments.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcomment, err := client.Inbox.Comments.Delete(context.TODO(), "comment_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", comment.CommentID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcomment, err := client.Inbox.Comments.Delete(\n\t\tcontext.TODO(),\n\t\t"comment_id",\n\t\trelaygo.InboxCommentDeleteParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", comment.CommentID)\n}\n',
       },
       http: {
         example:
@@ -3757,10 +3757,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Hide a comment',
     stainlessPath: '(resource) inbox.comments.hide > (method) create',
     qualified: 'client.inbox.comments.hide.create',
-    params: ['comment_id: string;'],
+    params: ['comment_id: string;', 'account_id?: string;'],
     response: '{ success: boolean; comment_id?: string; }',
     markdown:
-      "## create\n\n`client.inbox.comments.hide.create(comment_id: string): { success: boolean; comment_id?: string; }`\n\n**post** `/v1/inbox/comments/{comment_id}/hide`\n\nHide a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst hide = await client.inbox.comments.hide.create('comment_id');\n\nconsole.log(hide);\n```",
+      "## create\n\n`client.inbox.comments.hide.create(comment_id: string, account_id?: string): { success: boolean; comment_id?: string; }`\n\n**post** `/v1/inbox/comments/{comment_id}/hide`\n\nHide a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n- `account_id?: string`\n  Target a specific account instead of fanning out to all org accounts\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst hide = await client.inbox.comments.hide.create('comment_id');\n\nconsole.log(hide);\n```",
     perLanguage: {
       typescript: {
         method: 'client.inbox.comments.hide.create',
@@ -3770,7 +3770,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'inbox.comments.hide.create',
         example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nhide = client.inbox.comments.hide.create(\n    "comment_id",\n)\nprint(hide.comment_id)',
+          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nhide = client.inbox.comments.hide.create(\n    comment_id="comment_id",\n)\nprint(hide.comment_id)',
       },
       java: {
         method: 'inbox().comments().hide().create',
@@ -3780,7 +3780,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Inbox.Comments.Hide.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\thide, err := client.Inbox.Comments.Hide.New(context.TODO(), "comment_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hide.CommentID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\thide, err := client.Inbox.Comments.Hide.New(\n\t\tcontext.TODO(),\n\t\t"comment_id",\n\t\trelaygo.InboxCommentHideNewParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hide.CommentID)\n}\n',
       },
       http: {
         example:
@@ -3796,10 +3796,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Unhide a comment',
     stainlessPath: '(resource) inbox.comments.hide > (method) delete',
     qualified: 'client.inbox.comments.hide.delete',
-    params: ['comment_id: string;'],
+    params: ['comment_id: string;', 'account_id?: string;'],
     response: '{ success: boolean; comment_id?: string; }',
     markdown:
-      "## delete\n\n`client.inbox.comments.hide.delete(comment_id: string): { success: boolean; comment_id?: string; }`\n\n**delete** `/v1/inbox/comments/{comment_id}/hide`\n\nUnhide a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst hide = await client.inbox.comments.hide.delete('comment_id');\n\nconsole.log(hide);\n```",
+      "## delete\n\n`client.inbox.comments.hide.delete(comment_id: string, account_id?: string): { success: boolean; comment_id?: string; }`\n\n**delete** `/v1/inbox/comments/{comment_id}/hide`\n\nUnhide a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n- `account_id?: string`\n  Target a specific account instead of fanning out to all org accounts\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst hide = await client.inbox.comments.hide.delete('comment_id');\n\nconsole.log(hide);\n```",
     perLanguage: {
       typescript: {
         method: 'client.inbox.comments.hide.delete',
@@ -3809,7 +3809,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'inbox.comments.hide.delete',
         example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nhide = client.inbox.comments.hide.delete(\n    "comment_id",\n)\nprint(hide.comment_id)',
+          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nhide = client.inbox.comments.hide.delete(\n    comment_id="comment_id",\n)\nprint(hide.comment_id)',
       },
       java: {
         method: 'inbox().comments().hide().delete',
@@ -3819,7 +3819,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Inbox.Comments.Hide.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\thide, err := client.Inbox.Comments.Hide.Delete(context.TODO(), "comment_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hide.CommentID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\thide, err := client.Inbox.Comments.Hide.Delete(\n\t\tcontext.TODO(),\n\t\t"comment_id",\n\t\trelaygo.InboxCommentHideDeleteParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", hide.CommentID)\n}\n',
       },
       http: {
         example:
@@ -3835,10 +3835,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Like a comment',
     stainlessPath: '(resource) inbox.comments.like > (method) create',
     qualified: 'client.inbox.comments.like.create',
-    params: ['comment_id: string;'],
+    params: ['comment_id: string;', 'account_id?: string;'],
     response: '{ success: boolean; comment_id?: string; }',
     markdown:
-      "## create\n\n`client.inbox.comments.like.create(comment_id: string): { success: boolean; comment_id?: string; }`\n\n**post** `/v1/inbox/comments/{comment_id}/like`\n\nLike a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst like = await client.inbox.comments.like.create('comment_id');\n\nconsole.log(like);\n```",
+      "## create\n\n`client.inbox.comments.like.create(comment_id: string, account_id?: string): { success: boolean; comment_id?: string; }`\n\n**post** `/v1/inbox/comments/{comment_id}/like`\n\nLike a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n- `account_id?: string`\n  Target a specific account instead of fanning out to all org accounts\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst like = await client.inbox.comments.like.create('comment_id');\n\nconsole.log(like);\n```",
     perLanguage: {
       typescript: {
         method: 'client.inbox.comments.like.create',
@@ -3848,7 +3848,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'inbox.comments.like.create',
         example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nlike = client.inbox.comments.like.create(\n    "comment_id",\n)\nprint(like.comment_id)',
+          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nlike = client.inbox.comments.like.create(\n    comment_id="comment_id",\n)\nprint(like.comment_id)',
       },
       java: {
         method: 'inbox().comments().like().create',
@@ -3858,7 +3858,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Inbox.Comments.Like.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tlike, err := client.Inbox.Comments.Like.New(context.TODO(), "comment_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", like.CommentID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tlike, err := client.Inbox.Comments.Like.New(\n\t\tcontext.TODO(),\n\t\t"comment_id",\n\t\trelaygo.InboxCommentLikeNewParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", like.CommentID)\n}\n',
       },
       http: {
         example:
@@ -3874,10 +3874,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Unlike a comment',
     stainlessPath: '(resource) inbox.comments.like > (method) delete',
     qualified: 'client.inbox.comments.like.delete',
-    params: ['comment_id: string;'],
+    params: ['comment_id: string;', 'account_id?: string;'],
     response: '{ success: boolean; comment_id?: string; }',
     markdown:
-      "## delete\n\n`client.inbox.comments.like.delete(comment_id: string): { success: boolean; comment_id?: string; }`\n\n**delete** `/v1/inbox/comments/{comment_id}/like`\n\nUnlike a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst like = await client.inbox.comments.like.delete('comment_id');\n\nconsole.log(like);\n```",
+      "## delete\n\n`client.inbox.comments.like.delete(comment_id: string, account_id?: string): { success: boolean; comment_id?: string; }`\n\n**delete** `/v1/inbox/comments/{comment_id}/like`\n\nUnlike a comment\n\n### Parameters\n\n- `comment_id: string`\n  Comment ID\n\n- `account_id?: string`\n  Target a specific account instead of fanning out to all org accounts\n\n### Returns\n\n- `{ success: boolean; comment_id?: string; }`\n\n  - `success: boolean`\n  - `comment_id?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst like = await client.inbox.comments.like.delete('comment_id');\n\nconsole.log(like);\n```",
     perLanguage: {
       typescript: {
         method: 'client.inbox.comments.like.delete',
@@ -3887,7 +3887,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'inbox.comments.like.delete',
         example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nlike = client.inbox.comments.like.delete(\n    "comment_id",\n)\nprint(like.comment_id)',
+          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nlike = client.inbox.comments.like.delete(\n    comment_id="comment_id",\n)\nprint(like.comment_id)',
       },
       java: {
         method: 'inbox().comments().like().delete',
@@ -3897,7 +3897,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Inbox.Comments.Like.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tlike, err := client.Inbox.Comments.Like.Delete(context.TODO(), "comment_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", like.CommentID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tlike, err := client.Inbox.Comments.Like.Delete(\n\t\tcontext.TODO(),\n\t\t"comment_id",\n\t\trelaygo.InboxCommentLikeDeleteParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", like.CommentID)\n}\n',
       },
       http: {
         example:
@@ -4177,37 +4177,35 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'list_phone_numbers',
     endpoint: '/v1/whatsapp/phone-numbers',
     httpMethod: 'get',
-    summary: 'List purchased phone numbers',
-    description: 'List purchased phone numbers',
+    summary: 'List registered phone numbers',
+    description: 'List registered phone numbers',
     stainlessPath: '(resource) whatsapp > (method) list_phone_numbers',
     qualified: 'client.whatsapp.listPhoneNumbers',
-    params: [
-      "status?: 'purchasing' | 'pending_verification' | 'verified' | 'active' | 'releasing' | 'released';",
-    ],
+    params: ['account_id: string;'],
     response:
-      "{ data: { id: string; country: string; created_at: string; monthly_cost_cents: number; phone_number: string; provider: string; status: 'purchasing' | 'pending_verification' | 'verified' | 'active' | 'releasing' | 'released'; social_account_id?: string; wa_phone_number_id?: string; }[]; }",
+      "{ data: { id: string; phone_number: string; status: 'active' | 'inactive' | 'pending'; display_name?: string; }[]; }",
     markdown:
-      "## list_phone_numbers\n\n`client.whatsapp.listPhoneNumbers(status?: 'purchasing' | 'pending_verification' | 'verified' | 'active' | 'releasing' | 'released'): { data: object[]; }`\n\n**get** `/v1/whatsapp/phone-numbers`\n\nList purchased phone numbers\n\n### Parameters\n\n- `status?: 'purchasing' | 'pending_verification' | 'verified' | 'active' | 'releasing' | 'released'`\n  Filter by provisioning status\n\n### Returns\n\n- `{ data: { id: string; country: string; created_at: string; monthly_cost_cents: number; phone_number: string; provider: string; status: 'purchasing' | 'pending_verification' | 'verified' | 'active' | 'releasing' | 'released'; social_account_id?: string; wa_phone_number_id?: string; }[]; }`\n\n  - `data: { id: string; country: string; created_at: string; monthly_cost_cents: number; phone_number: string; provider: string; status: 'purchasing' | 'pending_verification' | 'verified' | 'active' | 'releasing' | 'released'; social_account_id?: string; wa_phone_number_id?: string; }[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.whatsapp.listPhoneNumbers();\n\nconsole.log(response);\n```",
+      "## list_phone_numbers\n\n`client.whatsapp.listPhoneNumbers(account_id: string): { data: object[]; }`\n\n**get** `/v1/whatsapp/phone-numbers`\n\nList registered phone numbers\n\n### Parameters\n\n- `account_id: string`\n  WhatsApp account ID\n\n### Returns\n\n- `{ data: { id: string; phone_number: string; status: 'active' | 'inactive' | 'pending'; display_name?: string; }[]; }`\n\n  - `data: { id: string; phone_number: string; status: 'active' | 'inactive' | 'pending'; display_name?: string; }[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst response = await client.whatsapp.listPhoneNumbers({ account_id: 'account_id' });\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.whatsapp.listPhoneNumbers',
         example:
-          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.whatsapp.listPhoneNumbers();\n\nconsole.log(response.data);",
+          "import Relay from '@relayapi/mcp';\n\nconst client = new Relay({\n  apiKey: process.env['RELAY_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.whatsapp.listPhoneNumbers({ account_id: 'account_id' });\n\nconsole.log(response.data);",
       },
       python: {
         method: 'whatsapp.list_phone_numbers',
         example:
-          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.whatsapp.list_phone_numbers()\nprint(response.data)',
+          'import os\nfrom relay import Relay\n\nclient = Relay(\n    api_key=os.environ.get("RELAY_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.whatsapp.list_phone_numbers(\n    account_id="account_id",\n)\nprint(response.data)',
       },
       java: {
         method: 'whatsapp().listPhoneNumbers',
         example:
-          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.whatsapp.WhatsappListPhoneNumbersParams;\nimport dev.relayapi.models.whatsapp.WhatsappListPhoneNumbersResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        WhatsappListPhoneNumbersResponse response = client.whatsapp().listPhoneNumbers();\n    }\n}',
+          'package dev.relayapi.example;\n\nimport dev.relayapi.client.RelayClient;\nimport dev.relayapi.client.okhttp.RelayOkHttpClient;\nimport dev.relayapi.models.whatsapp.WhatsappListPhoneNumbersParams;\nimport dev.relayapi.models.whatsapp.WhatsappListPhoneNumbersResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        RelayClient client = RelayOkHttpClient.fromEnv();\n\n        WhatsappListPhoneNumbersParams params = WhatsappListPhoneNumbersParams.builder()\n            .accountId("account_id")\n            .build();\n        WhatsappListPhoneNumbersResponse response = client.whatsapp().listPhoneNumbers(params);\n    }\n}',
       },
       go: {
         method: 'client.Whatsapp.ListPhoneNumbers',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Whatsapp.ListPhoneNumbers(context.TODO(), relaygo.WhatsappListPhoneNumbersParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.Data)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/relayapi-dev/relay-go"\n\t"github.com/relayapi-dev/relay-go/option"\n)\n\nfunc main() {\n\tclient := relaygo.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Whatsapp.ListPhoneNumbers(context.TODO(), relaygo.WhatsappListPhoneNumbersParams{\n\t\tAccountID: relaygo.F("account_id"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.Data)\n}\n',
       },
       http: {
         example:
@@ -4223,11 +4221,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description: 'Deprecated. Use GET /v1/broadcasts instead.',
     stainlessPath: '(resource) whatsapp.broadcasts > (method) list',
     qualified: 'client.whatsapp.broadcasts.list',
-    params: ['account_id: string;'],
+    params: ['account_id: string;', 'cursor?: string;', 'limit?: number;'],
     response:
-      "{ data: { id: string; created_at: string; name: string; recipient_count: number; status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed'; template: string; failed?: number; scheduled_at?: string; sent?: number; }[]; }",
+      "{ data: { id: string; created_at: string; name: string; recipient_count: number; status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed'; template: string; failed?: number; scheduled_at?: string; sent?: number; }[]; has_more?: boolean; next_cursor?: string; }",
     markdown:
-      "## list\n\n`client.whatsapp.broadcasts.list(account_id: string): { data: object[]; }`\n\n**get** `/v1/whatsapp/broadcasts`\n\nDeprecated. Use GET /v1/broadcasts instead.\n\n### Parameters\n\n- `account_id: string`\n  WhatsApp account ID\n\n### Returns\n\n- `{ data: { id: string; created_at: string; name: string; recipient_count: number; status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed'; template: string; failed?: number; scheduled_at?: string; sent?: number; }[]; }`\n\n  - `data: { id: string; created_at: string; name: string; recipient_count: number; status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed'; template: string; failed?: number; scheduled_at?: string; sent?: number; }[]`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst broadcasts = await client.whatsapp.broadcasts.list({ account_id: 'account_id' });\n\nconsole.log(broadcasts);\n```",
+      "## list\n\n`client.whatsapp.broadcasts.list(account_id: string, cursor?: string, limit?: number): { data: object[]; has_more?: boolean; next_cursor?: string; }`\n\n**get** `/v1/whatsapp/broadcasts`\n\nDeprecated. Use GET /v1/broadcasts instead.\n\n### Parameters\n\n- `account_id: string`\n  WhatsApp account ID\n\n- `cursor?: string`\n  Pagination cursor\n\n- `limit?: number`\n  Number of items per page\n\n### Returns\n\n- `{ data: { id: string; created_at: string; name: string; recipient_count: number; status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed'; template: string; failed?: number; scheduled_at?: string; sent?: number; }[]; has_more?: boolean; next_cursor?: string; }`\n\n  - `data: { id: string; created_at: string; name: string; recipient_count: number; status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed'; template: string; failed?: number; scheduled_at?: string; sent?: number; }[]`\n  - `has_more?: boolean`\n  - `next_cursor?: string`\n\n### Example\n\n```typescript\nimport Relay from '@relayapi/mcp';\n\nconst client = new Relay();\n\nconst broadcasts = await client.whatsapp.broadcasts.list({ account_id: 'account_id' });\n\nconsole.log(broadcasts);\n```",
     perLanguage: {
       typescript: {
         method: 'client.whatsapp.broadcasts.list',
