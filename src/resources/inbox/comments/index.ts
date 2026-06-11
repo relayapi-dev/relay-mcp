@@ -9,8 +9,21 @@ export {
   type CommentReplyResponse,
   type CommentRetrieveParams,
   type CommentListParams,
+  type CommentDeleteParams,
   type CommentPrivateReplyParams,
   type CommentReplyParams,
 } from './comments';
-export { Hide, type HideCreateResponse, type HideDeleteResponse } from './hide';
-export { Like, type LikeCreateResponse, type LikeDeleteResponse } from './like';
+export {
+  Hide,
+  type HideCreateResponse,
+  type HideDeleteResponse,
+  type HideCreateParams,
+  type HideDeleteParams,
+} from './hide';
+export {
+  Like,
+  type LikeCreateResponse,
+  type LikeDeleteResponse,
+  type LikeCreateParams,
+  type LikeDeleteParams,
+} from './like';

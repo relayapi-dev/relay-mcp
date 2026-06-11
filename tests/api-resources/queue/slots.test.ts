@@ -14,7 +14,7 @@ describe('resource slots', () => {
       slots: [
         {
           day_of_week: 0,
-          time: '73:16',
+          time: '20:29',
           timezone: 'timezone',
         },
       ],
@@ -35,7 +35,7 @@ describe('resource slots', () => {
       slots: [
         {
           day_of_week: 0,
-          time: '73:16',
+          time: '20:29',
           timezone: 'timezone',
         },
       ],
@@ -67,7 +67,7 @@ describe('resource slots', () => {
           slots: [
             {
               day_of_week: 0,
-              time: '73:16',
+              time: '20:29',
               timezone: 'timezone',
             },
           ],

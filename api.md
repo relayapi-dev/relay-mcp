@@ -452,7 +452,7 @@ Methods:
 
 - <code title="get /v1/inbox/comments/{post_id}">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">retrieve</a>(postID, { ...params }) -> CommentRetrieveResponse</code>
 - <code title="get /v1/inbox/comments">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">list</a>({ ...params }) -> CommentListResponse</code>
-- <code title="delete /v1/inbox/comments/{comment_id}">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">delete</a>(commentID) -> CommentDeleteResponse</code>
+- <code title="delete /v1/inbox/comments/{comment_id}">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">delete</a>(commentID, { ...params }) -> CommentDeleteResponse</code>
 - <code title="post /v1/inbox/comments/{comment_id}/private-reply">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">privateReply</a>(commentID, { ...params }) -> CommentPrivateReplyResponse</code>
 - <code title="post /v1/inbox/comments/{post_id}/reply">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">reply</a>(postID, { ...params }) -> CommentReplyResponse</code>
 
@@ -465,8 +465,8 @@ Types:
 
 Methods:
 
-- <code title="post /v1/inbox/comments/{comment_id}/hide">client.inbox.comments.hide.<a href="./src/resources/inbox/comments/hide.ts">create</a>(commentID) -> HideCreateResponse</code>
-- <code title="delete /v1/inbox/comments/{comment_id}/hide">client.inbox.comments.hide.<a href="./src/resources/inbox/comments/hide.ts">delete</a>(commentID) -> HideDeleteResponse</code>
+- <code title="post /v1/inbox/comments/{comment_id}/hide">client.inbox.comments.hide.<a href="./src/resources/inbox/comments/hide.ts">create</a>(commentID, { ...params }) -> HideCreateResponse</code>
+- <code title="delete /v1/inbox/comments/{comment_id}/hide">client.inbox.comments.hide.<a href="./src/resources/inbox/comments/hide.ts">delete</a>(commentID, { ...params }) -> HideDeleteResponse</code>
 
 ### Like
 
@@ -477,8 +477,8 @@ Types:
 
 Methods:
 
-- <code title="post /v1/inbox/comments/{comment_id}/like">client.inbox.comments.like.<a href="./src/resources/inbox/comments/like.ts">create</a>(commentID) -> LikeCreateResponse</code>
-- <code title="delete /v1/inbox/comments/{comment_id}/like">client.inbox.comments.like.<a href="./src/resources/inbox/comments/like.ts">delete</a>(commentID) -> LikeDeleteResponse</code>
+- <code title="post /v1/inbox/comments/{comment_id}/like">client.inbox.comments.like.<a href="./src/resources/inbox/comments/like.ts">create</a>(commentID, { ...params }) -> LikeCreateResponse</code>
+- <code title="delete /v1/inbox/comments/{comment_id}/like">client.inbox.comments.like.<a href="./src/resources/inbox/comments/like.ts">delete</a>(commentID, { ...params }) -> LikeDeleteResponse</code>
 
 ## Messages
 

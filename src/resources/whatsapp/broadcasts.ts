@@ -161,6 +161,16 @@ export interface BroadcastRetrieveResponse {
 
 export interface BroadcastListResponse {
   data: Array<BroadcastListResponse.Data>;
+
+  /**
+   * Whether more items exist
+   */
+  has_more?: boolean;
+
+  /**
+   * Cursor for next page
+   */
+  next_cursor?: string | null;
 }
 
 export namespace BroadcastListResponse {
@@ -377,6 +387,16 @@ export interface BroadcastListParams {
    * WhatsApp account ID
    */
   account_id: string;
+
+  /**
+   * Pagination cursor
+   */
+  cursor?: string;
+
+  /**
+   * Number of items per page
+   */
+  limit?: number;
 }
 
 export declare namespace Broadcasts {
