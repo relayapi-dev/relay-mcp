@@ -29,6 +29,7 @@ describe('resource connections', () => {
           cursor: 'cursor',
           from: '2019-12-27T18:11:19.117Z',
           limit: 1,
+          offset: 0,
           to: '2019-12-27T18:11:19.117Z',
         },
         { path: '/_stainless_unknown_path' },
