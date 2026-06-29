@@ -202,6 +202,12 @@ export namespace PostCreateResponse {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
@@ -411,6 +417,12 @@ export namespace PostRetrieveResponse {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
@@ -618,6 +630,12 @@ export namespace PostUpdateResponse {
      * Public URL of the media file
      */
     url: string;
+
+    /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
 
     /**
      * Media type. Inferred from URL extension if omitted.
@@ -844,6 +862,12 @@ export namespace PostListResponse {
       url: string;
 
       /**
+       * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+       * original expires. Ignored on write.
+       */
+      thumbnail?: string;
+
+      /**
        * Media type. Inferred from URL extension if omitted.
        */
       type?: 'image' | 'video' | 'gif' | 'document';
@@ -1059,6 +1083,12 @@ export namespace PostBulkCreateResponse {
        * Public URL of the media file
        */
       url: string;
+
+      /**
+       * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+       * original expires. Ignored on write.
+       */
+      thumbnail?: string;
 
       /**
        * Media type. Inferred from URL extension if omitted.
@@ -1279,6 +1309,12 @@ export namespace PostRetryResponse {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
@@ -1486,6 +1522,12 @@ export namespace PostUnpublishResponse {
      * Public URL of the media file
      */
     url: string;
+
+    /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
 
     /**
      * Media type. Inferred from URL extension if omitted.
@@ -1736,6 +1778,12 @@ export namespace PostCreateParams {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
@@ -1826,6 +1874,12 @@ export namespace PostUpdateParams {
      * Public URL of the media file
      */
     url: string;
+
+    /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
 
     /**
      * Media type. Inferred from URL extension if omitted.
@@ -2045,6 +2099,12 @@ export namespace PostBulkCreateParams {
        * Public URL of the media file
        */
       url: string;
+
+      /**
+       * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+       * original expires. Ignored on write.
+       */
+      thumbnail?: string;
 
       /**
        * Media type. Inferred from URL extension if omitted.

@@ -86,7 +86,13 @@ describe('resource validate', () => {
         },
       ],
       idea_id: 'idea_id',
-      media: [{ url: 'https://example.com', type: 'image' }],
+      media: [
+        {
+          url: 'https://example.com',
+          thumbnail: 'thumbnail',
+          type: 'image',
+        },
+      ],
       recycling: {
         gap: 1,
         gap_freq: 'day',

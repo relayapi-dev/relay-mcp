@@ -35,7 +35,13 @@ describe('resource posts', () => {
         },
       ],
       idea_id: 'idea_id',
-      media: [{ url: 'https://example.com', type: 'image' }],
+      media: [
+        {
+          url: 'https://example.com',
+          thumbnail: 'thumbnail',
+          type: 'image',
+        },
+      ],
       recycling: {
         gap: 1,
         gap_freq: 'day',
@@ -87,7 +93,13 @@ describe('resource posts', () => {
         'id',
         {
           content: 'content',
-          media: [{ url: 'https://example.com', type: 'image' }],
+          media: [
+            {
+              url: 'https://example.com',
+              thumbnail: 'thumbnail',
+              type: 'image',
+            },
+          ],
           notes: 'notes',
           recycling: {
             gap: 1,
@@ -185,7 +197,13 @@ describe('resource posts', () => {
             },
           ],
           idea_id: 'idea_id',
-          media: [{ url: 'https://example.com', type: 'image' }],
+          media: [
+            {
+              url: 'https://example.com',
+              thumbnail: 'thumbnail',
+              type: 'image',
+            },
+          ],
           recycling: {
             gap: 1,
             gap_freq: 'day',

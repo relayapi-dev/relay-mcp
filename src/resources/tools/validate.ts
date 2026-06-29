@@ -1166,6 +1166,12 @@ export namespace ValidateValidatePostParams {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
