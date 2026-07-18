@@ -25,6 +25,7 @@ describe('resource connect', () => {
     const response = await client.connect.completeOAuthCallback('twitter', {
       code: 'code',
       redirect_url: 'https://example.com',
+      state: 'state',
     });
   });
 

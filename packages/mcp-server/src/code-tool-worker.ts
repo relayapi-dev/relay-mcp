@@ -7,6 +7,10 @@ import ts from 'typescript';
 import { WorkerOutput } from './code-tool-types';
 import { Relay, ClientOptions } from '@relayapi/mcp';
 
+async function tseval(code: string) {
+  return import('data:application/typescript;charset=utf-8;base64,' + Buffer.from(code).toString('base64'));
+}
+
 function getRunFunctionSource(code: string): {
   type: 'declaration' | 'expression';
   client: string | undefined;
@@ -145,10 +149,6 @@ const fuse = new Fuse(
     'client.apiKeys.delete',
     'client.apiKeys.list',
     'client.usage.retrieve',
-    'client.accountGroups.create',
-    'client.accountGroups.delete',
-    'client.accountGroups.list',
-    'client.accountGroups.update',
     'client.connect.completeOAuthCallback',
     'client.connect.createBlueskyConnection',
     'client.connect.fetchPendingData',
@@ -203,11 +203,6 @@ const fuse = new Fuse(
     'client.inbox.comments.hide.delete',
     'client.inbox.comments.like.create',
     'client.inbox.comments.like.delete',
-    'client.inbox.messages.archive',
-    'client.inbox.messages.edit',
-    'client.inbox.messages.list',
-    'client.inbox.messages.retrieve',
-    'client.inbox.messages.send',
     'client.inbox.reviews.list',
     'client.inbox.reviews.reply.create',
     'client.inbox.reviews.reply.delete',
@@ -225,15 +220,6 @@ const fuse = new Fuse(
     'client.whatsapp.templates.delete',
     'client.whatsapp.templates.list',
     'client.whatsapp.templates.retrieve',
-    'client.whatsapp.contacts.bulkOperations',
-    'client.whatsapp.contacts.create',
-    'client.whatsapp.contacts.delete',
-    'client.whatsapp.contacts.import',
-    'client.whatsapp.contacts.list',
-    'client.whatsapp.contacts.retrieve',
-    'client.whatsapp.groups.create',
-    'client.whatsapp.groups.delete',
-    'client.whatsapp.groups.list',
     'client.whatsapp.businessProfile.retrieve',
     'client.whatsapp.businessProfile.update',
   ],
@@ -312,7 +298,8 @@ function makeSdkProxy<T extends object>(obj: T, { path, isBelievedBad = false }:
 
 function parseError(code: string, error: unknown): string | undefined {
   if (!(error instanceof Error)) return;
-  const message = error.name ? `${error.name}: ${error.message}` : error.message;
+  const cause = error.cause instanceof Error ? `: ${error.cause.message}` : '';
+  const message = error.name ? `${error.name}: ${error.message}${cause}` : `${error.message}${cause}`;
   try {
     // Deno uses V8; the first "<anonymous>:LINE:COLUMN" is the top of stack.
     const lineNumber = error.stack?.match(/<anonymous>:([0-9]+):[0-9]+/)?.[1];
@@ -368,7 +355,9 @@ const fetch = async (req: Request): Promise<Response> => {
 
   const log_lines: string[] = [];
   const err_lines: string[] = [];
-  const console = {
+  const originalConsole = globalThis.console;
+  globalThis.console = {
+    ...originalConsole,
     log: (...args: unknown[]) => {
       log_lines.push(util.format(...args));
     },
@@ -378,7 +367,7 @@ const fetch = async (req: Request): Promise<Response> => {
   };
   try {
     let run_ = async (client: any) => {};
-    eval(`${code}\nrun_ = run;`);
+    run_ = (await tseval(`${code}\nexport default run;`)).default;
     const result = await run_(makeSdkProxy(client, { path: ['client'] }));
     return Response.json({
       is_error: false,
@@ -396,6 +385,8 @@ const fetch = async (req: Request): Promise<Response> => {
       } satisfies WorkerOutput,
       { status: 400, statusText: 'Code execution error' },
     );
+  } finally {
+    globalThis.console = originalConsole;
   }
 };
 

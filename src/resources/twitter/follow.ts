@@ -25,6 +25,51 @@ export interface FollowCreateResponse {
    * Whether the action succeeded
    */
   success: boolean;
+
+  /**
+   * Action result data from Twitter API
+   */
+  data?: FollowCreateResponse.Data;
+
+  /**
+   * Error details when success is false
+   */
+  error?: FollowCreateResponse.Error;
+}
+
+export namespace FollowCreateResponse {
+  /**
+   * Action result data from Twitter API
+   */
+  export interface Data {
+    bookmarked?: boolean;
+
+    following?: boolean;
+
+    pending_follow?: boolean;
+
+    retweeted?: boolean;
+  }
+
+  /**
+   * Error details when success is false
+   */
+  export interface Error {
+    /**
+     * Error code (e.g. ACCOUNT_NOT_FOUND, TOKEN_MISSING, TWITTER_API_ERROR)
+     */
+    code: string;
+
+    /**
+     * Human-readable error message
+     */
+    message: string;
+
+    /**
+     * Twitter API error code if available
+     */
+    twitter_error_code?: number;
+  }
 }
 
 export interface FollowUnfollowResponse {
@@ -32,6 +77,51 @@ export interface FollowUnfollowResponse {
    * Whether the action succeeded
    */
   success: boolean;
+
+  /**
+   * Action result data from Twitter API
+   */
+  data?: FollowUnfollowResponse.Data;
+
+  /**
+   * Error details when success is false
+   */
+  error?: FollowUnfollowResponse.Error;
+}
+
+export namespace FollowUnfollowResponse {
+  /**
+   * Action result data from Twitter API
+   */
+  export interface Data {
+    bookmarked?: boolean;
+
+    following?: boolean;
+
+    pending_follow?: boolean;
+
+    retweeted?: boolean;
+  }
+
+  /**
+   * Error details when success is false
+   */
+  export interface Error {
+    /**
+     * Error code (e.g. ACCOUNT_NOT_FOUND, TOKEN_MISSING, TWITTER_API_ERROR)
+     */
+    code: string;
+
+    /**
+     * Human-readable error message
+     */
+    message: string;
+
+    /**
+     * Twitter API error code if available
+     */
+    twitter_error_code?: number;
+  }
 }
 
 export interface FollowCreateParams {

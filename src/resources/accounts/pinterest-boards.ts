@@ -51,11 +51,6 @@ export interface PinterestBoardSetDefaultResponse {
 
   display_name: string | null;
 
-  /**
-   * Account group
-   */
-  group: PinterestBoardSetDefaultResponse.Group | null;
-
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -75,20 +70,29 @@ export interface PinterestBoardSetDefaultResponse {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   platform_account_id: string;
 
   updated_at: string;
 
   username: string | null;
+
+  /**
+   * Account workspace
+   */
+  workspace: PinterestBoardSetDefaultResponse.Workspace | null;
 }
 
 export namespace PinterestBoardSetDefaultResponse {
   /**
-   * Account group
+   * Account workspace
    */
-  export interface Group {
+  export interface Workspace {
     id: string;
 
     name: string;

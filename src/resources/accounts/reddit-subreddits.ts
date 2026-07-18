@@ -51,11 +51,6 @@ export interface RedditSubredditSetDefaultResponse {
 
   display_name: string | null;
 
-  /**
-   * Account group
-   */
-  group: RedditSubredditSetDefaultResponse.Group | null;
-
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -75,20 +70,29 @@ export interface RedditSubredditSetDefaultResponse {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   platform_account_id: string;
 
   updated_at: string;
 
   username: string | null;
+
+  /**
+   * Account workspace
+   */
+  workspace: RedditSubredditSetDefaultResponse.Workspace | null;
 }
 
 export namespace RedditSubredditSetDefaultResponse {
   /**
-   * Account group
+   * Account workspace
    */
-  export interface Group {
+  export interface Workspace {
     id: string;
 
     name: string;

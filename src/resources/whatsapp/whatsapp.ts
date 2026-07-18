@@ -21,20 +21,9 @@ import {
   BusinessProfileUpdateResponse,
 } from './business-profile';
 import * as ContactsAPI from './contacts';
-import {
-  ContactBulkOperationsParams,
-  ContactBulkOperationsResponse,
-  ContactCreateParams,
-  ContactCreateResponse,
-  ContactImportParams,
-  ContactImportResponse,
-  ContactListParams,
-  ContactListResponse,
-  ContactRetrieveResponse,
-  Contacts,
-} from './contacts';
+import { Contacts } from './contacts';
 import * as GroupsAPI from './groups';
-import { GroupCreateParams, GroupCreateResponse, GroupListParams, GroupListResponse, Groups } from './groups';
+import { Groups } from './groups';
 import * as TemplatesAPI from './templates';
 import {
   TemplateCreateParams,
@@ -75,40 +64,35 @@ export class Whatsapp extends APIResource {
 }
 
 export interface WhatsappBulkSendResponse {
-  results: Array<WhatsappBulkSendResponse.Result>;
+  id: string;
 
-  summary: WhatsappBulkSendResponse.Summary;
-}
+  account_id: string;
 
-export namespace WhatsappBulkSendResponse {
-  export interface Result {
-    /**
-     * Recipient phone number
-     */
-    phone: string;
+  completed_at: string | null;
 
-    /**
-     * Send status
-     */
-    status: 'sent' | 'failed';
+  created_at: string;
 
-    /**
-     * Error message if failed
-     */
-    error?: string | null;
-  }
+  description: string | null;
 
-  export interface Summary {
-    /**
-     * Failed count
-     */
-    failed: number;
+  failed_count: number;
 
-    /**
-     * Successfully sent count
-     */
-    sent: number;
-  }
+  message_text: string | null;
+
+  name: string | null;
+
+  platform: string;
+
+  recipient_count: number;
+
+  scheduled_at: string | null;
+
+  sent_count: number;
+
+  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed' | 'cancelled';
+
+  template_language: string | null;
+
+  template_name: string | null;
 }
 
 export interface WhatsappListPhoneNumbersResponse {
@@ -241,26 +225,9 @@ export declare namespace Whatsapp {
     type TemplateDeleteParams as TemplateDeleteParams,
   };
 
-  export {
-    Contacts as Contacts,
-    type ContactCreateResponse as ContactCreateResponse,
-    type ContactRetrieveResponse as ContactRetrieveResponse,
-    type ContactListResponse as ContactListResponse,
-    type ContactBulkOperationsResponse as ContactBulkOperationsResponse,
-    type ContactImportResponse as ContactImportResponse,
-    type ContactCreateParams as ContactCreateParams,
-    type ContactListParams as ContactListParams,
-    type ContactBulkOperationsParams as ContactBulkOperationsParams,
-    type ContactImportParams as ContactImportParams,
-  };
+  export { Contacts as Contacts };
 
-  export {
-    Groups as Groups,
-    type GroupCreateResponse as GroupCreateResponse,
-    type GroupListResponse as GroupListResponse,
-    type GroupCreateParams as GroupCreateParams,
-    type GroupListParams as GroupListParams,
-  };
+  export { Groups as Groups };
 
   export {
     BusinessProfile as BusinessProfile,

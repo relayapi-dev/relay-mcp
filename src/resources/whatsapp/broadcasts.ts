@@ -8,28 +8,36 @@ import { path } from '../../internal/utils/path';
 
 export class Broadcasts extends APIResource {
   /**
-   * Create a broadcast
+   * Deprecated. Use POST /v1/broadcasts instead.
+   *
+   * @deprecated
    */
   create(body: BroadcastCreateParams, options?: RequestOptions): APIPromise<BroadcastCreateResponse> {
     return this._client.post('/v1/whatsapp/broadcasts', { body, ...options });
   }
 
   /**
-   * Get broadcast details
+   * Deprecated. Use GET /v1/broadcasts/{id} instead.
+   *
+   * @deprecated
    */
   retrieve(broadcastID: string, options?: RequestOptions): APIPromise<BroadcastRetrieveResponse> {
     return this._client.get(path`/v1/whatsapp/broadcasts/${broadcastID}`, options);
   }
 
   /**
-   * List broadcasts
+   * Deprecated. Use GET /v1/broadcasts instead.
+   *
+   * @deprecated
    */
   list(query: BroadcastListParams, options?: RequestOptions): APIPromise<BroadcastListResponse> {
     return this._client.get('/v1/whatsapp/broadcasts', { query, ...options });
   }
 
   /**
-   * Delete a broadcast
+   * Deprecated. Use DELETE /v1/broadcasts/{id} instead.
+   *
+   * @deprecated
    */
   delete(broadcastID: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/v1/whatsapp/broadcasts/${broadcastID}`, {
@@ -39,14 +47,18 @@ export class Broadcasts extends APIResource {
   }
 
   /**
-   * Schedule a broadcast
+   * Deprecated. Use POST /v1/broadcasts/{id}/schedule instead.
+   *
+   * @deprecated
    */
   schedule(broadcastID: string, options?: RequestOptions): APIPromise<BroadcastScheduleResponse> {
     return this._client.post(path`/v1/whatsapp/broadcasts/${broadcastID}/schedule`, options);
   }
 
   /**
-   * Send a broadcast immediately
+   * Deprecated. Use POST /v1/broadcasts/{id}/send instead.
+   *
+   * @deprecated
    */
   send(broadcastID: string, options?: RequestOptions): APIPromise<BroadcastSendResponse> {
     return this._client.post(path`/v1/whatsapp/broadcasts/${broadcastID}/send`, options);
@@ -77,7 +89,7 @@ export interface BroadcastCreateResponse {
   /**
    * Broadcast status
    */
-  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'failed';
+  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed';
 
   /**
    * Template name
@@ -124,7 +136,7 @@ export interface BroadcastRetrieveResponse {
   /**
    * Broadcast status
    */
-  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'failed';
+  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed';
 
   /**
    * Template name
@@ -149,6 +161,16 @@ export interface BroadcastRetrieveResponse {
 
 export interface BroadcastListResponse {
   data: Array<BroadcastListResponse.Data>;
+
+  /**
+   * Whether more items exist
+   */
+  has_more?: boolean;
+
+  /**
+   * Cursor for next page
+   */
+  next_cursor?: string | null;
 }
 
 export namespace BroadcastListResponse {
@@ -176,7 +198,7 @@ export namespace BroadcastListResponse {
     /**
      * Broadcast status
      */
-    status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'failed';
+    status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed';
 
     /**
      * Template name
@@ -224,7 +246,7 @@ export interface BroadcastScheduleResponse {
   /**
    * Broadcast status
    */
-  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'failed';
+  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed';
 
   /**
    * Template name
@@ -271,7 +293,7 @@ export interface BroadcastSendResponse {
   /**
    * Broadcast status
    */
-  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'failed';
+  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'partially_failed' | 'failed';
 
   /**
    * Template name
@@ -365,6 +387,16 @@ export interface BroadcastListParams {
    * WhatsApp account ID
    */
   account_id: string;
+
+  /**
+   * Pagination cursor
+   */
+  cursor?: string;
+
+  /**
+   * Number of items per page
+   */
+  limit?: number;
 }
 
 export declare namespace Broadcasts {

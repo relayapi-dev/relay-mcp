@@ -2,9 +2,9 @@
 
 import { APIResource } from '../../../core/resource';
 import * as HideAPI from './hide';
-import { Hide, HideCreateResponse, HideDeleteResponse } from './hide';
+import { Hide, HideCreateParams, HideCreateResponse, HideDeleteParams, HideDeleteResponse } from './hide';
 import * as LikeAPI from './like';
-import { Like, LikeCreateResponse, LikeDeleteResponse } from './like';
+import { Like, LikeCreateParams, LikeCreateResponse, LikeDeleteParams, LikeDeleteResponse } from './like';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -37,8 +37,13 @@ export class Comments extends APIResource {
   /**
    * Delete a comment
    */
-  delete(commentID: string, options?: RequestOptions): APIPromise<CommentDeleteResponse> {
-    return this._client.delete(path`/v1/inbox/comments/${commentID}`, options);
+  delete(
+    commentID: string,
+    params: CommentDeleteParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CommentDeleteResponse> {
+    const { account_id } = params ?? {};
+    return this._client.delete(path`/v1/inbox/comments/${commentID}`, { query: { account_id }, ...options });
   }
 
   /**
@@ -88,7 +93,11 @@ export interface CommentRetrieveResponse {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * Post ID if filtered by post
@@ -130,12 +139,21 @@ export namespace CommentRetrieveResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     /**
      * Comment text
      */
     text: string;
+
+    /**
+     * Social account avatar URL
+     */
+    account_avatar_url?: string | null;
 
     /**
      * Social account ID
@@ -156,6 +174,11 @@ export namespace CommentRetrieveResponse {
      * Like count
      */
     likes?: number;
+
+    /**
+     * Parent comment ID if this is a reply
+     */
+    parent_id?: string | null;
 
     /**
      * Platform post/media/video ID
@@ -208,7 +231,11 @@ export interface CommentListResponse {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * Post ID if filtered by post
@@ -250,12 +277,21 @@ export namespace CommentListResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     /**
      * Comment text
      */
     text: string;
+
+    /**
+     * Social account avatar URL
+     */
+    account_avatar_url?: string | null;
 
     /**
      * Social account ID
@@ -276,6 +312,11 @@ export namespace CommentListResponse {
      * Like count
      */
     likes?: number;
+
+    /**
+     * Parent comment ID if this is a reply
+     */
+    parent_id?: string | null;
 
     /**
      * Platform post/media/video ID
@@ -376,7 +417,11 @@ export interface CommentRetrieveParams {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 }
 
 export interface CommentListParams {
@@ -415,7 +460,18 @@ export interface CommentListParams {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
+}
+
+export interface CommentDeleteParams {
+  /**
+   * Target a specific account instead of fanning out to all org accounts
+   */
+  account_id?: string;
 }
 
 export interface CommentPrivateReplyParams {
@@ -459,6 +515,7 @@ export declare namespace Comments {
     type CommentReplyResponse as CommentReplyResponse,
     type CommentRetrieveParams as CommentRetrieveParams,
     type CommentListParams as CommentListParams,
+    type CommentDeleteParams as CommentDeleteParams,
     type CommentPrivateReplyParams as CommentPrivateReplyParams,
     type CommentReplyParams as CommentReplyParams,
   };
@@ -467,11 +524,15 @@ export declare namespace Comments {
     Hide as Hide,
     type HideCreateResponse as HideCreateResponse,
     type HideDeleteResponse as HideDeleteResponse,
+    type HideCreateParams as HideCreateParams,
+    type HideDeleteParams as HideDeleteParams,
   };
 
   export {
     Like as Like,
     type LikeCreateResponse as LikeCreateResponse,
     type LikeDeleteResponse as LikeDeleteResponse,
+    type LikeCreateParams as LikeCreateParams,
+    type LikeDeleteParams as LikeDeleteParams,
   };
 }

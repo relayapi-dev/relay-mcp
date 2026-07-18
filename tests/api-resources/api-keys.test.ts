@@ -22,7 +22,12 @@ describe('resource apiKeys', () => {
 
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
-    const response = await client.apiKeys.create({ name: 'x', expires_in_days: 1 });
+    const response = await client.apiKeys.create({
+      name: 'x',
+      expires_in_days: 1,
+      permission: 'read_write',
+      workspace_scope: 'all',
+    });
   });
 
   // Mock server tests are disabled

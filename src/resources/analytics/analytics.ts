@@ -74,6 +74,12 @@ export interface AnalyticsRetrieveResponse {
   data: Array<AnalyticsRetrieveResponse.Data>;
 
   overview?: AnalyticsRetrieveResponse.Overview;
+
+  /**
+   * True when the matching target set exceeds the per-response cap. Narrow by
+   * from_date/to_date/platform to see the full set.
+   */
+  truncated?: boolean;
 }
 
 export namespace AnalyticsRetrieveResponse {
@@ -95,7 +101,11 @@ export namespace AnalyticsRetrieveResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     /**
      * Post ID
@@ -239,7 +249,11 @@ export interface AnalyticsGetContentDecayResponse {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   post_id: string;
 }
@@ -427,7 +441,11 @@ export interface AnalyticsRetrieveParams {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * Filter by post ID
@@ -471,7 +489,11 @@ export interface AnalyticsGetBestTimeParams {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * End date (ISO 8601)
@@ -539,7 +561,11 @@ export interface AnalyticsGetPostingFrequencyParams {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * End date (ISO 8601)
@@ -578,7 +604,11 @@ export interface AnalyticsListDailyMetricsParams {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
    * End date (ISO 8601)

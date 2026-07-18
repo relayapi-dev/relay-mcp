@@ -230,16 +230,32 @@ export interface WebhookCreateParams {
     | 'post.partial'
     | 'post.failed'
     | 'post.scheduled'
+    | 'post.recycled'
+    | 'thread.published'
     | 'account.connected'
     | 'account.disconnected'
     | 'comment.received'
     | 'message.received'
+    | 'message.sent'
+    | 'auto_post.created'
+    | 'auto_post.error'
+    | 'streak.started'
+    | 'streak.milestone'
+    | 'streak.warning'
+    | 'streak.broken'
+    | 'cross_post_action.executed'
+    | 'cross_post_action.failed'
   >;
 
   /**
    * Webhook endpoint URL
    */
   url: string;
+
+  /**
+   * Workspace ID to scope this webhook to
+   */
+  workspace_id?: string;
 }
 
 export interface WebhookUpdateParams {
@@ -256,10 +272,21 @@ export interface WebhookUpdateParams {
     | 'post.partial'
     | 'post.failed'
     | 'post.scheduled'
+    | 'post.recycled'
+    | 'thread.published'
     | 'account.connected'
     | 'account.disconnected'
     | 'comment.received'
     | 'message.received'
+    | 'message.sent'
+    | 'auto_post.created'
+    | 'auto_post.error'
+    | 'streak.started'
+    | 'streak.milestone'
+    | 'streak.warning'
+    | 'streak.broken'
+    | 'cross_post_action.executed'
+    | 'cross_post_action.failed'
   >;
 
   /**
@@ -288,6 +315,11 @@ export interface WebhookListParams {
    * Filter: end date (ISO 8601)
    */
   to?: string;
+
+  /**
+   * Filter by workspace ID
+   */
+  workspace_id?: string;
 }
 
 export interface WebhookListLogsParams {

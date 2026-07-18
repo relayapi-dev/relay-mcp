@@ -50,11 +50,6 @@ export namespace WhatsappCompleteEmbeddedSignupResponse {
 
     display_name: string | null;
 
-    /**
-     * Account group
-     */
-    group: Account.Group | null;
-
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -74,20 +69,29 @@ export namespace WhatsappCompleteEmbeddedSignupResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
     updated_at: string;
 
     username: string | null;
+
+    /**
+     * Account workspace
+     */
+    workspace: Account.Workspace | null;
   }
 
   export namespace Account {
     /**
-     * Account group
+     * Account workspace
      */
-    export interface Group {
+    export interface Workspace {
       id: string;
 
       name: string;
@@ -112,11 +116,6 @@ export namespace WhatsappConnectViaCredentialsResponse {
 
     display_name: string | null;
 
-    /**
-     * Account group
-     */
-    group: Account.Group | null;
-
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -136,20 +135,29 @@ export namespace WhatsappConnectViaCredentialsResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
     updated_at: string;
 
     username: string | null;
+
+    /**
+     * Account workspace
+     */
+    workspace: Account.Workspace | null;
   }
 
   export namespace Account {
     /**
-     * Account group
+     * Account workspace
      */
-    export interface Group {
+    export interface Workspace {
       id: string;
 
       name: string;

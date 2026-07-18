@@ -26,9 +26,38 @@ describe('resource posts', () => {
       scheduled_at: 'now',
       targets: ['string'],
       content: 'content',
-      media: [{ url: 'https://example.com', type: 'image' }],
+      cross_post_actions: [
+        {
+          action_type: 'repost',
+          target_account_id: 'target_account_id',
+          content: 'content',
+          delay_minutes: 0,
+        },
+      ],
+      idea_id: 'idea_id',
+      media: [
+        {
+          url: 'https://example.com',
+          thumbnail: 'thumbnail',
+          type: 'image',
+        },
+      ],
+      recycling: {
+        gap: 1,
+        gap_freq: 'day',
+        start_date: '2019-12-27T18:11:19.117Z',
+        content_variations: ['string'],
+        enabled: true,
+        expire_count: 1,
+        expire_date: '2019-12-27T18:11:19.117Z',
+      },
+      shorten_urls: true,
+      skip_signature: true,
       target_options: { foo: { foo: 'bar' } },
+      template_id: 'template_id',
+      template_variables: { foo: 'string' },
       timezone: 'timezone',
+      workspace_id: 'workspace_id',
     });
   });
 
@@ -64,7 +93,23 @@ describe('resource posts', () => {
         'id',
         {
           content: 'content',
-          media: [{ url: 'https://example.com', type: 'image' }],
+          media: [
+            {
+              url: 'https://example.com',
+              thumbnail: 'thumbnail',
+              type: 'image',
+            },
+          ],
+          notes: 'notes',
+          recycling: {
+            gap: 1,
+            gap_freq: 'day',
+            start_date: '2019-12-27T18:11:19.117Z',
+            content_variations: ['string'],
+            enabled: true,
+            expire_count: 1,
+            expire_date: '2019-12-27T18:11:19.117Z',
+          },
           scheduled_at: 'now',
           target_options: { foo: { foo: 'bar' } },
           targets: ['string'],
@@ -94,12 +139,15 @@ describe('resource posts', () => {
       client.posts.list(
         {
           account_id: 'account_id',
+          account_ids: 'account_ids',
           cursor: 'cursor',
           from: '2019-12-27T18:11:19.117Z',
-          group_id: 'group_id',
+          include: 'include',
+          include_external: 'true',
           limit: 1,
           status: 'draft',
           to: '2019-12-27T18:11:19.117Z',
+          workspace_id: 'workspace_id',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -140,9 +188,38 @@ describe('resource posts', () => {
           scheduled_at: 'now',
           targets: ['string'],
           content: 'content',
-          media: [{ url: 'https://example.com', type: 'image' }],
+          cross_post_actions: [
+            {
+              action_type: 'repost',
+              target_account_id: 'target_account_id',
+              content: 'content',
+              delay_minutes: 0,
+            },
+          ],
+          idea_id: 'idea_id',
+          media: [
+            {
+              url: 'https://example.com',
+              thumbnail: 'thumbnail',
+              type: 'image',
+            },
+          ],
+          recycling: {
+            gap: 1,
+            gap_freq: 'day',
+            start_date: '2019-12-27T18:11:19.117Z',
+            content_variations: ['string'],
+            enabled: true,
+            expire_count: 1,
+            expire_date: '2019-12-27T18:11:19.117Z',
+          },
+          shorten_urls: true,
+          skip_signature: true,
           target_options: { foo: { foo: 'bar' } },
+          template_id: 'template_id',
+          template_variables: { foo: 'string' },
           timezone: 'timezone',
+          workspace_id: 'workspace_id',
         },
       ],
     });

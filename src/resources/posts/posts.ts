@@ -142,6 +142,21 @@ export interface PostCreateResponse {
 
   media: Array<PostCreateResponse.Media> | null;
 
+  /**
+   * When the post was published
+   */
+  published_at: string | null;
+
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostCreateResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -152,6 +167,31 @@ export interface PostCreateResponse {
   targets: { [key: string]: PostCreateResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostCreateResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostCreateResponse {
@@ -162,9 +202,48 @@ export namespace PostCreateResponse {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -185,9 +264,13 @@ export namespace PostCreateResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -197,6 +280,26 @@ export namespace PostCreateResponse {
   export namespace Targets {
     export interface Account {
       id: string;
+
+      /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
+
+      /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
 
       /**
        * Published post URL on the platform
@@ -210,7 +313,35 @@ export namespace PostCreateResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
+  }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
   }
 }
 
@@ -226,6 +357,21 @@ export interface PostRetrieveResponse {
 
   media: Array<PostRetrieveResponse.Media> | null;
 
+  /**
+   * When the post was published
+   */
+  published_at: string | null;
+
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostRetrieveResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -236,6 +382,31 @@ export interface PostRetrieveResponse {
   targets: { [key: string]: PostRetrieveResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostRetrieveResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostRetrieveResponse {
@@ -246,9 +417,48 @@ export namespace PostRetrieveResponse {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -269,9 +479,13 @@ export namespace PostRetrieveResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -281,6 +495,26 @@ export namespace PostRetrieveResponse {
   export namespace Targets {
     export interface Account {
       id: string;
+
+      /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
+
+      /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
 
       /**
        * Published post URL on the platform
@@ -294,7 +528,35 @@ export namespace PostRetrieveResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
+  }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
   }
 }
 
@@ -310,6 +572,21 @@ export interface PostUpdateResponse {
 
   media: Array<PostUpdateResponse.Media> | null;
 
+  /**
+   * When the post was published
+   */
+  published_at: string | null;
+
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostUpdateResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -320,6 +597,31 @@ export interface PostUpdateResponse {
   targets: { [key: string]: PostUpdateResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostUpdateResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostUpdateResponse {
@@ -330,9 +632,48 @@ export namespace PostUpdateResponse {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -353,9 +694,13 @@ export namespace PostUpdateResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -365,6 +710,26 @@ export namespace PostUpdateResponse {
   export namespace Targets {
     export interface Account {
       id: string;
+
+      /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
+
+      /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
 
       /**
        * Published post URL on the platform
@@ -378,7 +743,35 @@ export namespace PostUpdateResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
+  }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
   }
 }
 
@@ -409,6 +802,21 @@ export namespace PostListResponse {
 
     media: Array<Data.Media> | null;
 
+    /**
+     * When the post was published
+     */
+    published_at: string | null;
+
+    /**
+     * Source post ID if this is a recycled copy
+     */
+    recycled_from_id: string | null;
+
+    /**
+     * Recycling configuration, if any
+     */
+    recycling: Data.Recycling | null;
+
     scheduled_at: string | null;
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -419,6 +827,31 @@ export namespace PostListResponse {
     targets: { [key: string]: Data.Targets };
 
     updated_at: string;
+
+    /**
+     * Engagement metrics (reactions, comments, views, etc.)
+     */
+    metrics?: Data.Metrics;
+
+    /**
+     * Per-target customizations
+     */
+    target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+    /**
+     * Thread group ID (non-null if part of a thread)
+     */
+    thread_group_id?: string | null;
+
+    /**
+     * Position within thread (0 = root)
+     */
+    thread_position?: number | null;
+
+    /**
+     * IANA timezone
+     */
+    timezone?: string | null;
   }
 
   export namespace Data {
@@ -429,9 +862,48 @@ export namespace PostListResponse {
       url: string;
 
       /**
+       * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+       * original expires. Ignored on write.
+       */
+      thumbnail?: string;
+
+      /**
        * Media type. Inferred from URL extension if omitted.
        */
       type?: 'image' | 'video' | 'gif' | 'document';
+    }
+
+    /**
+     * Recycling configuration, if any
+     */
+    export interface Recycling {
+      id: string;
+
+      content_variation_index: number;
+
+      content_variations: Array<string>;
+
+      created_at: string;
+
+      enabled: boolean;
+
+      expire_count: number | null;
+
+      expire_date: string | null;
+
+      gap: number;
+
+      gap_freq: 'day' | 'week' | 'month';
+
+      last_recycled_at: string | null;
+
+      next_recycle_at: string | null;
+
+      recycle_count: number;
+
+      start_date: string;
+
+      updated_at: string;
     }
 
     export interface Targets {
@@ -452,9 +924,13 @@ export namespace PostListResponse {
         | 'whatsapp'
         | 'mastodon'
         | 'discord'
-        | 'sms';
+        | 'sms'
+        | 'beehiiv'
+        | 'convertkit'
+        | 'mailchimp'
+        | 'listmonk';
 
-      status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+      status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
       accounts?: Array<Targets.Account>;
 
@@ -464,6 +940,26 @@ export namespace PostListResponse {
     export namespace Targets {
       export interface Account {
         id: string;
+
+        /**
+         * Account avatar URL
+         */
+        avatar_url: string | null;
+
+        /**
+         * Account display name
+         */
+        display_name: string | null;
+
+        /**
+         * Platform-native post ID
+         */
+        platform_post_id: string | null;
+
+        /**
+         * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+         */
+        target_id: string | null;
 
         /**
          * Published post URL on the platform
@@ -477,7 +973,35 @@ export namespace PostListResponse {
         code: string;
 
         message: string;
+
+        /**
+         * Raw platform error (HTTP status + response body), sanitized and truncated
+         */
+        detail?: string;
       }
+    }
+
+    /**
+     * Engagement metrics (reactions, comments, views, etc.)
+     */
+    export interface Metrics {
+      clicks?: number;
+
+      comments?: number;
+
+      engagement_rate?: number;
+
+      impressions?: number;
+
+      likes?: number;
+
+      reach?: number;
+
+      saves?: number;
+
+      shares?: number;
+
+      views?: number;
     }
   }
 }
@@ -501,6 +1025,21 @@ export namespace PostBulkCreateResponse {
 
     media: Array<Data.Media> | null;
 
+    /**
+     * When the post was published
+     */
+    published_at: string | null;
+
+    /**
+     * Source post ID if this is a recycled copy
+     */
+    recycled_from_id: string | null;
+
+    /**
+     * Recycling configuration, if any
+     */
+    recycling: Data.Recycling | null;
+
     scheduled_at: string | null;
 
     status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -511,6 +1050,31 @@ export namespace PostBulkCreateResponse {
     targets: { [key: string]: Data.Targets };
 
     updated_at: string;
+
+    /**
+     * Engagement metrics (reactions, comments, views, etc.)
+     */
+    metrics?: Data.Metrics;
+
+    /**
+     * Per-target customizations
+     */
+    target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+    /**
+     * Thread group ID (non-null if part of a thread)
+     */
+    thread_group_id?: string | null;
+
+    /**
+     * Position within thread (0 = root)
+     */
+    thread_position?: number | null;
+
+    /**
+     * IANA timezone
+     */
+    timezone?: string | null;
   }
 
   export namespace Data {
@@ -521,9 +1085,48 @@ export namespace PostBulkCreateResponse {
       url: string;
 
       /**
+       * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+       * original expires. Ignored on write.
+       */
+      thumbnail?: string;
+
+      /**
        * Media type. Inferred from URL extension if omitted.
        */
       type?: 'image' | 'video' | 'gif' | 'document';
+    }
+
+    /**
+     * Recycling configuration, if any
+     */
+    export interface Recycling {
+      id: string;
+
+      content_variation_index: number;
+
+      content_variations: Array<string>;
+
+      created_at: string;
+
+      enabled: boolean;
+
+      expire_count: number | null;
+
+      expire_date: string | null;
+
+      gap: number;
+
+      gap_freq: 'day' | 'week' | 'month';
+
+      last_recycled_at: string | null;
+
+      next_recycle_at: string | null;
+
+      recycle_count: number;
+
+      start_date: string;
+
+      updated_at: string;
     }
 
     export interface Targets {
@@ -544,9 +1147,13 @@ export namespace PostBulkCreateResponse {
         | 'whatsapp'
         | 'mastodon'
         | 'discord'
-        | 'sms';
+        | 'sms'
+        | 'beehiiv'
+        | 'convertkit'
+        | 'mailchimp'
+        | 'listmonk';
 
-      status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+      status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
       accounts?: Array<Targets.Account>;
 
@@ -556,6 +1163,26 @@ export namespace PostBulkCreateResponse {
     export namespace Targets {
       export interface Account {
         id: string;
+
+        /**
+         * Account avatar URL
+         */
+        avatar_url: string | null;
+
+        /**
+         * Account display name
+         */
+        display_name: string | null;
+
+        /**
+         * Platform-native post ID
+         */
+        platform_post_id: string | null;
+
+        /**
+         * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+         */
+        target_id: string | null;
 
         /**
          * Published post URL on the platform
@@ -569,7 +1196,35 @@ export namespace PostBulkCreateResponse {
         code: string;
 
         message: string;
+
+        /**
+         * Raw platform error (HTTP status + response body), sanitized and truncated
+         */
+        detail?: string;
       }
+    }
+
+    /**
+     * Engagement metrics (reactions, comments, views, etc.)
+     */
+    export interface Metrics {
+      clicks?: number;
+
+      comments?: number;
+
+      engagement_rate?: number;
+
+      impressions?: number;
+
+      likes?: number;
+
+      reach?: number;
+
+      saves?: number;
+
+      shares?: number;
+
+      views?: number;
     }
   }
 
@@ -594,6 +1249,21 @@ export interface PostRetryResponse {
 
   media: Array<PostRetryResponse.Media> | null;
 
+  /**
+   * When the post was published
+   */
+  published_at: string | null;
+
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostRetryResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -604,6 +1274,31 @@ export interface PostRetryResponse {
   targets: { [key: string]: PostRetryResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostRetryResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostRetryResponse {
@@ -614,9 +1309,48 @@ export namespace PostRetryResponse {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -637,9 +1371,13 @@ export namespace PostRetryResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -649,6 +1387,26 @@ export namespace PostRetryResponse {
   export namespace Targets {
     export interface Account {
       id: string;
+
+      /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
+
+      /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
 
       /**
        * Published post URL on the platform
@@ -662,7 +1420,35 @@ export namespace PostRetryResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
+  }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
   }
 }
 
@@ -678,6 +1464,21 @@ export interface PostUnpublishResponse {
 
   media: Array<PostUnpublishResponse.Media> | null;
 
+  /**
+   * When the post was published
+   */
+  published_at: string | null;
+
+  /**
+   * Source post ID if this is a recycled copy
+   */
+  recycled_from_id: string | null;
+
+  /**
+   * Recycling configuration, if any
+   */
+  recycling: PostUnpublishResponse.Recycling | null;
+
   scheduled_at: string | null;
 
   status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
@@ -688,6 +1489,31 @@ export interface PostUnpublishResponse {
   targets: { [key: string]: PostUnpublishResponse.Targets };
 
   updated_at: string;
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  metrics?: PostUnpublishResponse.Metrics;
+
+  /**
+   * Per-target customizations
+   */
+  target_options?: { [key: string]: { [key: string]: unknown } } | null;
+
+  /**
+   * Thread group ID (non-null if part of a thread)
+   */
+  thread_group_id?: string | null;
+
+  /**
+   * Position within thread (0 = root)
+   */
+  thread_position?: number | null;
+
+  /**
+   * IANA timezone
+   */
+  timezone?: string | null;
 }
 
 export namespace PostUnpublishResponse {
@@ -698,9 +1524,48 @@ export namespace PostUnpublishResponse {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration, if any
+   */
+  export interface Recycling {
+    id: string;
+
+    content_variation_index: number;
+
+    content_variations: Array<string>;
+
+    created_at: string;
+
+    enabled: boolean;
+
+    expire_count: number | null;
+
+    expire_date: string | null;
+
+    gap: number;
+
+    gap_freq: 'day' | 'week' | 'month';
+
+    last_recycled_at: string | null;
+
+    next_recycle_at: string | null;
+
+    recycle_count: number;
+
+    start_date: string;
+
+    updated_at: string;
   }
 
   export interface Targets {
@@ -721,9 +1586,13 @@ export namespace PostUnpublishResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
-    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+    status: 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed' | 'partial';
 
     accounts?: Array<Targets.Account>;
 
@@ -733,6 +1602,26 @@ export namespace PostUnpublishResponse {
   export namespace Targets {
     export interface Account {
       id: string;
+
+      /**
+       * Account avatar URL
+       */
+      avatar_url: string | null;
+
+      /**
+       * Account display name
+       */
+      display_name: string | null;
+
+      /**
+       * Platform-native post ID
+       */
+      platform_post_id: string | null;
+
+      /**
+       * Post target ID (pt\_) — pass to /v1/ads/boost as post_target_id
+       */
+      target_id: string | null;
 
       /**
        * Published post URL on the platform
@@ -746,19 +1635,48 @@ export namespace PostUnpublishResponse {
       code: string;
 
       message: string;
+
+      /**
+       * Raw platform error (HTTP status + response body), sanitized and truncated
+       */
+      detail?: string;
     }
+  }
+
+  /**
+   * Engagement metrics (reactions, comments, views, etc.)
+   */
+  export interface Metrics {
+    clicks?: number;
+
+    comments?: number;
+
+    engagement_rate?: number;
+
+    impressions?: number;
+
+    likes?: number;
+
+    reach?: number;
+
+    saves?: number;
+
+    shares?: number;
+
+    views?: number;
   }
 }
 
 export interface PostCreateParams {
   /**
-   * Publish intent. Use "now" to publish immediately, "draft" to save as draft, or
-   * an ISO 8601 timestamp to schedule.
+   * Publish intent. Use "now" to publish immediately, "draft" to save as draft,
+   * "auto" to auto-schedule to the best available slot, or an ISO 8601 timestamp to
+   * schedule (max 30 days ahead).
    */
   scheduled_at: string;
 
   /**
-   * Account IDs, platform names, or group IDs to publish to
+   * Account IDs, platform names, or workspace IDs to publish to
    */
   targets: Array<string>;
 
@@ -768,22 +1686,91 @@ export interface PostCreateParams {
   content?: string;
 
   /**
+   * Cross-post actions to execute after publishing (e.g., repost from another
+   * account, comment from another account)
+   */
+  cross_post_actions?: Array<PostCreateParams.CrossPostAction>;
+
+  /**
+   * Create post from an idea. Pre-fills content from the idea. Explicit 'content'
+   * field takes precedence.
+   */
+  idea_id?: string;
+
+  /**
    * Media attachments
    */
   media?: Array<PostCreateParams.Media>;
 
   /**
-   * Per-target customizations keyed by target value (account ID or platform name)
+   * Recycling configuration for evergreen content (Pro plan only)
+   */
+  recycling?: PostCreateParams.Recycling;
+
+  /**
+   * Shorten URLs in post content. Only relevant when short link mode is 'ask'.
+   * Ignored when mode is 'always' or 'never'. (Pro plan only)
+   */
+  shorten_urls?: boolean;
+
+  /**
+   * When true, the default signature is not auto-appended even if one is configured.
+   */
+  skip_signature?: boolean;
+
+  /**
+   * Per-target customizations keyed by target value (account ID or platform name).
+   * Supports platform-specific features such as Twitter polls (poll.options,
+   * poll.duration_minutes), threads, reply_to, and reply_settings.
    */
   target_options?: { [key: string]: { [key: string]: unknown } };
+
+  /**
+   * Content template ID. When provided, the template content is used as the base for
+   * the post. Explicit 'content' field takes precedence.
+   */
+  template_id?: string;
+
+  /**
+   * Variables to interpolate in the template (e.g., { "promo_code": "SUMMER25" }).
+   * Built-in variables: {{date}}, {{account_name}}.
+   */
+  template_variables?: { [key: string]: string };
 
   /**
    * IANA timezone for scheduling
    */
   timezone?: string;
+
+  /**
+   * Workspace ID to scope this post to
+   */
+  workspace_id?: string;
 }
 
 export namespace PostCreateParams {
+  export interface CrossPostAction {
+    /**
+     * Type of cross-post action
+     */
+    action_type: 'repost' | 'comment' | 'quote';
+
+    /**
+     * Account to perform the action from
+     */
+    target_account_id: string;
+
+    /**
+     * Text content for comment/quote actions (required for comment and quote)
+     */
+    content?: string;
+
+    /**
+     * Delay in minutes after publishing
+     */
+    delay_minutes?: number;
+  }
+
   export interface Media {
     /**
      * Public URL of the media file
@@ -791,9 +1778,55 @@ export namespace PostCreateParams {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration for evergreen content (Pro plan only)
+   */
+  export interface Recycling {
+    /**
+     * Interval value
+     */
+    gap: number;
+
+    /**
+     * Interval unit
+     */
+    gap_freq: 'day' | 'week' | 'month';
+
+    /**
+     * When to start recycling
+     */
+    start_date: string;
+
+    /**
+     * Alternate content texts (round-robin)
+     */
+    content_variations?: Array<string>;
+
+    /**
+     * Whether recycling is active
+     */
+    enabled?: boolean;
+
+    /**
+     * Stop after this many recycles
+     */
+    expire_count?: number;
+
+    /**
+     * Stop after this date
+     */
+    expire_date?: string;
   }
 }
 
@@ -809,8 +1842,19 @@ export interface PostUpdateParams {
   media?: Array<PostUpdateParams.Media>;
 
   /**
-   * Publish intent. Use "now" to publish immediately, "draft" to save as draft, or
-   * an ISO 8601 timestamp to schedule.
+   * Internal notes for this post
+   */
+  notes?: string | null;
+
+  /**
+   * Recycling configuration (Pro plan only)
+   */
+  recycling?: PostUpdateParams.Recycling;
+
+  /**
+   * Publish intent. Use "now" to publish immediately, "draft" to save as draft,
+   * "auto" to auto-schedule to the best available slot, or an ISO 8601 timestamp to
+   * schedule (max 30 days ahead).
    */
   scheduled_at?: string;
 
@@ -832,9 +1876,55 @@ export namespace PostUpdateParams {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration (Pro plan only)
+   */
+  export interface Recycling {
+    /**
+     * Interval value
+     */
+    gap: number;
+
+    /**
+     * Interval unit
+     */
+    gap_freq: 'day' | 'week' | 'month';
+
+    /**
+     * When to start recycling
+     */
+    start_date: string;
+
+    /**
+     * Alternate content texts (round-robin)
+     */
+    content_variations?: Array<string>;
+
+    /**
+     * Whether recycling is active
+     */
+    enabled?: boolean;
+
+    /**
+     * Stop after this many recycles
+     */
+    expire_count?: number;
+
+    /**
+     * Stop after this date
+     */
+    expire_date?: string;
   }
 }
 
@@ -843,6 +1933,12 @@ export interface PostListParams {
    * Filter by specific account ID
    */
   account_id?: string;
+
+  /**
+   * Filter by any of several account IDs (comma-separated). Takes precedence over
+   * account_id.
+   */
+  account_ids?: string;
 
   /**
    * Pagination cursor
@@ -855,9 +1951,15 @@ export interface PostListParams {
   from?: string;
 
   /**
-   * Filter by account group ID
+   * Comma-separated list of fields to include in the response (e.g. 'targets,media')
    */
-  group_id?: string;
+  include?: string;
+
+  /**
+   * When true, also return external posts merged by published_at (works with
+   * status=published or no status filter)
+   */
+  include_external?: 'true' | 'false';
 
   /**
    * Number of items per page
@@ -873,6 +1975,11 @@ export interface PostListParams {
    * Filter: end date (ISO 8601)
    */
   to?: string;
+
+  /**
+   * Filter by workspace ID
+   */
+  workspace_id?: string;
 }
 
 export interface PostBulkCreateParams {
@@ -885,13 +1992,14 @@ export interface PostBulkCreateParams {
 export namespace PostBulkCreateParams {
   export interface Post {
     /**
-     * Publish intent. Use "now" to publish immediately, "draft" to save as draft, or
-     * an ISO 8601 timestamp to schedule.
+     * Publish intent. Use "now" to publish immediately, "draft" to save as draft,
+     * "auto" to auto-schedule to the best available slot, or an ISO 8601 timestamp to
+     * schedule (max 30 days ahead).
      */
     scheduled_at: string;
 
     /**
-     * Account IDs, platform names, or group IDs to publish to
+     * Account IDs, platform names, or workspace IDs to publish to
      */
     targets: Array<string>;
 
@@ -901,22 +2009,91 @@ export namespace PostBulkCreateParams {
     content?: string;
 
     /**
+     * Cross-post actions to execute after publishing (e.g., repost from another
+     * account, comment from another account)
+     */
+    cross_post_actions?: Array<Post.CrossPostAction>;
+
+    /**
+     * Create post from an idea. Pre-fills content from the idea. Explicit 'content'
+     * field takes precedence.
+     */
+    idea_id?: string;
+
+    /**
      * Media attachments
      */
     media?: Array<Post.Media>;
 
     /**
-     * Per-target customizations keyed by target value (account ID or platform name)
+     * Recycling configuration for evergreen content (Pro plan only)
+     */
+    recycling?: Post.Recycling;
+
+    /**
+     * Shorten URLs in post content. Only relevant when short link mode is 'ask'.
+     * Ignored when mode is 'always' or 'never'. (Pro plan only)
+     */
+    shorten_urls?: boolean;
+
+    /**
+     * When true, the default signature is not auto-appended even if one is configured.
+     */
+    skip_signature?: boolean;
+
+    /**
+     * Per-target customizations keyed by target value (account ID or platform name).
+     * Supports platform-specific features such as Twitter polls (poll.options,
+     * poll.duration_minutes), threads, reply_to, and reply_settings.
      */
     target_options?: { [key: string]: { [key: string]: unknown } };
+
+    /**
+     * Content template ID. When provided, the template content is used as the base for
+     * the post. Explicit 'content' field takes precedence.
+     */
+    template_id?: string;
+
+    /**
+     * Variables to interpolate in the template (e.g., { "promo_code": "SUMMER25" }).
+     * Built-in variables: {{date}}, {{account_name}}.
+     */
+    template_variables?: { [key: string]: string };
 
     /**
      * IANA timezone for scheduling
      */
     timezone?: string;
+
+    /**
+     * Workspace ID to scope this post to
+     */
+    workspace_id?: string;
   }
 
   export namespace Post {
+    export interface CrossPostAction {
+      /**
+       * Type of cross-post action
+       */
+      action_type: 'repost' | 'comment' | 'quote';
+
+      /**
+       * Account to perform the action from
+       */
+      target_account_id: string;
+
+      /**
+       * Text content for comment/quote actions (required for comment and quote)
+       */
+      content?: string;
+
+      /**
+       * Delay in minutes after publishing
+       */
+      delay_minutes?: number;
+    }
+
     export interface Media {
       /**
        * Public URL of the media file
@@ -924,9 +2101,55 @@ export namespace PostBulkCreateParams {
       url: string;
 
       /**
+       * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+       * original expires. Ignored on write.
+       */
+      thumbnail?: string;
+
+      /**
        * Media type. Inferred from URL extension if omitted.
        */
       type?: 'image' | 'video' | 'gif' | 'document';
+    }
+
+    /**
+     * Recycling configuration for evergreen content (Pro plan only)
+     */
+    export interface Recycling {
+      /**
+       * Interval value
+       */
+      gap: number;
+
+      /**
+       * Interval unit
+       */
+      gap_freq: 'day' | 'week' | 'month';
+
+      /**
+       * When to start recycling
+       */
+      start_date: string;
+
+      /**
+       * Alternate content texts (round-robin)
+       */
+      content_variations?: Array<string>;
+
+      /**
+       * Whether recycling is active
+       */
+      enabled?: boolean;
+
+      /**
+       * Stop after this many recycles
+       */
+      expire_count?: number;
+
+      /**
+       * Stop after this date
+       */
+      expire_date?: string;
     }
   }
 }

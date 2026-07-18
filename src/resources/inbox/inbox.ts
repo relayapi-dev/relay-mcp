@@ -2,19 +2,10 @@
 
 import { APIResource } from '../../core/resource';
 import * as MessagesAPI from './messages';
-import {
-  MessageArchiveResponse,
-  MessageEditParams,
-  MessageEditResponse,
-  MessageListParams,
-  MessageListResponse,
-  MessageRetrieveResponse,
-  MessageSendParams,
-  MessageSendResponse,
-  Messages,
-} from './messages';
+import { Messages } from './messages';
 import * as CommentsAPI from './comments/comments';
 import {
+  CommentDeleteParams,
   CommentDeleteResponse,
   CommentListParams,
   CommentListResponse,
@@ -49,21 +40,12 @@ export declare namespace Inbox {
     type CommentReplyResponse as CommentReplyResponse,
     type CommentRetrieveParams as CommentRetrieveParams,
     type CommentListParams as CommentListParams,
+    type CommentDeleteParams as CommentDeleteParams,
     type CommentPrivateReplyParams as CommentPrivateReplyParams,
     type CommentReplyParams as CommentReplyParams,
   };
 
-  export {
-    Messages as Messages,
-    type MessageRetrieveResponse as MessageRetrieveResponse,
-    type MessageListResponse as MessageListResponse,
-    type MessageArchiveResponse as MessageArchiveResponse,
-    type MessageEditResponse as MessageEditResponse,
-    type MessageSendResponse as MessageSendResponse,
-    type MessageListParams as MessageListParams,
-    type MessageEditParams as MessageEditParams,
-    type MessageSendParams as MessageSendParams,
-  };
+  export { Messages as Messages };
 
   export {
     Reviews as Reviews,

@@ -126,11 +126,6 @@ export namespace ConnectCompleteOAuthCallbackResponse {
 
     display_name: string | null;
 
-    /**
-     * Account group
-     */
-    group: Account.Group | null;
-
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -150,20 +145,29 @@ export namespace ConnectCompleteOAuthCallbackResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
     updated_at: string;
 
     username: string | null;
+
+    /**
+     * Account workspace
+     */
+    workspace: Account.Workspace | null;
   }
 
   export namespace Account {
     /**
-     * Account group
+     * Account workspace
      */
-    export interface Group {
+    export interface Workspace {
       id: string;
 
       name: string;
@@ -188,11 +192,6 @@ export namespace ConnectCreateBlueskyConnectionResponse {
 
     display_name: string | null;
 
-    /**
-     * Account group
-     */
-    group: Account.Group | null;
-
     metadata: { [key: string]: unknown } | null;
 
     platform:
@@ -212,20 +211,29 @@ export namespace ConnectCreateBlueskyConnectionResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
     updated_at: string;
 
     username: string | null;
+
+    /**
+     * Account workspace
+     */
+    workspace: Account.Workspace | null;
   }
 
   export namespace Account {
     /**
-     * Account group
+     * Account workspace
      */
-    export interface Group {
+    export interface Workspace {
       id: string;
 
       name: string;
@@ -251,56 +259,106 @@ export interface ConnectFetchPendingDataResponse {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   /**
-   * Token to use for secondary selection
+   * Outcome of the headless OAuth exchange. 'pending_selection' means a secondary
+   * selection step (e.g. Facebook page) is required.
    */
-  temp_token: string;
+  status: 'success' | 'pending_selection' | 'error';
 
   /**
-   * Basic user profile from the platform
+   * Connected account — present when status is 'success'
    */
-  user_profile: ConnectFetchPendingDataResponse.UserProfile;
+  account?: ConnectFetchPendingDataResponse.Account;
 
   /**
-   * Pinterest boards available
+   * Provider error code (status 'error')
    */
-  boards?: Array<{ [key: string]: unknown }>;
+  error?: string;
 
   /**
-   * Google Business locations available
+   * RelayAPI error code (status 'error')
    */
-  locations?: Array<{ [key: string]: unknown }>;
+  error_code?: string;
 
   /**
-   * LinkedIn organizations available
+   * Provider error description (status 'error')
    */
-  organizations?: Array<{ [key: string]: unknown }>;
+  error_description?: string | null;
 
   /**
-   * Facebook pages available
+   * RelayAPI error message (status 'error')
    */
-  pages?: Array<{ [key: string]: unknown }>;
-
-  /**
-   * Snapchat profiles available
-   */
-  profiles?: Array<{ [key: string]: unknown }>;
+  error_message?: string;
 }
 
 export namespace ConnectFetchPendingDataResponse {
   /**
-   * Basic user profile from the platform
+   * Connected account — present when status is 'success'
    */
-  export interface UserProfile {
+  export interface Account {
+    /**
+     * Account ID
+     */
     id: string;
 
     avatar_url: string | null;
 
-    name: string | null;
+    connected_at: string;
+
+    display_name: string | null;
+
+    metadata: { [key: string]: unknown } | null;
+
+    platform:
+      | 'twitter'
+      | 'instagram'
+      | 'facebook'
+      | 'linkedin'
+      | 'tiktok'
+      | 'youtube'
+      | 'pinterest'
+      | 'reddit'
+      | 'bluesky'
+      | 'threads'
+      | 'telegram'
+      | 'snapchat'
+      | 'googlebusiness'
+      | 'whatsapp'
+      | 'mastodon'
+      | 'discord'
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
+
+    platform_account_id: string;
+
+    updated_at: string;
 
     username: string | null;
+
+    /**
+     * Account workspace
+     */
+    workspace: Account.Workspace | null;
+  }
+
+  export namespace Account {
+    /**
+     * Account workspace
+     */
+    export interface Workspace {
+      id: string;
+
+      name: string;
+    }
   }
 }
 
@@ -309,6 +367,12 @@ export interface ConnectStartOAuthFlowResponse {
    * URL to redirect the user for OAuth authorization
    */
   auth_url: string;
+
+  /**
+   * Headless mode only: one-time token to poll GET /connect/pending-data for the
+   * OAuth result once the user finishes provider authorization
+   */
+  temp_token?: string;
 }
 
 export interface ConnectCompleteOAuthCallbackParams {
@@ -321,6 +385,11 @@ export interface ConnectCompleteOAuthCallbackParams {
    * Redirect URL used during the OAuth flow (must match)
    */
   redirect_url?: string;
+
+  /**
+   * OAuth state token for direct KV lookup
+   */
+  state?: string;
 }
 
 export interface ConnectCreateBlueskyConnectionParams {

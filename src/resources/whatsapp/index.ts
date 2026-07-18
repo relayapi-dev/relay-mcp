@@ -17,25 +17,8 @@ export {
   type BusinessProfileRetrieveParams,
   type BusinessProfileUpdateParams,
 } from './business-profile';
-export {
-  Contacts,
-  type ContactCreateResponse,
-  type ContactRetrieveResponse,
-  type ContactListResponse,
-  type ContactBulkOperationsResponse,
-  type ContactImportResponse,
-  type ContactCreateParams,
-  type ContactListParams,
-  type ContactBulkOperationsParams,
-  type ContactImportParams,
-} from './contacts';
-export {
-  Groups,
-  type GroupCreateResponse,
-  type GroupListResponse,
-  type GroupCreateParams,
-  type GroupListParams,
-} from './groups';
+export { Contacts } from './contacts';
+export { Groups } from './groups';
 export {
   Templates,
   type TemplateCreateResponse,

@@ -9,19 +9,10 @@ export {
   type CommentReplyResponse,
   type CommentRetrieveParams,
   type CommentListParams,
+  type CommentDeleteParams,
   type CommentPrivateReplyParams,
   type CommentReplyParams,
 } from './comments/index';
 export { Inbox } from './inbox';
-export {
-  Messages,
-  type MessageRetrieveResponse,
-  type MessageListResponse,
-  type MessageArchiveResponse,
-  type MessageEditResponse,
-  type MessageSendResponse,
-  type MessageListParams,
-  type MessageEditParams,
-  type MessageSendParams,
-} from './messages';
+export { Messages } from './messages';
 export { Reviews, type ReviewListResponse, type ReviewListParams } from './reviews/index';

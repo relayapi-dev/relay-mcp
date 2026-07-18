@@ -16,7 +16,7 @@ import {
   GmbLocations,
 } from './gmb-locations';
 import * as HealthAPI from './health';
-import { Health, HealthListResponse, HealthRetrieveResponse } from './health';
+import { Health, HealthListParams, HealthListResponse, HealthRetrieveResponse } from './health';
 import * as LinkedinOrganizationsAPI from './linkedin-organizations';
 import {
   LinkedinOrganizationRetrieveResponse,
@@ -108,11 +108,6 @@ export interface AccountRetrieveResponse {
 
   display_name: string | null;
 
-  /**
-   * Account group
-   */
-  group: AccountRetrieveResponse.Group | null;
-
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -132,20 +127,29 @@ export interface AccountRetrieveResponse {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   platform_account_id: string;
 
   updated_at: string;
 
   username: string | null;
+
+  /**
+   * Account workspace
+   */
+  workspace: AccountRetrieveResponse.Workspace | null;
 }
 
 export namespace AccountRetrieveResponse {
   /**
-   * Account group
+   * Account workspace
    */
-  export interface Group {
+  export interface Workspace {
     id: string;
 
     name: string;
@@ -164,11 +168,6 @@ export interface AccountUpdateResponse {
 
   display_name: string | null;
 
-  /**
-   * Account group
-   */
-  group: AccountUpdateResponse.Group | null;
-
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -188,20 +187,29 @@ export interface AccountUpdateResponse {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   platform_account_id: string;
 
   updated_at: string;
 
   username: string | null;
+
+  /**
+   * Account workspace
+   */
+  workspace: AccountUpdateResponse.Workspace | null;
 }
 
 export namespace AccountUpdateResponse {
   /**
-   * Account group
+   * Account workspace
    */
-  export interface Group {
+  export interface Workspace {
     id: string;
 
     name: string;
@@ -220,6 +228,11 @@ export interface AccountListResponse {
    * Cursor for next page
    */
   next_cursor: string | null;
+
+  /**
+   * Total accounts matching the filters
+   */
+  total: number;
 }
 
 export namespace AccountListResponse {
@@ -234,11 +247,6 @@ export namespace AccountListResponse {
     connected_at: string;
 
     display_name: string | null;
-
-    /**
-     * Account group
-     */
-    group: Data.Group | null;
 
     metadata: { [key: string]: unknown } | null;
 
@@ -259,20 +267,29 @@ export namespace AccountListResponse {
       | 'whatsapp'
       | 'mastodon'
       | 'discord'
-      | 'sms';
+      | 'sms'
+      | 'beehiiv'
+      | 'convertkit'
+      | 'mailchimp'
+      | 'listmonk';
 
     platform_account_id: string;
 
     updated_at: string;
 
     username: string | null;
+
+    /**
+     * Account workspace
+     */
+    workspace: Data.Workspace | null;
   }
 
   export namespace Data {
     /**
-     * Account group
+     * Account workspace
      */
-    export interface Group {
+    export interface Workspace {
       id: string;
 
       name: string;
@@ -283,12 +300,12 @@ export namespace AccountListResponse {
 export interface AccountUpdateParams {
   display_name?: string;
 
-  /**
-   * Group ID (null to ungroup)
-   */
-  group_id?: string | null;
-
   metadata?: { [key: string]: unknown };
+
+  /**
+   * Workspace ID (null to unassign)
+   */
+  workspace_id?: string | null;
 }
 
 export interface AccountListParams {
@@ -303,14 +320,14 @@ export interface AccountListParams {
   from?: string;
 
   /**
-   * Filter by group ID
-   */
-  group_id?: string;
-
-  /**
    * Number of items per page
    */
   limit?: number;
+
+  /**
+   * Comma-separated platform filter (e.g. instagram,facebook)
+   */
+  platforms?: string;
 
   /**
    * Search by name or username
@@ -326,6 +343,11 @@ export interface AccountListParams {
    * Only show ungrouped accounts
    */
   ungrouped?: boolean | null;
+
+  /**
+   * Filter by workspace ID
+   */
+  workspace_id?: string;
 }
 
 Accounts.Health = Health;
@@ -349,6 +371,7 @@ export declare namespace Accounts {
     Health as Health,
     type HealthRetrieveResponse as HealthRetrieveResponse,
     type HealthListResponse as HealthListResponse,
+    type HealthListParams as HealthListParams,
   };
 
   export {

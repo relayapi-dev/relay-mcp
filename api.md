@@ -58,7 +58,7 @@ Types:
 Methods:
 
 - <code title="get /v1/accounts/{id}/health">client.accounts.health.<a href="./src/resources/accounts/health.ts">retrieve</a>(id) -> HealthRetrieveResponse</code>
-- <code title="get /v1/accounts/health">client.accounts.health.<a href="./src/resources/accounts/health.ts">list</a>() -> HealthListResponse</code>
+- <code title="get /v1/accounts/health">client.accounts.health.<a href="./src/resources/accounts/health.ts">list</a>({ ...params }) -> HealthListResponse</code>
 
 ## RedditFlairs
 
@@ -188,19 +188,6 @@ Methods:
 - <code title="get /v1/usage">client.usage.<a href="./src/resources/usage.ts">retrieve</a>() -> UsageRetrieveResponse</code>
 
 # AccountGroups
-
-Types:
-
-- <code><a href="./src/resources/account-groups.ts">AccountGroupCreateResponse</a></code>
-- <code><a href="./src/resources/account-groups.ts">AccountGroupUpdateResponse</a></code>
-- <code><a href="./src/resources/account-groups.ts">AccountGroupListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/account-groups">client.accountGroups.<a href="./src/resources/account-groups.ts">create</a>({ ...params }) -> AccountGroupCreateResponse</code>
-- <code title="put /v1/account-groups/{id}">client.accountGroups.<a href="./src/resources/account-groups.ts">update</a>(id, { ...params }) -> AccountGroupUpdateResponse</code>
-- <code title="get /v1/account-groups">client.accountGroups.<a href="./src/resources/account-groups.ts">list</a>({ ...params }) -> AccountGroupListResponse</code>
-- <code title="delete /v1/account-groups/{id}">client.accountGroups.<a href="./src/resources/account-groups.ts">delete</a>(id) -> void</code>
 
 # Connect
 
@@ -465,7 +452,7 @@ Methods:
 
 - <code title="get /v1/inbox/comments/{post_id}">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">retrieve</a>(postID, { ...params }) -> CommentRetrieveResponse</code>
 - <code title="get /v1/inbox/comments">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">list</a>({ ...params }) -> CommentListResponse</code>
-- <code title="delete /v1/inbox/comments/{comment_id}">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">delete</a>(commentID) -> CommentDeleteResponse</code>
+- <code title="delete /v1/inbox/comments/{comment_id}">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">delete</a>(commentID, { ...params }) -> CommentDeleteResponse</code>
 - <code title="post /v1/inbox/comments/{comment_id}/private-reply">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">privateReply</a>(commentID, { ...params }) -> CommentPrivateReplyResponse</code>
 - <code title="post /v1/inbox/comments/{post_id}/reply">client.inbox.comments.<a href="./src/resources/inbox/comments/comments.ts">reply</a>(postID, { ...params }) -> CommentReplyResponse</code>
 
@@ -478,8 +465,8 @@ Types:
 
 Methods:
 
-- <code title="post /v1/inbox/comments/{comment_id}/hide">client.inbox.comments.hide.<a href="./src/resources/inbox/comments/hide.ts">create</a>(commentID) -> HideCreateResponse</code>
-- <code title="delete /v1/inbox/comments/{comment_id}/hide">client.inbox.comments.hide.<a href="./src/resources/inbox/comments/hide.ts">delete</a>(commentID) -> HideDeleteResponse</code>
+- <code title="post /v1/inbox/comments/{comment_id}/hide">client.inbox.comments.hide.<a href="./src/resources/inbox/comments/hide.ts">create</a>(commentID, { ...params }) -> HideCreateResponse</code>
+- <code title="delete /v1/inbox/comments/{comment_id}/hide">client.inbox.comments.hide.<a href="./src/resources/inbox/comments/hide.ts">delete</a>(commentID, { ...params }) -> HideDeleteResponse</code>
 
 ### Like
 
@@ -490,26 +477,10 @@ Types:
 
 Methods:
 
-- <code title="post /v1/inbox/comments/{comment_id}/like">client.inbox.comments.like.<a href="./src/resources/inbox/comments/like.ts">create</a>(commentID) -> LikeCreateResponse</code>
-- <code title="delete /v1/inbox/comments/{comment_id}/like">client.inbox.comments.like.<a href="./src/resources/inbox/comments/like.ts">delete</a>(commentID) -> LikeDeleteResponse</code>
+- <code title="post /v1/inbox/comments/{comment_id}/like">client.inbox.comments.like.<a href="./src/resources/inbox/comments/like.ts">create</a>(commentID, { ...params }) -> LikeCreateResponse</code>
+- <code title="delete /v1/inbox/comments/{comment_id}/like">client.inbox.comments.like.<a href="./src/resources/inbox/comments/like.ts">delete</a>(commentID, { ...params }) -> LikeDeleteResponse</code>
 
 ## Messages
-
-Types:
-
-- <code><a href="./src/resources/inbox/messages.ts">MessageRetrieveResponse</a></code>
-- <code><a href="./src/resources/inbox/messages.ts">MessageListResponse</a></code>
-- <code><a href="./src/resources/inbox/messages.ts">MessageArchiveResponse</a></code>
-- <code><a href="./src/resources/inbox/messages.ts">MessageEditResponse</a></code>
-- <code><a href="./src/resources/inbox/messages.ts">MessageSendResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/inbox/messages/{conversation_id}">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">retrieve</a>(conversationID) -> MessageRetrieveResponse</code>
-- <code title="get /v1/inbox/messages">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">list</a>({ ...params }) -> MessageListResponse</code>
-- <code title="put /v1/inbox/messages/{conversation_id}/archive">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">archive</a>(conversationID) -> MessageArchiveResponse</code>
-- <code title="patch /v1/inbox/messages/{conversation_id}/{message_id}">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">edit</a>(messageID, { ...params }) -> MessageEditResponse</code>
-- <code title="post /v1/inbox/messages/{conversation_id}">client.inbox.messages.<a href="./src/resources/inbox/messages.ts">send</a>(conversationID, { ...params }) -> MessageSendResponse</code>
 
 ## Reviews
 
@@ -593,35 +564,7 @@ Methods:
 
 ## Contacts
 
-Types:
-
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactCreateResponse</a></code>
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactRetrieveResponse</a></code>
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactListResponse</a></code>
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactBulkOperationsResponse</a></code>
-- <code><a href="./src/resources/whatsapp/contacts.ts">ContactImportResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/whatsapp/contacts">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">create</a>({ ...params }) -> ContactCreateResponse</code>
-- <code title="get /v1/whatsapp/contacts/{contact_id}">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">retrieve</a>(contactID) -> ContactRetrieveResponse</code>
-- <code title="get /v1/whatsapp/contacts">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">list</a>({ ...params }) -> ContactListResponse</code>
-- <code title="delete /v1/whatsapp/contacts/{contact_id}">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">delete</a>(contactID) -> void</code>
-- <code title="post /v1/whatsapp/contacts/bulk">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">bulkOperations</a>({ ...params }) -> ContactBulkOperationsResponse</code>
-- <code title="post /v1/whatsapp/contacts/import">client.whatsapp.contacts.<a href="./src/resources/whatsapp/contacts.ts">import</a>({ ...params }) -> ContactImportResponse</code>
-
 ## Groups
-
-Types:
-
-- <code><a href="./src/resources/whatsapp/groups.ts">GroupCreateResponse</a></code>
-- <code><a href="./src/resources/whatsapp/groups.ts">GroupListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/whatsapp/groups">client.whatsapp.groups.<a href="./src/resources/whatsapp/groups.ts">create</a>({ ...params }) -> GroupCreateResponse</code>
-- <code title="get /v1/whatsapp/groups">client.whatsapp.groups.<a href="./src/resources/whatsapp/groups.ts">list</a>({ ...params }) -> GroupListResponse</code>
-- <code title="delete /v1/whatsapp/groups/{group_id}">client.whatsapp.groups.<a href="./src/resources/whatsapp/groups.ts">delete</a>(groupID) -> void</code>
 
 ## BusinessProfile
 

@@ -89,7 +89,11 @@ export namespace ValidateCheckPostLengthResponse {
    * Character count per platform
    */
   export interface Platforms {
+    beehiiv?: Platforms.Beehiiv;
+
     bluesky?: Platforms.Bluesky;
+
+    convertkit?: Platforms.Convertkit;
 
     discord?: Platforms.Discord;
 
@@ -100,6 +104,10 @@ export namespace ValidateCheckPostLengthResponse {
     instagram?: Platforms.Instagram;
 
     linkedin?: Platforms.Linkedin;
+
+    listmonk?: Platforms.Listmonk;
+
+    mailchimp?: Platforms.Mailchimp;
 
     mastodon?: Platforms.Mastodon;
 
@@ -125,7 +133,41 @@ export namespace ValidateCheckPostLengthResponse {
   }
 
   export namespace Platforms {
+    export interface Beehiiv {
+      /**
+       * Character count for this platform
+       */
+      count: number;
+
+      /**
+       * Character limit for this platform
+       */
+      limit: number;
+
+      /**
+       * Whether content is within limit
+       */
+      within_limit: boolean;
+    }
+
     export interface Bluesky {
+      /**
+       * Character count for this platform
+       */
+      count: number;
+
+      /**
+       * Character limit for this platform
+       */
+      limit: number;
+
+      /**
+       * Whether content is within limit
+       */
+      within_limit: boolean;
+    }
+
+    export interface Convertkit {
       /**
        * Character count for this platform
        */
@@ -211,6 +253,40 @@ export namespace ValidateCheckPostLengthResponse {
     }
 
     export interface Linkedin {
+      /**
+       * Character count for this platform
+       */
+      count: number;
+
+      /**
+       * Character limit for this platform
+       */
+      limit: number;
+
+      /**
+       * Whether content is within limit
+       */
+      within_limit: boolean;
+    }
+
+    export interface Listmonk {
+      /**
+       * Character count for this platform
+       */
+      count: number;
+
+      /**
+       * Character limit for this platform
+       */
+      limit: number;
+
+      /**
+       * Whether content is within limit
+       */
+      within_limit: boolean;
+    }
+
+    export interface Mailchimp {
       /**
        * Character count for this platform
        */
@@ -467,6 +543,11 @@ export namespace ValidateRetrieveSubredditResponse {
      * Allows text posts
      */
     self: boolean;
+
+    /**
+     * Allows video posts
+     */
+    video?: boolean;
   }
 }
 
@@ -497,7 +578,11 @@ export namespace ValidateValidateMediaResponse {
    * Per-platform size limits
    */
   export interface PlatformLimits {
+    beehiiv?: PlatformLimits.Beehiiv;
+
     bluesky?: PlatformLimits.Bluesky;
+
+    convertkit?: PlatformLimits.Convertkit;
 
     discord?: PlatformLimits.Discord;
 
@@ -508,6 +593,10 @@ export namespace ValidateValidateMediaResponse {
     instagram?: PlatformLimits.Instagram;
 
     linkedin?: PlatformLimits.Linkedin;
+
+    listmonk?: PlatformLimits.Listmonk;
+
+    mailchimp?: PlatformLimits.Mailchimp;
 
     mastodon?: PlatformLimits.Mastodon;
 
@@ -533,6 +622,23 @@ export namespace ValidateValidateMediaResponse {
   }
 
   export namespace PlatformLimits {
+    export interface Beehiiv {
+      /**
+       * Maximum file size in bytes
+       */
+      max_size: number;
+
+      /**
+       * Whether file size is within limit
+       */
+      within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
+    }
+
     export interface Bluesky {
       /**
        * Maximum file size in bytes
@@ -543,6 +649,28 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
+    }
+
+    export interface Convertkit {
+      /**
+       * Maximum file size in bytes
+       */
+      max_size: number;
+
+      /**
+       * Whether file size is within limit
+       */
+      within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Discord {
@@ -555,6 +683,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Facebook {
@@ -567,6 +700,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Googlebusiness {
@@ -579,6 +717,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Instagram {
@@ -591,6 +734,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Linkedin {
@@ -603,6 +751,45 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
+    }
+
+    export interface Listmonk {
+      /**
+       * Maximum file size in bytes
+       */
+      max_size: number;
+
+      /**
+       * Whether file size is within limit
+       */
+      within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
+    }
+
+    export interface Mailchimp {
+      /**
+       * Maximum file size in bytes
+       */
+      max_size: number;
+
+      /**
+       * Whether file size is within limit
+       */
+      within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Mastodon {
@@ -615,6 +802,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Pinterest {
@@ -627,6 +819,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Reddit {
@@ -639,6 +836,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface SMS {
@@ -651,6 +853,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Snapchat {
@@ -663,6 +870,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Telegram {
@@ -675,6 +887,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Threads {
@@ -687,6 +904,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Tiktok {
@@ -699,6 +921,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Twitter {
@@ -711,6 +938,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Whatsapp {
@@ -723,6 +955,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
 
     export interface Youtube {
@@ -735,6 +972,11 @@ export namespace ValidateValidateMediaResponse {
        * Whether file size is within limit
        */
       within_limit: boolean;
+
+      /**
+       * Whether the MIME type is supported by this platform
+       */
+      mime_type_supported?: boolean;
     }
   }
 }
@@ -815,13 +1057,14 @@ export interface ValidateValidateMediaParams {
 
 export interface ValidateValidatePostParams {
   /**
-   * Publish intent. Use "now" to publish immediately, "draft" to save as draft, or
-   * an ISO 8601 timestamp to schedule.
+   * Publish intent. Use "now" to publish immediately, "draft" to save as draft,
+   * "auto" to auto-schedule to the best available slot, or an ISO 8601 timestamp to
+   * schedule (max 30 days ahead).
    */
   scheduled_at: string;
 
   /**
-   * Account IDs, platform names, or group IDs to publish to
+   * Account IDs, platform names, or workspace IDs to publish to
    */
   targets: Array<string>;
 
@@ -831,22 +1074,91 @@ export interface ValidateValidatePostParams {
   content?: string;
 
   /**
+   * Cross-post actions to execute after publishing (e.g., repost from another
+   * account, comment from another account)
+   */
+  cross_post_actions?: Array<ValidateValidatePostParams.CrossPostAction>;
+
+  /**
+   * Create post from an idea. Pre-fills content from the idea. Explicit 'content'
+   * field takes precedence.
+   */
+  idea_id?: string;
+
+  /**
    * Media attachments
    */
   media?: Array<ValidateValidatePostParams.Media>;
 
   /**
-   * Per-target customizations keyed by target value (account ID or platform name)
+   * Recycling configuration for evergreen content (Pro plan only)
+   */
+  recycling?: ValidateValidatePostParams.Recycling;
+
+  /**
+   * Shorten URLs in post content. Only relevant when short link mode is 'ask'.
+   * Ignored when mode is 'always' or 'never'. (Pro plan only)
+   */
+  shorten_urls?: boolean;
+
+  /**
+   * When true, the default signature is not auto-appended even if one is configured.
+   */
+  skip_signature?: boolean;
+
+  /**
+   * Per-target customizations keyed by target value (account ID or platform name).
+   * Supports platform-specific features such as Twitter polls (poll.options,
+   * poll.duration_minutes), threads, reply_to, and reply_settings.
    */
   target_options?: { [key: string]: { [key: string]: unknown } };
+
+  /**
+   * Content template ID. When provided, the template content is used as the base for
+   * the post. Explicit 'content' field takes precedence.
+   */
+  template_id?: string;
+
+  /**
+   * Variables to interpolate in the template (e.g., { "promo_code": "SUMMER25" }).
+   * Built-in variables: {{date}}, {{account_name}}.
+   */
+  template_variables?: { [key: string]: string };
 
   /**
    * IANA timezone for scheduling
    */
   timezone?: string;
+
+  /**
+   * Workspace ID to scope this post to
+   */
+  workspace_id?: string;
 }
 
 export namespace ValidateValidatePostParams {
+  export interface CrossPostAction {
+    /**
+     * Type of cross-post action
+     */
+    action_type: 'repost' | 'comment' | 'quote';
+
+    /**
+     * Account to perform the action from
+     */
+    target_account_id: string;
+
+    /**
+     * Text content for comment/quote actions (required for comment and quote)
+     */
+    content?: string;
+
+    /**
+     * Delay in minutes after publishing
+     */
+    delay_minutes?: number;
+  }
+
   export interface Media {
     /**
      * Public URL of the media file
@@ -854,9 +1166,55 @@ export namespace ValidateValidatePostParams {
     url: string;
 
     /**
+     * Read-only. Stable, hyper-optimized preview URL that persists after the full-res
+     * original expires. Ignored on write.
+     */
+    thumbnail?: string;
+
+    /**
      * Media type. Inferred from URL extension if omitted.
      */
     type?: 'image' | 'video' | 'gif' | 'document';
+  }
+
+  /**
+   * Recycling configuration for evergreen content (Pro plan only)
+   */
+  export interface Recycling {
+    /**
+     * Interval value
+     */
+    gap: number;
+
+    /**
+     * Interval unit
+     */
+    gap_freq: 'day' | 'week' | 'month';
+
+    /**
+     * When to start recycling
+     */
+    start_date: string;
+
+    /**
+     * Alternate content texts (round-robin)
+     */
+    content_variations?: Array<string>;
+
+    /**
+     * Whether recycling is active
+     */
+    enabled?: boolean;
+
+    /**
+     * Stop after this many recycles
+     */
+    expire_count?: number;
+
+    /**
+     * Stop after this date
+     */
+    expire_date?: string;
   }
 }
 

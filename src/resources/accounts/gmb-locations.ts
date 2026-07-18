@@ -51,11 +51,6 @@ export interface GmbLocationSetDefaultResponse {
 
   display_name: string | null;
 
-  /**
-   * Account group
-   */
-  group: GmbLocationSetDefaultResponse.Group | null;
-
   metadata: { [key: string]: unknown } | null;
 
   platform:
@@ -75,20 +70,29 @@ export interface GmbLocationSetDefaultResponse {
     | 'whatsapp'
     | 'mastodon'
     | 'discord'
-    | 'sms';
+    | 'sms'
+    | 'beehiiv'
+    | 'convertkit'
+    | 'mailchimp'
+    | 'listmonk';
 
   platform_account_id: string;
 
   updated_at: string;
 
   username: string | null;
+
+  /**
+   * Account workspace
+   */
+  workspace: GmbLocationSetDefaultResponse.Workspace | null;
 }
 
 export namespace GmbLocationSetDefaultResponse {
   /**
-   * Account group
+   * Account workspace
    */
-  export interface Group {
+  export interface Workspace {
     id: string;
 
     name: string;
